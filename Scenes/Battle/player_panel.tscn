@@ -15,6 +15,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_kqpfk")
+layout_position = null
 
 [node name="PlayerBox" type="TextureRect" parent="." unique_id=694156896]
 unique_name_in_owner = true
@@ -56,26 +57,90 @@ offset_bottom = 186.0
 value = 100.0
 texture_progress = ExtResource("4_nb1cy")
 
-[node name="HealthText" type="RichTextLabel" parent="PlayerBox" unique_id=657317907]
+[node name="HealthHBox" type="HBoxContainer" parent="PlayerBox" unique_id=1462753352]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -38.0
+offset_right = 23.0
+offset_bottom = -24.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="HealthTextMax" type="RichTextLabel" parent="PlayerBox/HealthHBox" unique_id=657317907]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 29.0
-offset_top = 125.595
-offset_right = 108.0
-offset_bottom = 140.59506
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/normal_font_size = 10
-text = "100/190"
+text = "100"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 2
 
-[node name="JuiceText" type="RichTextLabel" parent="PlayerBox" unique_id=125887452]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 29.0
-offset_top = 145.0
-offset_right = 108.0
-offset_bottom = 160.0
+[node name="Divider" type="RichTextLabel" parent="PlayerBox/HealthHBox" unique_id=956902400]
+layout_mode = 2
+size_flags_horizontal = 8
 theme_override_font_sizes/normal_font_size = 10
-text = "100/190"
+text = "/"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="HealthTextCurrent" type="RichTextLabel" parent="PlayerBox/HealthHBox" unique_id=1528973806]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/normal_font_size = 10
+text = "1"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="JuiceHBox" type="HBoxContainer" parent="PlayerBox" unique_id=1260544502]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -19.315002
+offset_right = 35.0
+offset_bottom = -5.3150024
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="JuiceTextMax" type="RichTextLabel" parent="PlayerBox/JuiceHBox" unique_id=1968759090]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/normal_font_size = 10
+text = "100"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="Divider" type="RichTextLabel" parent="PlayerBox/JuiceHBox" unique_id=199123140]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/normal_font_size = 10
+text = "/"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="JuiceTextCurrent" type="RichTextLabel" parent="PlayerBox/JuiceHBox" unique_id=1954305510]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/normal_font_size = 10
+text = "1"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerBox" unique_id=820910468]

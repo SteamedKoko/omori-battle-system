@@ -1,13 +1,14 @@
 class_name BattleManager
 extends Node2D
 
-var players: Array = []
-var enemies: Array = []
+var players: Array[BattlePlayer] = []
+var enemies: Array[BattleEnemy] = []
 
 const OMORI_DATA = preload("uid://bd2jyxc6fp1v8")
 const AUBREY_DATA = preload("uid://dgybubuhy6o62")
 const HERO_DATA = preload("uid://dtb7nn2gdr48b")
 const KEL_DATA = preload("uid://dmbkp1igy7jw8")
+const SUDO_STATS = preload("uid://bv83gxiv347g4")
 
 func _ready():
 	battle_loop()
@@ -28,7 +29,7 @@ func start_battle() -> void:
 	var aubrey: BattlePlayer = BattlePlayer.new(AUBREY_DATA)
 	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA)
 
-	var enemy: BattleEnemy = BattleEnemy.new(OMORI_DATA.player_stats)
+	var enemy: BattleEnemy = BattleEnemy.new(SUDO_STATS)
 
 	players.push_back(omori)
 	players.push_back(kel)
@@ -58,16 +59,21 @@ func battle_loop() -> void:
 	while(!player_won and !enemy_won):
 		for player in players:
 			if player.is_alive():
-				player.act()
+				var to_attack: Array[BattleEnemy] = enemies.filter(func(e): return e.is_alive())
+				player.act(to_attack)
 				await player.acted
 
 		for enemy in enemies:
 			if enemy.is_alive():
-				enemy.act()
+				var to_attack: Array[BattlePlayer] = players.filter(func(e): return e.is_alive())
+				if !to_attack:
+					break
+				enemy.act(to_attack)
 				await enemy.acted
 
-		player_won = enemies.filter(func(e): e.is_alive()).size() == 0
-		enemy_won = players.filter(func(e): e.is_alive()).size() == 0
+		player_won = enemies.filter(func(e): return e.is_alive()).size() == 0
+		enemy_won = players.filter(func(e): return e.is_alive()).size() == 0
 
 
+	print('ending battle ', player_won, enemy_won)
 	end_battle()

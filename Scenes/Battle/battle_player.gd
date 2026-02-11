@@ -11,7 +11,7 @@ func _init(data: PlayerData) -> void:
 # func build() -> BattlePlayer:
 
 
-func act():
+func act(enemies: Array[BattleEnemy]):
 	print(player_data.player_name,' turn')
 	get_tree().create_timer(1).timeout.connect(func(): acted.emit())
 

@@ -1,0 +1,71 @@
+1. at battle start
+    * Fight
+    * Run - Present dialogue, can't run nerd
+
+2. Click fight slaps open menu for all player's turn - Top text says "What will %player% do?"
+    Attack  Skill
+    Snack   Toy
+
+3. After all players go, it is enemy turn
+
+
+4. Rinse and repeat until one party is dead
+
+
+
+done
+Battle States: State
+Battle Start
+Player Turn
+Enemy Turn
+
+BattleManager: StateMachine
+BattleState - BattleStart
+Players: Array
+Enemies: Array
+PlayerPortrait: Array
+BattleTextBox - (Autoscrolls during attacks) Leave last message active
+BattleBar - Goes to level 10, starts on 3 if engaging, 0 if engaged, on 10 special attack appears
+
+
+PlayerPortrait
+Status: Neutral, Angry, Happy, Sad, etc
+Sprite: Texture2D
+Listen to player stats??
+
+
+Player
+Name
+Stats
+Sprite for battle
+
+
+Enemy
+Name
+Stats
+Sprite for battle
+
+
+Flow
+Init
+    Load up all necessary states
+    Load up characters to portraits - Link by name?
+    Load characters array
+    Load enemies array
+    Change to battle start 
+BattleStart
+    Enable fight or run ui
+    * Fight -> change to player turn
+    * Run -> throw player under the bus
+
+PlayerTurn
+    Play each player in order - show attack etc menu for each
+    Attack - select an enemy and do the thing to enemy
+    Skill - Open menu, choose skill, choose enemy/ally, execute
+    Snack - Open menu, choose snack, choose ally, execute
+    Toy - Let's not bother
+
+After all players go, enemy turn
+Enemy attacks player with whatever
+
+Back to player turn

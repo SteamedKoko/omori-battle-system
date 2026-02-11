@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dgybubuhy6o62"]
+
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/stats.gd" id="1_16uvk"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/player_data.gd" id="1_rels4"]
+[ext_resource type="Texture2D" uid="uid://cqcesdbu26i1g" path="res://Scenes/Battle/Art/Portraits/aubrey_neutral1.png" id="1_v7evs"]
+[ext_resource type="Texture2D" uid="uid://kxx7vo21u58k" path="res://Scenes/Battle/Art/Portraits/aubrey_neutral2.png" id="2_wmkko"]
+[ext_resource type="Texture2D" uid="uid://bxxjdho7ne816" path="res://Scenes/Battle/Art/Portraits/aubrey_neutral3.png" id="3_y31oa"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_rmpny"]
+frames = 3
+speed_scale = 4.0
+frame_0/texture = ExtResource("1_v7evs")
+frame_1/texture = ExtResource("2_wmkko")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_y31oa")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_7wtex"]
+script = ExtResource("1_16uvk")
+max_hp = 200
+max_juice = 101
+level = 10
+experience = 100
+current_hp = 200
+current_juice = 101
+attack = 53
+defense = 25
+speed = 15
+metadata/_custom_type_script = "uid://beeaos4sr20uv"
+
+[resource]
+script = ExtResource("1_rels4")
+player_name = "Aubrey"
+player_stats = SubResource("Resource_7wtex")
+battle_sprites = Dictionary[int, AnimatedTexture]({
+1: SubResource("AnimatedTexture_rmpny")
+})
+metadata/_custom_type_script = "uid://cpe47c776l4uc"

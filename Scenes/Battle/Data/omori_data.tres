@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://bd2jyxc6fp1v8"]
+
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/player_data.gd" id="1_esoi8"]
+[ext_resource type="Texture2D" uid="uid://cwmwff4nrgd8t" path="res://Scenes/Battle/Art/Portraits/omori_neutral1.png" id="1_m1sdf"]
+[ext_resource type="Texture2D" uid="uid://4biklw2bw10p" path="res://Scenes/Battle/Art/Portraits/omori_neutral2.png" id="2_2mrj4"]
+[ext_resource type="Resource" uid="uid://ceitaeqkgsd3k" path="res://Scenes/Battle/Data/omori_stats.tres" id="2_83xkk"]
+[ext_resource type="Texture2D" uid="uid://bvd220pteyvxa" path="res://Scenes/Battle/Art/Portraits/omori_neutral3.png" id="3_inepx"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_i4dq2"]
+frames = 3
+speed_scale = 4.0
+frame_0/texture = ExtResource("1_m1sdf")
+frame_1/texture = ExtResource("2_2mrj4")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_inepx")
+frame_2/duration = 1.0
+
+[resource]
+script = ExtResource("1_esoi8")
+player_name = "Omori"
+player_stats = ExtResource("2_83xkk")
+battle_sprites = Dictionary[int, AnimatedTexture]({
+1: SubResource("AnimatedTexture_i4dq2")
+})
+metadata/_custom_type_script = "uid://cpe47c776l4uc"

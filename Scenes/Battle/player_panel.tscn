@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cfoptwsymul31"]
+
+[ext_resource type="Texture2D" uid="uid://m67rs7cjjxhh" path="res://Scenes/Battle/Art/player_panel.png" id="1_620xr"]
+[ext_resource type="Script" uid="uid://bol2fhk8iimev" path="res://Scenes/Battle/player_panel.gd" id="1_kqpfk"]
+[ext_resource type="Texture2D" uid="uid://wd0e3gehgs5y" path="res://Scenes/Battle/Art/health_bar.png" id="3_lhc11"]
+[ext_resource type="Texture2D" uid="uid://6jebq1l0n2u4" path="res://Scenes/Battle/Art/juice_bar.png" id="4_nb1cy"]
+
+[node name="PlayerPanel" type="Control" unique_id=504470083]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kqpfk")
+
+[node name="PlayerBox" type="TextureRect" parent="." unique_id=694156896]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 114.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_620xr")
+
+[node name="PortraitSprite" type="TextureRect" parent="PlayerBox" unique_id=1112742785]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 12.0
+offset_right = 111.0
+offset_bottom = 118.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="PlayerBox" unique_id=106410690]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 28.0
+offset_top = 127.0
+offset_right = 130.0
+offset_bottom = 167.0
+value = 100.0
+texture_progress = ExtResource("3_lhc11")
+
+[node name="JuiceBar" type="TextureProgressBar" parent="PlayerBox" unique_id=1115191548]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 28.0
+offset_top = 146.0
+offset_right = 130.0
+offset_bottom = 186.0
+value = 100.0
+texture_progress = ExtResource("4_nb1cy")
+
+[node name="HealthText" type="RichTextLabel" parent="PlayerBox" unique_id=657317907]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 29.0
+offset_top = 125.595
+offset_right = 108.0
+offset_bottom = 140.59506
+theme_override_font_sizes/normal_font_size = 10
+text = "100/190"
+horizontal_alignment = 2
+
+[node name="JuiceText" type="RichTextLabel" parent="PlayerBox" unique_id=125887452]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 29.0
+offset_top = 145.0
+offset_right = 108.0
+offset_bottom = 160.0
+theme_override_font_sizes/normal_font_size = 10
+text = "100/190"
+horizontal_alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerBox" unique_id=820910468]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_right = 55.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "Neutral"
+horizontal_alignment = 1

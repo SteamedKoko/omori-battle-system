@@ -21,6 +21,7 @@ func _ready():
 	battle_loop()
 
 func cancel_player_menu() -> void:
+	print('cancel player menu')
 	player_menu.hide()
 	start_menu.show()
 	%FightButton.grab_focus()

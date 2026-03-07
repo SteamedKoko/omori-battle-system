@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vt2a60kc64pg"]
 
-[ext_resource type="Script" uid="uid://bqojfvcc22p3x" path="res://Scenes/Battle/submenu.gd" id="1_cvonr"]
+[ext_resource type="Script" uid="uid://bqojfvcc22p3x" path="res://Scenes/Battle/UI/submenu.gd" id="1_cvonr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_778ss"]
 bg_color = Color(0, 0, 0, 1)

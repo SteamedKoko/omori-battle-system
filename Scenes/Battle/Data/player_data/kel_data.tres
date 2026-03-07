@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dmbkp1igy7jw8"]
+
+[ext_resource type="Texture2D" uid="uid://d17t0ah6svyhv" path="res://Scenes/Battle/Art/Portraits/kel_neutral1.png" id="1_tfol8"]
+[ext_resource type="Texture2D" uid="uid://bmrkl10rebil7" path="res://Scenes/Battle/Art/Portraits/kel_neutral2.png" id="2_2pbmf"]
+[ext_resource type="Texture2D" uid="uid://bpqxbl624a16q" path="res://Scenes/Battle/Art/Portraits/kel_neutral3.png" id="3_hk7jx"]
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/Battle/Data/player_stats/stats.gd" id="4_5543e"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/Data/player_data/player_data.gd" id="5_2pbmf"]
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Scenes/Battle/Data/skills/skill.gd" id="6_hk7jx"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_cix7d"]
+frames = 3
+speed_scale = 4.0
+frame_0/texture = ExtResource("1_tfol8")
+frame_1/texture = ExtResource("2_2pbmf")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_hk7jx")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_lnetm"]
+script = ExtResource("4_5543e")
+max_hp = 170
+max_juice = 140
+level = 10
+experience = 100
+current_hp = 170
+current_juice = 140
+attack = 30
+defense = 30
+speed = 40
+metadata/_custom_type_script = "uid://beeaos4sr20uv"
+
+[resource]
+script = ExtResource("5_2pbmf")
+player_name = "Kel"
+player_stats = SubResource("Resource_lnetm")
+battle_sprites = Dictionary[int, AnimatedTexture]({
+1: SubResource("AnimatedTexture_cix7d")
+})
+metadata/_custom_type_script = "uid://cpe47c776l4uc"

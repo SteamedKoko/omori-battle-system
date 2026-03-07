@@ -4,6 +4,12 @@ extends Node2D
 var players: Array[BattlePlayer] = []
 var enemies: Array[BattleEnemy] = []
 
+signal player_turn_end
+signal enemy_turn_end
+
+@onready var player_menu: PlayerMenu = %PlayerMenu
+@onready var start_menu: Control = %StartMenu
+
 const OMORI_DATA = preload("uid://bd2jyxc6fp1v8")
 const AUBREY_DATA = preload("uid://dgybubuhy6o62")
 const HERO_DATA = preload("uid://dtb7nn2gdr48b")
@@ -11,7 +17,16 @@ const KEL_DATA = preload("uid://dmbkp1igy7jw8")
 const SUDO_STATS = preload("uid://bv83gxiv347g4")
 
 func _ready():
+	player_menu.cancelled.connect(cancel_player_menu)
 	battle_loop()
+
+func cancel_player_menu() -> void:
+	player_menu.hide()
+	start_menu.show()
+	%FightButton.grab_focus()
+
+
+
 
 func start_battle() -> void:
 	#player panels
@@ -45,10 +60,56 @@ func start_battle() -> void:
 
 	add_child(enemy)
 
+	%RunButton.pressed.connect(attempt_run)
+	%FightButton.pressed.connect(start_player_menu)
 
 
 func end_battle() -> void:
 	pass
+
+
+func attempt_run() -> void:
+	%TextBox.text = "You can't run sucker"
+	player_turn_end.emit()
+
+
+func player_turn_start() -> void:
+	#select fight or run
+	#show menu fight run
+	%StartMenu.show()
+	%FightButton.grab_focus()
+	for player in players:
+		if player.is_alive():
+			var to_attack: Array[BattleEnemy] = enemies.filter(func(e): return e.is_alive())
+			player_menu.load_player(player.player_data)
+			player.act(to_attack)
+			await player.acted
+
+	player_turn_end.emit()
+
+
+func clean_player_menu() -> void:
+	%PlayerMenu.hide()
+	%StartMenu.hide()
+
+
+func start_player_menu() -> void:
+	%StartMenu.hide()
+	%PlayerMenu.show()
+	%PlayerMenu.open_menu()
+
+
+func enemy_turn_start() -> void:
+	for enemy in enemies:
+		if enemy.is_alive():
+			var to_attack: Array[BattlePlayer] = players.filter(func(e): return e.is_alive())
+			if !to_attack:
+				break
+			enemy.act(to_attack)
+			await enemy.acted
+	
+	enemy_turn_end.emit()
+
 
 func battle_loop() -> void:
 	start_battle()
@@ -57,19 +118,12 @@ func battle_loop() -> void:
 	var enemy_won = false
 
 	while(!player_won and !enemy_won):
-		for player in players:
-			if player.is_alive():
-				var to_attack: Array[BattleEnemy] = enemies.filter(func(e): return e.is_alive())
-				player.act(to_attack)
-				await player.acted
+		player_turn_start()
+		await player_turn_end
+		await clean_player_menu()
 
-		for enemy in enemies:
-			if enemy.is_alive():
-				var to_attack: Array[BattlePlayer] = players.filter(func(e): return e.is_alive())
-				if !to_attack:
-					break
-				enemy.act(to_attack)
-				await enemy.acted
+		enemy_turn_start()
+		await enemy_turn_end
 
 		player_won = enemies.filter(func(e): return e.is_alive()).size() == 0
 		enemy_won = players.filter(func(e): return e.is_alive()).size() == 0

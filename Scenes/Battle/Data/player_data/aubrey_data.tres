@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dgybubuhy6o62"]
+
+[ext_resource type="Texture2D" uid="uid://cqcesdbu26i1g" path="res://Scenes/Battle/Art/Portraits/aubrey_neutral1.png" id="1_p5a8q"]
+[ext_resource type="Texture2D" uid="uid://kxx7vo21u58k" path="res://Scenes/Battle/Art/Portraits/aubrey_neutral2.png" id="2_7fwdy"]
+[ext_resource type="Texture2D" uid="uid://bxxjdho7ne816" path="res://Scenes/Battle/Art/Portraits/aubrey_neutral3.png" id="3_x5eck"]
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/Battle/Data/player_stats/stats.gd" id="4_dw8yu"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/Data/player_data/player_data.gd" id="5_7fwdy"]
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Scenes/Battle/Data/skills/skill.gd" id="6_x5eck"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_rmpny"]
+frames = 3
+speed_scale = 4.0
+frame_0/texture = ExtResource("1_p5a8q")
+frame_1/texture = ExtResource("2_7fwdy")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_x5eck")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_7wtex"]
+script = ExtResource("4_dw8yu")
+max_hp = 200
+max_juice = 101
+level = 10
+experience = 100
+current_hp = 200
+current_juice = 101
+attack = 53
+defense = 25
+speed = 15
+metadata/_custom_type_script = "uid://beeaos4sr20uv"
+
+[resource]
+script = ExtResource("5_7fwdy")
+player_name = "Aubrey"
+player_stats = SubResource("Resource_7wtex")
+battle_sprites = Dictionary[int, AnimatedTexture]({
+1: SubResource("AnimatedTexture_rmpny")
+})
+metadata/_custom_type_script = "uid://cpe47c776l4uc"

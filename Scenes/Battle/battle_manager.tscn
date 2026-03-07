@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://bbvxbcd31s3qo" path="res://Scenes/Battle/battle_manager.gd" id="1_ve3sm"]
 [ext_resource type="Texture2D" uid="uid://gwuq1s2c04wh" path="res://Scenes/Battle/Art/example.png" id="2_3madc"]
 [ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://Scenes/Battle/Art/hax.png" id="3_4qbi0"]
-[ext_resource type="Texture2D" uid="uid://muk65yybwec" path="res://Scenes/Battle/Art/fight_button.png" id="3_6ac58"]
+[ext_resource type="Texture2D" uid="uid://muk65yybwec" path="res://Scenes/Battle/Art/MenuButtons/fight_button.png" id="3_6ac58"]
 [ext_resource type="Texture2D" uid="uid://drlun5nxp25x0" path="res://Scenes/Battle/Art/combo_bar.png" id="3_748wt"]
-[ext_resource type="Texture2D" uid="uid://dmrbfnj346kft" path="res://Scenes/Battle/Art/run_button.png" id="4_748wt"]
+[ext_resource type="Texture2D" uid="uid://dmrbfnj346kft" path="res://Scenes/Battle/Art/MenuButtons/run_button.png" id="4_748wt"]
+[ext_resource type="PackedScene" uid="uid://c0ravx86rx4er" path="res://Scenes/Battle/menu_button.tscn" id="5_gthe3"]
+[ext_resource type="PackedScene" uid="uid://cfryc6d4hprrd" path="res://Scenes/Battle/player_menu.tscn" id="8_fjqb4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ve3sm"]
 bg_color = Color(0, 0, 0, 1)
@@ -30,7 +32,8 @@ size_flags_vertical = 3
 texture = ExtResource("1_o4fs7")
 expand_mode = 5
 
-[node name="TextContainer" type="PanelContainer" parent="BattleUI" unique_id=1064775071]
+[node name="BattleDialogue" type="PanelContainer" parent="BattleUI" unique_id=1064775071]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(358, 88)
 anchors_preset = 5
 anchor_left = 0.5
@@ -43,13 +46,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ve3sm")
 
-[node name="MarginContainer" type="MarginContainer" parent="BattleUI/TextContainer" unique_id=765977617]
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/BattleDialogue" unique_id=765977617]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TextBox" type="RichTextLabel" parent="BattleUI/TextContainer/MarginContainer" unique_id=1989993980]
+[node name="TextBox" type="RichTextLabel" parent="BattleUI/BattleDialogue/MarginContainer" unique_id=1989993980]
 unique_name_in_owner = true
 layout_mode = 2
 text = "how ya doin baby it's your turn"
@@ -96,34 +99,49 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="MenuContainer" type="MarginContainer" parent="BattleUI/PlayerPanelContainer" unique_id=700688602]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BattleUI/PlayerPanelContainer/MenuContainer" unique_id=887156648]
-layout_mode = 2
+[node name="MenuContainer" type="MarginContainer" parent="BattleUI" unique_id=700688602]
+unique_name_in_owner = true
+offset_left = 139.0
+offset_top = 338.0
+offset_right = 501.0
+offset_bottom = 470.0
+size_flags_horizontal = 4
 size_flags_vertical = 8
+
+[node name="Menus" type="VBoxContainer" parent="BattleUI/MenuContainer" unique_id=887156648]
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 1
 
-[node name="TextureRect" type="TextureRect" parent="BattleUI/PlayerPanelContainer/MenuContainer/VBoxContainer" unique_id=1189442282]
+[node name="SpecialBar" type="TextureRect" parent="BattleUI/MenuContainer/Menus" unique_id=1189442282]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource("3_748wt")
 
-[node name="StartMenu" type="VBoxContainer" parent="BattleUI/PlayerPanelContainer/MenuContainer/VBoxContainer" unique_id=1975175712]
-custom_minimum_size = Vector2(350, 0)
+[node name="StartMenu" type="VBoxContainer" parent="BattleUI/MenuContainer/Menus" unique_id=1975175712]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 0
 
-[node name="FightButton" type="TextureButton" parent="BattleUI/PlayerPanelContainer/MenuContainer/VBoxContainer/StartMenu" unique_id=450791007]
+[node name="FightButton" parent="BattleUI/MenuContainer/Menus/StartMenu" unique_id=190390897 instance=ExtResource("5_gthe3")]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("3_6ac58")
 
-[node name="RunButton" type="TextureButton" parent="BattleUI/PlayerPanelContainer/MenuContainer/VBoxContainer/StartMenu" unique_id=1296892456]
+[node name="RunButton" parent="BattleUI/MenuContainer/Menus/StartMenu" unique_id=1410678867 instance=ExtResource("5_gthe3")]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("4_748wt")
 
+[node name="PlayerMenu" parent="BattleUI/MenuContainer/Menus" unique_id=2137837391 instance=ExtResource("8_fjqb4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
 [node name="Example" type="TextureRect" parent="BattleUI" unique_id=2109064367]
+visible = false
 self_modulate = Color(1, 1, 1, 0.19215687)
 offset_right = 1280.0
 offset_bottom = 960.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wd0e3gehgs5y"
-path="res://.godot/imported/health_bar.png-2d356792b721eee911b9ca03afe8573d.ctex"
+uid="uid://ckh4knnheo24y"
+path="res://.godot/imported/portrait_back_angry.png-fbc663475ae6f2b128a57002405d757c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/health_bar.png"
-dest_files=["res://.godot/imported/health_bar.png-2d356792b721eee911b9ca03afe8573d.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/portrait_back_angry.png"
+dest_files=["res://.godot/imported/portrait_back_angry.png-fbc663475ae6f2b128a57002405d757c.ctex"]
 
 [params]
 

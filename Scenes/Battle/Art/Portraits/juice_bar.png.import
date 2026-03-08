@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6jebq1l0n2u4"
-path="res://.godot/imported/juice_bar.png-08ebfb77ca6d35d40f6962571071ce94.ctex"
+path="res://.godot/imported/juice_bar.png-96be090a62255179a0f4d64393f0f392.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/juice_bar.png"
-dest_files=["res://.godot/imported/juice_bar.png-08ebfb77ca6d35d40f6962571071ce94.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/juice_bar.png"
+dest_files=["res://.godot/imported/juice_bar.png-96be090a62255179a0f4d64393f0f392.ctex"]
 
 [params]
 

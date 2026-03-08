@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m67rs7cjjxhh"
-path="res://.godot/imported/player_panel.png-0dc49f46d012745d405f236957411a0d.ctex"
+uid="uid://dhb0wnfdblv4h"
+path="res://.godot/imported/portrait_back_happy.png-f557423068b1f2fb80c606f53e0f4c23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/player_panel.png"
-dest_files=["res://.godot/imported/player_panel.png-0dc49f46d012745d405f236957411a0d.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/portrait_back_happy.png"
+dest_files=["res://.godot/imported/portrait_back_happy.png-f557423068b1f2fb80c606f53e0f4c23.ctex"]
 
 [params]
 

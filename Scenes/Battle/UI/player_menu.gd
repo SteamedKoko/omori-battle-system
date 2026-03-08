@@ -54,9 +54,12 @@ func _clear_skills() -> void:
 	skills = []
 
 func _load_skills(data: PlayerData) -> void:
+	var to_load: Array[Control] = []
 	for skill in data.skills:
 		var instance: SkillLabel = SkillLabel.build(skill)
-		skill_submenu.add_item(instance)
+		to_load.push_back(instance)
+
+	skill_submenu.load_items(to_load)
 
 
 func _unhandled_input(event: InputEvent) -> void:

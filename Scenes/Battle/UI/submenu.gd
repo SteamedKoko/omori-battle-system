@@ -15,11 +15,13 @@ func _ready() -> void:
 
 func load_items(items: Array[Control]) -> void:
 	for child in %ItemContainer.get_children():
-		#todo: this is broken, children dont get removed
 		%ItemContainer.remove_child(child)
 		
-
 	submenu_items = items
+
+	for item in submenu_items:
+		%ItemContainer.add_child(item)
+	
 	focus_index = 0
 
 func add_item(item: Control) -> void:

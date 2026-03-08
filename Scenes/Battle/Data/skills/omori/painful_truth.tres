@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_v4w0d")
 name = "Painful Truth"
-description = "Deals damage to a foe. Omori and the foe become sad. COST: 10"
+description = "Deals damage to a foe. Omori and the foe become sad."
 cost = 10
 damage = 50.0
 target_effect_status = 2

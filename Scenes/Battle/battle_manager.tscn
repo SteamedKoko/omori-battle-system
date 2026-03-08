@@ -55,7 +55,9 @@ theme_override_constants/margin_bottom = 10
 [node name="BattleText" type="RichTextLabel" parent="BattleUI/BattleDialogue/MarginContainer" unique_id=1989993980]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
 text = "how ya doin baby it's your turn"
+fit_content = true
 
 [node name="Control" type="Control" parent="BattleUI" unique_id=262988854]
 layout_mode = 3
@@ -110,32 +112,32 @@ size_flags_vertical = 8
 
 [node name="Menus" type="VBoxContainer" parent="BattleUI/MenuContainer" unique_id=887156648]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 8
 theme_override_constants/separation = 1
 
 [node name="SpecialBar" type="TextureRect" parent="BattleUI/MenuContainer/Menus" unique_id=1189442282]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 8
 texture = ExtResource("3_748wt")
 
 [node name="StartMenu" type="VBoxContainer" parent="BattleUI/MenuContainer/Menus" unique_id=1975175712]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 8
 
 [node name="FightButton" parent="BattleUI/MenuContainer/Menus/StartMenu" unique_id=190390897 instance=ExtResource("5_gthe3")]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("3_6ac58")
-battle_text = "Should the party fight?"
+battle_text = "What should the party do?"
 
 [node name="RunButton" parent="BattleUI/MenuContainer/Menus/StartMenu" unique_id=1410678867 instance=ExtResource("5_gthe3")]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("4_748wt")
-battle_text = "Should the party run?"
+battle_text = "What should the party do?"
 
 [node name="PlayerMenu" parent="BattleUI/MenuContainer/Menus" unique_id=2137837391 instance=ExtResource("8_fjqb4")]
 unique_name_in_owner = true

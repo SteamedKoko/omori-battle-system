@@ -16,7 +16,7 @@ func _ready() -> void:
 	focus_exited.connect(_unfocused)
 
 func _focused() -> void:
-	print('grabbing focus of ', skill.name)
+	BattleEventBus.sent_battle_text.emit("%s\n%s\nCost: %s" % [skill.name, skill.description, skill.cost])
 	finger.show()
 
 func _unfocused() -> void:

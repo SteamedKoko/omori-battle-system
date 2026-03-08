@@ -14,6 +14,11 @@ func _ready() -> void:
 	submenu_items = []
 
 func load_items(items: Array[Control]) -> void:
+	for child in %ItemContainer.get_children():
+		#todo: this is broken, children dont get removed
+		%ItemContainer.remove_child(child)
+		
+
 	submenu_items = items
 	focus_index = 0
 

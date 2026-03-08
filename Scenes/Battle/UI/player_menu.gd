@@ -20,6 +20,7 @@ func _ready() -> void:
 	skill_submenu.hide()
 	skill_submenu.closed_menu.connect(func(): 
 		action_menu.show()
+		BattleEventBus.sent_battle_text.emit(_player_text)
 		%SkillButton.grab_focus()
 	)
 	%SkillButton.pressed.connect(func():

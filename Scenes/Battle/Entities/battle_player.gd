@@ -17,5 +17,10 @@ func act(enemies: Array[BattleEnemy]):
 
 	# get_tree().create_timer(1).timeout.connect(func(): acted.emit())
 
+func execute_command() -> void:
+	print(player_data.player_name, ' attacked')
+	acted.emit()
+	player_panel.animation.stop()
+
 func is_alive() -> bool: 
 	return player_data.player_stats.current_hp > 0

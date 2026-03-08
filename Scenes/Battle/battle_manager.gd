@@ -51,9 +51,9 @@ func start_battle() -> void:
 	var enemy: BattleEnemy = BattleEnemy.new(SUDO_STATS)
 
 	players.push_back(omori)
+	players.push_back(aubrey)
 	players.push_back(kel)
 	players.push_back(hero)
-	players.push_back(aubrey)
 
 	enemies.push_back(enemy)
 
@@ -85,7 +85,7 @@ func player_turn_start() -> void:
 	for player in players:
 		if player.is_alive():
 			var to_attack: Array[BattleEnemy] = enemies.filter(func(e): return e.is_alive())
-			player_menu.load_player(player.player_data)
+			player_menu.load_player(player)
 			player.act(to_attack)
 			await player.acted
 

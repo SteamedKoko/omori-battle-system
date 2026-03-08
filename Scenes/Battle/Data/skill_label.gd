@@ -16,6 +16,7 @@ func _ready() -> void:
 	focus_exited.connect(_unfocused)
 
 func _focused() -> void:
+	BattleEventBus.updated_submenu_title.emit("Cost: ", str(skill.cost))
 	BattleEventBus.sent_battle_text.emit("%s\n%s\nCost: %s" % [skill.name, skill.description, skill.cost])
 	finger.show()
 

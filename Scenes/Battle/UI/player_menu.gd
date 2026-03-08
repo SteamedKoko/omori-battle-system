@@ -10,6 +10,7 @@ var skills: Array[SkillLabel] = []
 # var toys: Array[Toy] = []
 
 var _player_text: String
+var _battle_player: BattlePlayer
 
 @onready var action_menu: Control = %ActionMenu
 @onready var skill_submenu: Submenu = %SkillMenu
@@ -27,13 +28,14 @@ func _ready() -> void:
 		action_menu.hide()
 		skill_submenu.open_menu()
 	)
-	%AttackButton.pressed.connect(func(): print('attacked'))
+	%AttackButton.pressed.connect(func(): _battle_player.execute_command())
 	%AttackButton.grab_focus()
 
-func load_player(data: PlayerData) -> void:
+func load_player(player: BattlePlayer) -> void:
 	_clear_skills()
-	_load_skills(data)
-	_player_text = "What should %s do?" % data.player_name
+	_load_skills(player.player_data)
+	_battle_player = player
+	_player_text = "What should %s do?" % player.player_data.player_name
 
 
 func open_menu() -> void:

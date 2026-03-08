@@ -9,6 +9,8 @@ var skills: Array[SkillLabel] = []
 # var items: Array[Item] = []
 # var toys: Array[Toy] = []
 
+var _player_text: String
+
 @onready var action_menu: Control = %ActionMenu
 @onready var skill_submenu: Submenu = %SkillMenu
 
@@ -30,9 +32,11 @@ func _ready() -> void:
 func load_player(data: PlayerData) -> void:
 	_clear_skills()
 	_load_skills(data)
+	_player_text = "What should %s do?" % data.player_name
 
 
 func open_menu() -> void:
+	BattleEventBus.sent_battle_text.emit(_player_text)
 	show()
 	%AttackButton.grab_focus()
 	is_active = true

@@ -15,6 +15,10 @@ run/main_scene="uid://cpsqp3mst8ibk"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BattleEventBus="*uid://ooh64kgvx4i1"
+
 [display]
 
 window/size/viewport_width=640

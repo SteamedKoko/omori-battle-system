@@ -9,6 +9,8 @@ signal enemy_turn_end
 
 @onready var player_menu: PlayerMenu = %PlayerMenu
 @onready var start_menu: Control = %StartMenu
+@onready var fight_button: BattleButton = %FightButton
+@onready var battle_text: RichTextLabel = %BattleText
 
 const OMORI_DATA = preload("uid://bd2jyxc6fp1v8")
 const AUBREY_DATA = preload("uid://dgybubuhy6o62")
@@ -18,6 +20,7 @@ const SUDO_STATS = preload("uid://bv83gxiv347g4")
 
 func _ready():
 	player_menu.closed_menu.connect(refocus_main_menu)
+	BattleEventBus.sent_battle_text.connect(populate_text)
 	battle_loop()
 
 func refocus_main_menu() -> void:
@@ -25,6 +28,8 @@ func refocus_main_menu() -> void:
 	%FightButton.grab_focus()
 
 
+func populate_text(text: String) -> void:
+	battle_text.text = text
 
 
 func start_battle() -> void:
@@ -68,7 +73,7 @@ func end_battle() -> void:
 
 
 func attempt_run() -> void:
-	%TextBox.text = "You can't run sucker"
+	battle_text.text = "You can't run sucker"
 	player_turn_end.emit()
 
 

@@ -3,10 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cgy08kn0emq26" path="res://Scenes/Battle/UI/finger.tscn" id="2_frcsg"]
 [ext_resource type="Script" uid="uid://dx32sbxol0k1y" path="res://Scenes/Battle/UI/menu_button.gd" id="2_qohrj"]
 
-[node name="MenuButton" type="TextureButton" unique_id=190390897]
+[node name="MenuButton" type="TextureButton" unique_id=1721315875]
+offset_right = 8.0
+offset_bottom = 8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_qohrj")
+metadata/_custom_type_script = "uid://dx32sbxol0k1y"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=80087360]
 position = Vector2(22, 11)

@@ -2,17 +2,19 @@ class_name BattlePlayer
 extends Node
 
 var player_data: PlayerData
+var player_panel: PlayerPanel
 
 signal acted
 
-func _init(data: PlayerData) -> void:
+func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
-
-# func build() -> BattlePlayer:
+	player_panel = panel
 
 
 func act(enemies: Array[BattleEnemy]):
 	print(player_data.player_name,' turn')
+	player_panel.animation.play()
+
 	# get_tree().create_timer(1).timeout.connect(func(): acted.emit())
 
 func is_alive() -> bool: 

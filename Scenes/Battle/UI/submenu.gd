@@ -24,9 +24,6 @@ func load_items(items: Array[Control]) -> void:
 	
 	focus_index = 0
 
-func add_item(item: Control) -> void:
-	submenu_items.push_back(item)
-	%ItemContainer.add_child(item)
 
 func open_menu() -> void:
 	show()

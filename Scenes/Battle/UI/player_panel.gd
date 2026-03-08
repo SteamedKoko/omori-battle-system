@@ -4,12 +4,13 @@ extends Control
 const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 
 @export var layout_position: Control.LayoutPreset
+@export var player_data: PlayerData
+@export var stats: Stats
 
 @onready var player_box: TextureRect = %PlayerBox
 @onready var player_texture: TextureRect = %PortraitSprite
+@onready var animation: AnimationPlayer = %AnimationPlayer
 
-var player_data: PlayerData
-var stats: Stats
 
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var juice_bar: TextureProgressBar = %JuiceBar
@@ -35,6 +36,8 @@ func _ready():
 
 	player_data.player_stats.took_damage.connect(_took_damage)
 	player_data.player_stats.toasted.connect(_toasted)
+
+	animation.stop()
 
 	# player_data.player_stats.hp
 

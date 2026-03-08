@@ -43,10 +43,10 @@ func start_battle() -> void:
 	%PlayerPanelContainer.add_child(aubrey_panel)
 	%PlayerPanelContainer.add_child(hero_panel)
 
-	var omori: BattlePlayer = BattlePlayer.new(OMORI_DATA)
-	var kel: BattlePlayer = BattlePlayer.new(KEL_DATA)
-	var aubrey: BattlePlayer = BattlePlayer.new(AUBREY_DATA)
-	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA)
+	var omori: BattlePlayer = BattlePlayer.new(OMORI_DATA, omori_panel)
+	var kel: BattlePlayer = BattlePlayer.new(KEL_DATA, kel_panel)
+	var aubrey: BattlePlayer = BattlePlayer.new(AUBREY_DATA, aubrey_panel)
+	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA, hero_panel)
 
 	var enemy: BattleEnemy = BattleEnemy.new(SUDO_STATS)
 

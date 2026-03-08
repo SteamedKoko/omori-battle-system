@@ -17,12 +17,10 @@ const KEL_DATA = preload("uid://dmbkp1igy7jw8")
 const SUDO_STATS = preload("uid://bv83gxiv347g4")
 
 func _ready():
-	player_menu.cancelled.connect(cancel_player_menu)
+	player_menu.closed_menu.connect(refocus_main_menu)
 	battle_loop()
 
-func cancel_player_menu() -> void:
-	print('cancel player menu')
-	player_menu.hide()
+func refocus_main_menu() -> void:
 	start_menu.show()
 	%FightButton.grab_focus()
 

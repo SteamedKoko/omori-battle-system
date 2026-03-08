@@ -3,6 +3,7 @@ extends VBoxContainer
 
 var submenu_items: Array[Control] = []
 var focus_index: int = 0
+var is_active: bool = false
 
 signal closed_menu
 
@@ -23,9 +24,17 @@ func add_item(item: Control) -> void:
 func open_menu() -> void:
 	show()
 	submenu_items[0].grab_focus()
+	is_active = true
+
+func close_menu() -> void:
+	hide()
+	closed_menu.emit()
+	is_active = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_active:
+		return
+
 	if event.is_action_pressed("ui_cancel"):
-		hide()
-		closed_menu.emit()
+		close_menu()
 		get_viewport().set_input_as_handled()

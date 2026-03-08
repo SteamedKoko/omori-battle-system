@@ -1,8 +1,9 @@
 class_name PlayerMenu
 extends MarginContainer
 
-signal cancelled
+signal closed_menu
 
+var is_active: bool = false
 var menu_stack: Array[Control] = []
 var skills: Array[SkillLabel] = []
 # var items: Array[Item] = []
@@ -34,19 +35,13 @@ func load_player(data: PlayerData) -> void:
 func open_menu() -> void:
 	show()
 	%AttackButton.grab_focus()
+	is_active = true
 
+func close_menu() -> void:
+	hide()
+	is_active = false
+	closed_menu.emit()
 
-# func open_skill_menu() -> void:
-# 	# if skills.size() == 0:
-# 	# 	print('no skills womp womp')
-#
-# 	skill_submenu.open_menu()
-# 	# menu_stack.push_back(%SkillMenu)
-# 	# skills[0].grab_focus()
-
-# func close_skill_menu() -> void:
-# 	%SkillMenu.hide()
-# 	%SkillButton.grab_focus()
 
 func _clear_skills() -> void:
 	for skill in skills:
@@ -57,22 +52,9 @@ func _load_skills(data: PlayerData) -> void:
 	for skill in data.skills:
 		var instance: SkillLabel = SkillLabel.build(skill)
 		skill_submenu.add_item(instance)
-		# skills.push_back(instance)
-		# %SkillContainer.add_child(instance)
-	
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		# var current_menu = menu_stack.pop_back()
-		# if current_menu:
-		# 	current_menu.hide()
-		# 	%AttackButton.grab_focus()
-		# 	# if menu_stack.size() > 0:
-		# 	# 	menu_stack[menu_stack.size()-1].grab_focus()
-		#
-		# 	get_viewport().set_input_as_handled()
-		# 	return
-
-		cancelled.emit()
+		close_menu()
 		get_viewport().set_input_as_handled()

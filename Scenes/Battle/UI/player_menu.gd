@@ -15,6 +15,9 @@ var _battle_player: BattlePlayer
 @onready var action_menu: Control = %ActionMenu
 @onready var skill_submenu: Submenu = %SkillMenu
 
+var cancel_timer: Timer
+var can_press_cancel: bool = true
+
 signal cleared_skills
 
 func _ready() -> void:
@@ -29,9 +32,16 @@ func _ready() -> void:
 		skill_submenu.open_menu()
 	)
 	%AttackButton.pressed.connect(func(): 
+		is_active = false
 		_battle_player.execute_command()
 	)
 	%AttackButton.grab_focus()
+	cancel_timer = Timer.new()
+	add_child(cancel_timer)
+	cancel_timer.timeout.connect(func(): 
+		cancel_timer.stop()
+		can_press_cancel = true
+	)
 
 func load_player(player: BattlePlayer) -> void:
 	_clear_skills()
@@ -39,6 +49,7 @@ func load_player(player: BattlePlayer) -> void:
 	_battle_player = player
 	_player_text = "What should %s do?" % player.player_data.player_name
 	BattleEventBus.sent_battle_text.emit(_player_text)
+	is_active = true
 
 
 func open_menu() -> void:
@@ -69,7 +80,12 @@ func _load_skills(data: PlayerData) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if !is_active:
 		return
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_accept"):
+		if cancel_timer.is_stopped():
+			print('start timer')
+			can_press_cancel = false
+			cancel_timer.start(.2)
+	if event.is_action_pressed("ui_cancel") and can_press_cancel:
 		print('cancel pressed')
 		cancel_pressed.emit()
 		# close_menu()

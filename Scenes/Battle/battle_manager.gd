@@ -123,7 +123,6 @@ func player_turn_sequence_start() -> void:
 		if player.is_alive():
 			players_to_act.push_back(player)
 
-	# player_turn_end.emit()
 	go_next_player()
 
 

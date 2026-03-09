@@ -21,5 +21,6 @@ signal toasted
 func take_damage(amount: int) -> void:
 	var damage_to_take = maxi(amount - defense, 0)
 	current_hp = maxi(current_hp - damage_to_take, 0)
+	took_damage.emit(damage_to_take)
 	if current_hp == 0:
 		toasted.emit()

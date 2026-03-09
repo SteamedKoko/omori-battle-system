@@ -1,7 +1,7 @@
 class_name PlayerMenu
 extends MarginContainer
 
-signal closed_menu
+signal cancel_pressed
 
 var is_active: bool = false
 var menu_stack: Array[Control] = []
@@ -28,7 +28,9 @@ func _ready() -> void:
 		action_menu.hide()
 		skill_submenu.open_menu()
 	)
-	%AttackButton.pressed.connect(func(): _battle_player.execute_command())
+	%AttackButton.pressed.connect(func(): 
+		_battle_player.execute_command()
+	)
 	%AttackButton.grab_focus()
 
 func load_player(player: BattlePlayer) -> void:
@@ -36,6 +38,7 @@ func load_player(player: BattlePlayer) -> void:
 	_load_skills(player.player_data)
 	_battle_player = player
 	_player_text = "What should %s do?" % player.player_data.player_name
+	BattleEventBus.sent_battle_text.emit(_player_text)
 
 
 func open_menu() -> void:
@@ -45,9 +48,8 @@ func open_menu() -> void:
 	is_active = true
 
 func close_menu() -> void:
-	hide()
 	is_active = false
-	closed_menu.emit()
+	hide()
 
 
 func _clear_skills() -> void:
@@ -65,6 +67,10 @@ func _load_skills(data: PlayerData) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_active:
+		return
 	if event.is_action_pressed("ui_cancel"):
-		close_menu()
+		print('cancel pressed')
+		cancel_pressed.emit()
+		# close_menu()
 		get_viewport().set_input_as_handled()

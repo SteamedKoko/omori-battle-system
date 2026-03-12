@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dgcegk1asy4cx"]
+
+[ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://Scenes/Battle/Art/hax.png" id="1_1x3ho"]
+[ext_resource type="PackedScene" uid="uid://bl08atve24yhv" path="res://Scenes/Battle/UI/Enemy/enemy_info_panel.tscn" id="2_p3r1j"]
+
+[node name="Enemy" type="Control" unique_id=37628572]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1543826525]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 181.0
+offset_right = 394.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_1x3ho")
+stretch_mode = 4
+
+[node name="EnemyPanel" parent="." unique_id=744768568 instance=ExtResource("2_p3r1j")]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 147.0
+offset_right = 399.0
+offset_bottom = 209.0
+size_flags_horizontal = 4
+size_flags_vertical = 4

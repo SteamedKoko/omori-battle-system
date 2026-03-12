@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bl08atve24yhv"]
+
+[ext_resource type="Script" uid="uid://ds7chyy52x6xd" path="res://Scenes/Battle/UI/Enemy/enemy_info_panel.gd" id="1_n1gho"]
+[ext_resource type="Texture2D" uid="uid://b3k37thuwyynb" path="res://Scenes/Battle/UI/Enemy/Art/enemy_box.png" id="2_c52ns"]
+[ext_resource type="Texture2D" uid="uid://dr4fl37yb3g7k" path="res://Scenes/Battle/Art/Portraits/heart.png" id="3_q3py1"]
+[ext_resource type="Texture2D" uid="uid://bwa8x3rqqo7ad" path="res://Scenes/Battle/UI/Enemy/Art/enemy_progress_bar.png" id="4_0505w"]
+[ext_resource type="Texture2D" uid="uid://s7sf1b07mily" path="res://Scenes/Battle/UI/Enemy/Art/enemy_progress_value.png" id="5_7i24a"]
+[ext_resource type="Texture2D" uid="uid://bh7u7yv0cfe8r" path="res://Scenes/Battle/Art/pointy_down.png" id="6_c52ns"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1sme"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2i1bt"]
+texture = ExtResource("2_c52ns")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 28.0
+
+[node name="EnemyInfoPanel" type="PanelContainer" unique_id=1578523877]
+offset_right = 158.0
+offset_bottom = 62.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e1sme")
+script = ExtResource("1_n1gho")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=828078733]
+custom_minimum_size = Vector2(158, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_2i1bt")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=709465953]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer" unique_id=11267023]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Pork Knuckle"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1930576445]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1841035518]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1021145319]
+layout_mode = 2
+texture = ExtResource("3_q3py1")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer" unique_id=1521196518]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+value = 50.0
+texture_under = ExtResource("4_0505w")
+texture_progress = ExtResource("5_7i24a")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=946584668]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = -23
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2" unique_id=1819109228]
+layout_mode = 2
+texture = ExtResource("6_c52ns")

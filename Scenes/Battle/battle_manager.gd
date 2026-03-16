@@ -20,7 +20,7 @@ const OMORI_DATA = preload("uid://bd2jyxc6fp1v8")
 const AUBREY_DATA = preload("uid://dgybubuhy6o62")
 const HERO_DATA = preload("uid://dtb7nn2gdr48b")
 const KEL_DATA = preload("uid://dmbkp1igy7jw8")
-const SUDO_STATS = preload("uid://bv83gxiv347g4")
+const SUDO_DATA = preload("uid://bgcmm1twyftdq")
 
 func _ready():
 	player_menu.cancel_pressed.connect(go_previous_player)
@@ -54,7 +54,7 @@ func start_battle() -> void:
 	var aubrey: BattlePlayer = BattlePlayer.new(AUBREY_DATA, aubrey_panel)
 	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA, hero_panel)
 
-	var enemy: BattleEnemy = BattleEnemy.build(SUDO_STATS)
+	var enemy: BattleEnemy = BattleEnemy.build(SUDO_DATA)
 
 	players.push_back(omori)
 	players.push_back(aubrey)
@@ -68,7 +68,7 @@ func start_battle() -> void:
 	add_child(kel)
 	add_child(hero)
 
-	add_child(enemy)
+	%EnemyContainer.add_child(enemy)
 
 	%RunButton.pressed.connect(attempt_run)
 	%FightButton.pressed.connect(start_player_menu)

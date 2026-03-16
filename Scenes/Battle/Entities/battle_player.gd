@@ -16,7 +16,6 @@ func unfocus_player() -> void:
 	player_panel.animation.stop()
 
 func execute_command(enemies: Array[BattleEnemy]) -> void:
-	print(player_data.player_name, ' attacked')
 	var action: BattleAction = BattleAction.new()
 	action.caster = self
 	action.targets = enemies

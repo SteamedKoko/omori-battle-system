@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d17t0ah6svyhv" path="res://Scenes/Battle/Art/Portraits/kel_neutral1.png" id="1_tfol8"]
 [ext_resource type="Texture2D" uid="uid://bmrkl10rebil7" path="res://Scenes/Battle/Art/Portraits/kel_neutral2.png" id="2_2pbmf"]
 [ext_resource type="Texture2D" uid="uid://bpqxbl624a16q" path="res://Scenes/Battle/Art/Portraits/kel_neutral3.png" id="3_hk7jx"]
-[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/Battle/Data/player_stats/stats.gd" id="4_5543e"]
-[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/Data/player_data/player_data.gd" id="5_2pbmf"]
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/Battle/stats.gd" id="4_5543e"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/player_data.gd" id="5_2pbmf"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Scenes/Battle/Data/skills/skill.gd" id="6_hk7jx"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_cix7d"]

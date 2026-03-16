@@ -52,9 +52,6 @@ func _took_damage(amount: int):
 	tween.set_parallel(true)
 	tween.tween_property(health_bar, 'value', stats.current_hp, .3)
 	tween.tween_property(health_current_text, 'text', str(stats.current_hp), .3)
-	# health_bar.value = player_data.player_stats.current_hp
-	# health_text.value = player_data.player_stats.current_hp
-	pass
 
 
 func _set_panel_location(location: Control.LayoutPreset):

@@ -1,13 +1,22 @@
 class_name BattleEnemy
-extends Node
+extends Control
 
-var stats: Stats
+@export var stats: Stats
 
 signal acted
 signal took_damage
 
-func _init(_stats: Stats) -> void:
-	stats = _stats
+# func _init(_stats: Stats) -> void:
+# 	stats = _stats
+
+# func _ready() -> void:
+# 	%EnemyInfoPanel.load_enemy(self)
+
+
+static func build(_stats: Stats) -> BattleEnemy:
+	var enemy = BattleEnemy.new()
+	enemy.stats = _stats
+	return enemy
 
 func act(targets: Array):
 	print('enemy turn')

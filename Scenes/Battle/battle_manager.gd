@@ -6,7 +6,7 @@ var enemies: Array[BattleEnemy] = []
 var player_turn_index: int = 0
 var players_to_act: Array[BattlePlayer] = []
 
-var player_action_stack: Array[BattlePlayer] = []
+var player_action_stack: Array[BattleAction] = []
 
 signal player_turn_end
 signal enemy_turn_end
@@ -54,7 +54,7 @@ func start_battle() -> void:
 	var aubrey: BattlePlayer = BattlePlayer.new(AUBREY_DATA, aubrey_panel)
 	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA, hero_panel)
 
-	var enemy: BattleEnemy = BattleEnemy.new(SUDO_STATS)
+	var enemy: BattleEnemy = BattleEnemy.build(SUDO_STATS)
 
 	players.push_back(omori)
 	players.push_back(aubrey)
@@ -82,8 +82,8 @@ func attempt_run() -> void:
 	battle_text.text = "You can't run sucker"
 	player_turn_end.emit()
 
-func queue_player_action(battle_player: BattlePlayer) -> void:
-	player_action_stack.push_back(battle_player)
+func queue_player_action(battle_action: BattleAction) -> void:
+	player_action_stack.push_back(battle_action)
 	go_next_player()
 
 func go_next_player() -> void:
@@ -95,7 +95,7 @@ func go_next_player() -> void:
 	var current_player: BattlePlayer = players_to_act[player_turn_index]
 	current_player.focus_player()
 	print('current player ', current_player.player_data.player_name)
-	player_menu.load_player(current_player)
+	player_menu.load_player(current_player, self)
 
 func go_previous_player() -> void:
 	if player_turn_index <= 0:
@@ -108,7 +108,7 @@ func go_previous_player() -> void:
 
 	var current_player = players_to_act[player_turn_index]
 	current_player.focus_player()
-	player_menu.load_player(current_player)
+	player_menu.load_player(current_player, self)
 		
 
 func player_turn_sequence_start() -> void:
@@ -150,6 +150,12 @@ func enemy_turn_start() -> void:
 	enemy_turn_end.emit()
 
 
+func execute_player_actions() -> void:
+	while(player_action_stack.size() > 0):
+		var action: BattleAction = player_action_stack.pop_front()
+		await action.execute()
+	
+
 func battle_loop() -> void:
 	start_battle()
 
@@ -160,6 +166,8 @@ func battle_loop() -> void:
 		player_turn_sequence_start()
 		await player_turn_end
 		await clean_player_menu()
+
+		await execute_player_actions()
 
 		enemy_turn_start()
 		await enemy_turn_end

@@ -59,7 +59,16 @@ theme_override_font_sizes/normal_font_size = 14
 text = "how ya doin baby it's your turn"
 fit_content = true
 
-[node name="Enemy" parent="BattleUI" unique_id=1116219171 instance=ExtResource("3_fjqb4")]
+[node name="EnemyContainer" type="MarginContainer" parent="BattleUI" unique_id=691579528]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Enemy" parent="BattleUI/EnemyContainer" unique_id=1116219171 instance=ExtResource("3_fjqb4")]
+layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 

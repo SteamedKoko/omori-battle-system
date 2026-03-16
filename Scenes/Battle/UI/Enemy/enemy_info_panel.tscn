@@ -22,38 +22,40 @@ offset_bottom = 62.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_e1sme")
 script = ExtResource("1_n1gho")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=828078733]
+[node name="NameContainer" type="PanelContainer" parent="." unique_id=828078733]
 custom_minimum_size = Vector2(158, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_2i1bt")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=709465953]
+[node name="MarginContainer" type="MarginContainer" parent="NameContainer" unique_id=709465953]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer" unique_id=11267023]
+[node name="EnemyName" type="Label" parent="NameContainer/MarginContainer" unique_id=11267023]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
 text = "Pork Knuckle"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1930576445]
+[node name="ProgressContainer" type="MarginContainer" parent="." unique_id=1930576445]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1841035518]
+[node name="HBoxContainer" type="HBoxContainer" parent="ProgressContainer" unique_id=1841035518]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1021145319]
+[node name="TextureRect" type="TextureRect" parent="ProgressContainer/HBoxContainer" unique_id=1021145319]
 layout_mode = 2
 texture = ExtResource("3_q3py1")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer" unique_id=1521196518]
+[node name="HealthProgressBar" type="TextureProgressBar" parent="ProgressContainer/HBoxContainer" unique_id=1521196518]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -61,12 +63,12 @@ value = 50.0
 texture_under = ExtResource("4_0505w")
 texture_progress = ExtResource("5_7i24a")
 
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=946584668]
+[node name="PointerContainer" type="MarginContainer" parent="." unique_id=946584668]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/margin_bottom = -23
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2" unique_id=1819109228]
+[node name="Pointer" type="TextureRect" parent="PointerContainer" unique_id=1819109228]
 layout_mode = 2
 texture = ExtResource("6_c52ns")

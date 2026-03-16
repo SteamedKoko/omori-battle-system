@@ -12,6 +12,8 @@ var skills: Array[SkillLabel] = []
 var _player_text: String
 var _battle_player: BattlePlayer
 
+var _battle_manager: BattleManager
+
 @onready var action_menu: Control = %ActionMenu
 @onready var skill_submenu: Submenu = %SkillMenu
 
@@ -33,7 +35,7 @@ func _ready() -> void:
 	)
 	%AttackButton.pressed.connect(func(): 
 		is_active = false
-		_battle_player.execute_command()
+		_battle_player.execute_command(_battle_manager.enemies)
 	)
 	%AttackButton.grab_focus()
 	cancel_timer = Timer.new()
@@ -43,11 +45,12 @@ func _ready() -> void:
 		can_press_cancel = true
 	)
 
-func load_player(player: BattlePlayer) -> void:
+func load_player(player: BattlePlayer, manager: BattleManager) -> void:
 	_clear_skills()
 	_load_skills(player.player_data)
 	_battle_player = player
 	_player_text = "What should %s do?" % player.player_data.player_name
+	_battle_manager = manager
 	BattleEventBus.sent_battle_text.emit(_player_text)
 	is_active = true
 

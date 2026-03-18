@@ -3,7 +3,6 @@ extends MarginContainer
 
 signal cancel_pressed
 
-var is_active: bool = false
 var menu_stack: Array[Control] = []
 var skills: Array[SkillLabel] = []
 # var items: Array[Item] = []
@@ -16,11 +15,11 @@ var _battle_manager: BattleManager
 
 @onready var action_menu: Control = %ActionMenu
 @onready var skill_submenu: Submenu = %SkillMenu
+@onready var target_select: TargetSelect = %TargetSelect
 
 var cancel_timer: Timer
 var can_press_cancel: bool = true
 
-signal cleared_skills
 
 func _ready() -> void:
 	skill_submenu.hide()
@@ -34,8 +33,9 @@ func _ready() -> void:
 		skill_submenu.open_menu()
 	)
 	%AttackButton.pressed.connect(func(): 
-		is_active = false
-		_battle_player.execute_command(_battle_manager.enemies)
+		print('start selection')
+		hide()
+		target_select.start_selection(_battle_manager.enemies)
 	)
 	%AttackButton.grab_focus()
 	cancel_timer = Timer.new()
@@ -45,24 +45,33 @@ func _ready() -> void:
 		can_press_cancel = true
 	)
 
+	target_select.target_cancelled.connect(func():
+		open_menu()
+	)
+
+	target_select.target_selected.connect(func(enemy: BattleEnemy):
+		# we can have dif kinds of commands like attackcommand, skillcommand etc
+		_battle_player.execute_command([enemy])
+	)
+
 func load_player(player: BattlePlayer, manager: BattleManager) -> void:
 	_clear_skills()
 	_load_skills(player.player_data)
 	_battle_player = player
 	_player_text = "What should %s do?" % player.player_data.player_name
 	_battle_manager = manager
-	BattleEventBus.sent_battle_text.emit(_player_text)
-	is_active = true
+
+func target_enemies() -> void:
+	var to_target:Array[BattleEnemy] = _battle_manager.enemies
+	to_target[0].target_select()
 
 
 func open_menu() -> void:
 	BattleEventBus.sent_battle_text.emit(_player_text)
 	show()
 	%AttackButton.grab_focus()
-	is_active = true
 
 func close_menu() -> void:
-	is_active = false
 	hide()
 
 
@@ -80,13 +89,13 @@ func _load_skills(data: PlayerData) -> void:
 	skill_submenu.load_items(to_load)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if !is_active:
-		return
-	if event.is_action_pressed("ui_accept"):
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
 		if cancel_timer.is_stopped():
 			can_press_cancel = false
 			cancel_timer.start(.2)
-	if event.is_action_pressed("ui_cancel") and can_press_cancel:
+		get_viewport().set_input_as_handled()
+
+	if Input.is_action_just_pressed("ui_cancel") and can_press_cancel:
 		cancel_pressed.emit()
 		get_viewport().set_input_as_handled()

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dgjbr8226h5kw" path="res://Scenes/Battle/Art/MenuButtons/snack_button.png" id="4_8ng7p"]
 [ext_resource type="Texture2D" uid="uid://n5ja0hg5x8bb" path="res://Scenes/Battle/Art/MenuButtons/toy_button.png" id="5_uutds"]
 [ext_resource type="PackedScene" uid="uid://vt2a60kc64pg" path="res://Scenes/Battle/UI/submenu.tscn" id="8_8ng7p"]
+[ext_resource type="Script" uid="uid://7dxblrs3lgkw" path="res://Scenes/Battle/UI/target_select.gd" id="8_s7qhe"]
 
 [node name="PlayerMenu" type="MarginContainer" unique_id=211941153]
 offset_right = 364.0
@@ -56,3 +57,9 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="TargetSelect" type="Control" parent="." unique_id=1542587140]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("8_s7qhe")
+metadata/_custom_type_script = "uid://7dxblrs3lgkw"

@@ -2,35 +2,25 @@
 
 [ext_resource type="Script" uid="uid://3np3sr5kpi8c" path="res://Scenes/Battle/Entities/battle_enemy.gd" id="1_fclfr"]
 [ext_resource type="Resource" uid="uid://bv83gxiv347g4" path="res://Scenes/Battle/Data/EnemyData/Stats/sudo_stats.tres" id="2_5oxuv"]
+[ext_resource type="Resource" uid="uid://bgcmm1twyftdq" path="res://Scenes/Battle/Data/EnemyData/sudo_data.tres" id="3_5oxuv"]
 [ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://Scenes/Battle/Art/hax.png" id="3_5vdpl"]
 [ext_resource type="PackedScene" uid="uid://bl08atve24yhv" path="res://Scenes/Battle/UI/Enemy/enemy_info_panel.tscn" id="4_etv3f"]
 
-[node name="Enemy" type="Control" unique_id=37628572]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fclfr"]
+
+[node name="Enemy" type="PanelContainer" unique_id=3005296]
+offset_right = 149.0
+offset_bottom = 118.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fclfr")
 script = ExtResource("1_fclfr")
 stats = ExtResource("2_5oxuv")
+enemy_data = ExtResource("3_5oxuv")
 
 [node name="EnemySprite" type="TextureRect" parent="." unique_id=1543826525]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -59.0
-offset_right = 74.5
-offset_bottom = 59.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_5vdpl")
@@ -38,18 +28,8 @@ stretch_mode = 4
 
 [node name="EnemyInfoPanel" parent="." unique_id=744768568 node_paths=PackedStringArray("battle_enemy") instance=ExtResource("4_etv3f")]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -85.0
-offset_right = 79.0
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 2
+visible = false
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 battle_enemy = NodePath("..")

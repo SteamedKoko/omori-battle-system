@@ -14,6 +14,7 @@ signal enemy_turn_end
 @onready var player_menu: PlayerMenu = %PlayerMenu
 @onready var start_menu: Control = %StartMenu
 @onready var fight_button: BattleButton = %FightButton
+@onready var run_button: BattleButton = %RunButton
 @onready var battle_text: RichTextLabel = %BattleText
 
 const OMORI_DATA = preload("uid://bd2jyxc6fp1v8")
@@ -31,7 +32,7 @@ func _ready():
 func refocus_main_menu() -> void:
 	player_menu.hide()
 	start_menu.show()
-	%FightButton.grab_focus()
+	fight_button.grab_focus()
 
 
 func populate_text(text: String) -> void:
@@ -55,6 +56,7 @@ func start_battle() -> void:
 	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA, hero_panel)
 
 	var enemy: BattleEnemy = BattleEnemy.build(SUDO_DATA)
+	var enemy2: BattleEnemy = BattleEnemy.build(SUDO_DATA)
 
 	players.push_back(omori)
 	players.push_back(aubrey)
@@ -69,6 +71,7 @@ func start_battle() -> void:
 	add_child(hero)
 
 	%EnemyContainer.add_child(enemy)
+	%EnemyContainer.add_child(enemy2)
 
 	%RunButton.pressed.connect(attempt_run)
 	%FightButton.pressed.connect(start_player_menu)
@@ -96,6 +99,8 @@ func go_next_player() -> void:
 	current_player.focus_player()
 	print('current player ', current_player.player_data.player_name)
 	player_menu.load_player(current_player, self)
+	if player_turn_index > 0:
+		player_menu.open_menu()
 
 func go_previous_player() -> void:
 	if player_turn_index <= 0:

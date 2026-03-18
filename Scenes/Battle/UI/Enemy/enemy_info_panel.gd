@@ -10,7 +10,7 @@ func _ready() -> void:
 	health_bar.value = battle_enemy.stats.current_hp
 	battle_enemy.stats.took_damage.connect(_took_damage)
 
-func _took_damage(amount: int) -> void:
+func _took_damage(_amount: int) -> void:
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(health_bar, 'value', battle_enemy.stats.current_hp, .3)

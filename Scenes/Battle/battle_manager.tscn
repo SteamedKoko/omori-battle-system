@@ -58,7 +58,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "how ya doin baby it's your turn"
 fit_content = true
 
-[node name="EnemyContainer" type="MarginContainer" parent="BattleUI" unique_id=691579528]
+[node name="EnemyContainer" type="HBoxContainer" parent="BattleUI" unique_id=1052329790]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5

@@ -6,7 +6,6 @@ extends PanelContainer
 
 @onready var enemy_info: EnemyInfoPanel = %EnemyInfoPanel
 @onready var enemy_sprite: TextureRect = %EnemySprite
-@onready var pointer_container: MarginContainer = %PointerContainer
 
 signal acted
 

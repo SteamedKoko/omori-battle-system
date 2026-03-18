@@ -57,8 +57,11 @@ func _ready():
 
 func _toasted():
 	#change portrait to toast
-	print('toasted')
-	pass
+	if player_data.player_name.to_lower() == "omori":
+		animated_sprite.play('defeated')
+		return
+
+	animated_sprite.play('toast')
 
 func _took_damage(amount: int):
 	#reduce hp via text and progressbar

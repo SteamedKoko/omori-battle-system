@@ -13,6 +13,7 @@ frame_0/texture = ExtResource("4_ttosn")
 frame_0/texture = ExtResource("3_apx5t")
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_c8t1m")
 enemy_name = "Pork Knuckle"
 stats = ExtResource("3_ttosn")

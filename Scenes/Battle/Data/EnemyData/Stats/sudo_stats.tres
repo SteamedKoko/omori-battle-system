@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/Battle/stats.gd" id="1_y22l2"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_y22l2")
 max_hp = 500
 max_juice = 500

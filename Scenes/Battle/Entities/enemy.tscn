@@ -9,6 +9,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fclfr"]
 
 [node name="Enemy" type="PanelContainer" unique_id=3005296]
+custom_minimum_size = Vector2(200, 0)
 offset_right = 149.0
 offset_bottom = 118.0
 size_flags_horizontal = 2
@@ -26,10 +27,14 @@ size_flags_vertical = 4
 texture = ExtResource("3_5vdpl")
 stretch_mode = 4
 
-[node name="EnemyInfoPanel" parent="." unique_id=744768568 node_paths=PackedStringArray("battle_enemy") instance=ExtResource("4_etv3f")]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1629124652]
+layout_mode = 2
+theme_override_constants/margin_top = -20
+
+[node name="EnemyInfoPanel" parent="MarginContainer" unique_id=744768568 node_paths=PackedStringArray("battle_enemy") instance=ExtResource("4_etv3f")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-battle_enemy = NodePath("..")
+size_flags_vertical = 0
+battle_enemy = NodePath("../..")

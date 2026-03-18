@@ -55,23 +55,23 @@ func start_battle() -> void:
 	var aubrey: BattlePlayer = BattlePlayer.new(AUBREY_DATA, aubrey_panel)
 	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA, hero_panel)
 
-	var enemy: BattleEnemy = BattleEnemy.build(SUDO_DATA)
-	var enemy2: BattleEnemy = BattleEnemy.build(SUDO_DATA)
+	for i in range(3):
+		var data = SUDO_DATA.duplicate(true)
+		var enemy: BattleEnemy = BattleEnemy.build(data)
+		enemies.push_back(enemy)
+		%EnemyContainer.add_child(enemy)
 
 	players.push_back(omori)
 	players.push_back(aubrey)
 	players.push_back(kel)
 	players.push_back(hero)
 
-	enemies.push_back(enemy)
 
 	add_child(omori)
 	add_child(aubrey)
 	add_child(kel)
 	add_child(hero)
 
-	%EnemyContainer.add_child(enemy)
-	%EnemyContainer.add_child(enemy2)
 
 	%RunButton.pressed.connect(attempt_run)
 	%FightButton.pressed.connect(start_player_menu)
@@ -156,9 +156,17 @@ func enemy_turn_start() -> void:
 
 
 func execute_player_actions() -> void:
+	for enemy in enemies:
+		if enemy.is_alive():
+			enemy.target_select(false)
+
 	while(player_action_stack.size() > 0):
 		var action: BattleAction = player_action_stack.pop_front()
 		await action.execute()
+
+	for enemy in enemies:
+		if enemy.is_alive():
+			enemy.target_deselect(false)
 	
 
 func battle_loop() -> void:

@@ -10,6 +10,13 @@ func _ready() -> void:
 	health_bar.value = battle_enemy.stats.current_hp
 	battle_enemy.stats.took_damage.connect(_took_damage)
 
+func toggle_pointer(should_show: bool) -> void:
+	if should_show:
+		%PointerContainer.show()
+		return
+
+	%PointerContainer.hide()
+
 func _took_damage(_amount: int) -> void:
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)

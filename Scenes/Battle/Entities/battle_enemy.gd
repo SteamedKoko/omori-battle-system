@@ -6,6 +6,7 @@ extends PanelContainer
 
 @onready var enemy_info: EnemyInfoPanel = %EnemyInfoPanel
 @onready var enemy_sprite: TextureRect = %EnemySprite
+@onready var pointer_container: MarginContainer = %PointerContainer
 
 signal acted
 
@@ -30,11 +31,13 @@ func act(targets: Array):
 	get_tree().create_timer(1).timeout.connect(func(): acted.emit())
 	acted.emit()
 
-func target_select():
+func target_select(show_pointer: bool = true):
 	enemy_info.show()
+	enemy_info.toggle_pointer(show_pointer)
 
-func target_deselect():
+func target_deselect(show_pointer: bool = true):
 	enemy_info.hide()
+	enemy_info.toggle_pointer(show_pointer)
 
 func is_alive() -> bool: 
 	return stats.current_hp > 0

@@ -26,11 +26,24 @@ func start_selection(enemiesArray: Array[BattleEnemy]) -> void:
 	change_target(0)
 
 func change_target(amount_to_increase: int) -> void:
-	var new_index: int = clampi(enemy_index + amount_to_increase, 0, enemies.size() -1)
-	# if new_index ==
+	var amount: int = enemy_index + amount_to_increase
+	var new_index: int = clampi(amount, 0, enemies.size() -1)
+
 	enemies[enemy_index].target_deselect()
 	enemy_index = new_index
 	enemies[enemy_index].target_select()
+
+func target_toggle(enemy: BattleEnemy, target_on: bool) -> void:
+	if target_on:
+		enemy.target_select()
+		return
+
+	enemy.target_deselect()
+	
+func toggle_target_all(target_on: bool) -> void:
+	for enemy in enemies:
+		target_toggle(enemy, target_on)
+	
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if !is_active:

@@ -64,6 +64,7 @@ texture_under = ExtResource("4_0505w")
 texture_progress = ExtResource("5_7i24a")
 
 [node name="PointerContainer" type="MarginContainer" parent="." unique_id=946584668]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8

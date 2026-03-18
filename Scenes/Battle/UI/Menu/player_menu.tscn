@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cfryc6d4hprrd"]
 
-[ext_resource type="PackedScene" uid="uid://c0ravx86rx4er" path="res://Scenes/Battle/UI/menu_button.tscn" id="1_6ca4m"]
-[ext_resource type="Script" uid="uid://xhdmtmwxdiuo" path="res://Scenes/Battle/UI/player_menu.gd" id="1_mrfpn"]
+[ext_resource type="PackedScene" uid="uid://c0ravx86rx4er" path="res://Scenes/Battle/UI/Menu/menu_button.tscn" id="1_6ca4m"]
+[ext_resource type="Script" uid="uid://xhdmtmwxdiuo" path="res://Scenes/Battle/UI/Menu/player_menu.gd" id="1_mrfpn"]
 [ext_resource type="Texture2D" uid="uid://bv1yeaplg2885" path="res://Scenes/Battle/Art/MenuButtons/attack_button.png" id="2_mrfpn"]
 [ext_resource type="Texture2D" uid="uid://cahpky3fo4e4l" path="res://Scenes/Battle/Art/MenuButtons/skill_button.png" id="3_7awce"]
 [ext_resource type="Texture2D" uid="uid://dgjbr8226h5kw" path="res://Scenes/Battle/Art/MenuButtons/snack_button.png" id="4_8ng7p"]
 [ext_resource type="Texture2D" uid="uid://n5ja0hg5x8bb" path="res://Scenes/Battle/Art/MenuButtons/toy_button.png" id="5_uutds"]
-[ext_resource type="PackedScene" uid="uid://vt2a60kc64pg" path="res://Scenes/Battle/UI/submenu.tscn" id="8_8ng7p"]
+[ext_resource type="PackedScene" uid="uid://vt2a60kc64pg" path="res://Scenes/Battle/UI/Menu/submenu.tscn" id="8_8ng7p"]
 [ext_resource type="Script" uid="uid://7dxblrs3lgkw" path="res://Scenes/Battle/UI/target_select.gd" id="8_s7qhe"]
 
 [node name="PlayerMenu" type="MarginContainer" unique_id=211941153]

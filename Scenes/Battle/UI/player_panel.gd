@@ -63,7 +63,7 @@ func _toasted():
 
 	animated_sprite.play('toast')
 
-func _took_damage(amount: int):
+func _took_damage(_amount: int):
 	#reduce hp via text and progressbar
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)

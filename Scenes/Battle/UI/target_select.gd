@@ -58,7 +58,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 	if Input.is_action_just_pressed("ui_accept"):
-		print('turn it off obi')
 		is_active = false
 		enemies[enemy_index].target_deselect()
 		target_selected.emit(enemies[enemy_index])

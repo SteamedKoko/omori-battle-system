@@ -2,8 +2,6 @@ class_name Stats
 extends Resource
 
 signal took_damage(amount: int)
-signal healed_health
-signal revived
 signal toasted
 
 @export var max_hp: int

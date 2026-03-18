@@ -178,7 +178,7 @@ func battle_loop() -> void:
 	while(!player_won and !enemy_won):
 		player_turn_sequence_start()
 		await player_turn_end
-		await clean_player_menu()
+		clean_player_menu()
 
 		await execute_player_actions()
 

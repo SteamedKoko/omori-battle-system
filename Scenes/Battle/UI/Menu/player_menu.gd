@@ -33,7 +33,6 @@ func _ready() -> void:
 		skill_submenu.open_menu()
 	)
 	%AttackButton.pressed.connect(func(): 
-		print('start selection')
 		hide()
 		target_select.start_selection(_battle_manager.enemies)
 	)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0ravx86rx4er"]
 
-[ext_resource type="PackedScene" uid="uid://cgy08kn0emq26" path="res://Scenes/Battle/UI/finger.tscn" id="2_frcsg"]
-[ext_resource type="Script" uid="uid://dx32sbxol0k1y" path="res://Scenes/Battle/UI/menu_button.gd" id="2_qohrj"]
+[ext_resource type="PackedScene" uid="uid://cgy08kn0emq26" path="res://Scenes/Battle/UI/Menu/finger.tscn" id="2_frcsg"]
+[ext_resource type="Script" uid="uid://dx32sbxol0k1y" path="res://Scenes/Battle/UI/Menu/menu_button.gd" id="2_qohrj"]
 
 [node name="MenuButton" type="TextureButton" unique_id=1721315875]
 offset_right = 8.0

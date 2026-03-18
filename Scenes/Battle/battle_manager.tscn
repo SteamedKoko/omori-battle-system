@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://muk65yybwec" path="res://Scenes/Battle/Art/MenuButtons/fight_button.png" id="3_6ac58"]
 [ext_resource type="Texture2D" uid="uid://drlun5nxp25x0" path="res://Scenes/Battle/Art/combo_bar.png" id="3_748wt"]
 [ext_resource type="Texture2D" uid="uid://dmrbfnj346kft" path="res://Scenes/Battle/Art/MenuButtons/run_button.png" id="4_748wt"]
-[ext_resource type="PackedScene" uid="uid://c0ravx86rx4er" path="res://Scenes/Battle/UI/menu_button.tscn" id="5_gthe3"]
-[ext_resource type="PackedScene" uid="uid://cfryc6d4hprrd" path="res://Scenes/Battle/UI/player_menu.tscn" id="8_fjqb4"]
+[ext_resource type="PackedScene" uid="uid://c0ravx86rx4er" path="res://Scenes/Battle/UI/Menu/menu_button.tscn" id="5_gthe3"]
+[ext_resource type="PackedScene" uid="uid://cfryc6d4hprrd" path="res://Scenes/Battle/UI/Menu/player_menu.tscn" id="8_fjqb4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ve3sm"]
 bg_color = Color(0, 0, 0, 1)

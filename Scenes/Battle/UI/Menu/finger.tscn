@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgy08kn0emq26"]
 
-[ext_resource type="Texture2D" uid="uid://dwmsdqv7ua520" path="res://Scenes/Battle/Art/pointy_right.png" id="1_8swtf"]
+[ext_resource type="Texture2D" uid="uid://dwmsdqv7ua520" path="res://Scenes/Battle/Art/pointy_right.png" id="1_cq43n"]
 
 [sub_resource type="Animation" id="Animation_8swtf"]
 length = 0.001
@@ -47,7 +47,7 @@ offset_bottom = 15.0
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("1_8swtf")
+texture = ExtResource("1_cq43n")
 stretch_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1031882536]

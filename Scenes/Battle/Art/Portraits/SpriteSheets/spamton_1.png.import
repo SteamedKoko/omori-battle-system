@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxxjdho7ne816"
-path="res://.godot/imported/aubrey_neutral3.png-3ac0b9ae2d95e2f36a7c672a86dc3ab0.ctex"
+uid="uid://de45pbhngupld"
+path="res://.godot/imported/spamton_1.png-bcaba25f8095221b03bf186d3e89900b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/Portraits/aubrey_neutral3.png"
-dest_files=["res://.godot/imported/aubrey_neutral3.png-3ac0b9ae2d95e2f36a7c672a86dc3ab0.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/SpriteSheets/spamton_1.png"
+dest_files=["res://.godot/imported/spamton_1.png-bcaba25f8095221b03bf186d3e89900b.ctex"]
 
 [params]
 

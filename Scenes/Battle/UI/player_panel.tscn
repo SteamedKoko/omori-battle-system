@@ -3,12 +3,75 @@
 [ext_resource type="Texture2D" uid="uid://m67rs7cjjxhh" path="res://Scenes/Battle/Art/Portraits/player_panel.png" id="1_620xr"]
 [ext_resource type="Script" uid="uid://bol2fhk8iimev" path="res://Scenes/Battle/UI/player_panel.gd" id="1_kqpfk"]
 [ext_resource type="Resource" uid="uid://bd2jyxc6fp1v8" path="res://Scenes/Battle/Data/PlayerData/omori_data.tres" id="2_3c8xf"]
-[ext_resource type="Texture2D" uid="uid://bvd220pteyvxa" path="res://Scenes/Battle/Art/Portraits/omori_neutral3.png" id="3_ch7qn"]
 [ext_resource type="Resource" uid="uid://ceitaeqkgsd3k" path="res://Scenes/Battle/Data/PlayerData/Stats/omori_stats.tres" id="3_id75v"]
 [ext_resource type="Texture2D" uid="uid://wd0e3gehgs5y" path="res://Scenes/Battle/Art/Portraits/health_bar.png" id="3_lhc11"]
 [ext_resource type="Texture2D" uid="uid://bf14tn3l1godn" path="res://Scenes/Battle/Art/Portraits/portrait_back_neutral.png" id="3_ssqf0"]
 [ext_resource type="Texture2D" uid="uid://6jebq1l0n2u4" path="res://Scenes/Battle/Art/Portraits/juice_bar.png" id="4_nb1cy"]
 [ext_resource type="Texture2D" uid="uid://jxbovxs3x53u" path="res://Scenes/Battle/Art/Portraits/portrait_turn_border.png" id="7_ny1to"]
+[ext_resource type="Script" uid="uid://bbcs5e6bo315g" path="res://Scenes/Battle/UI/sprite_texture_rect.gd" id="10_id75v"]
+[ext_resource type="Texture2D" uid="uid://dpdlrjrhb6l3f" path="res://Scenes/Battle/Art/Portraits/SpriteSheets/aubrey.png" id="11_38l3p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_id75v"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_id75v"]
+load_path = "res://.godot/imported/omori_neutral3.png-fd246934268e3596f6d0bbc643c99d56.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38l3p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewtu1"]
+atlas = ExtResource("11_38l3p")
+region = Rect2(322, 14, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nxe5"]
+atlas = ExtResource("11_38l3p")
+region = Rect2(429, 14, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wwjd"]
+atlas = ExtResource("11_38l3p")
+region = Rect2(536, 14, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfqr8"]
+atlas = ExtResource("11_38l3p")
+region = Rect2(1, 14, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbcai"]
+atlas = ExtResource("11_38l3p")
+region = Rect2(108, 14, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1crg3"]
+atlas = ExtResource("11_38l3p")
+region = Rect2(215, 14, 106, 106)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_38l3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewtu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nxe5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wwjd")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfqr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbcai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1crg3")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_lhc11"]
 length = 0.001
@@ -72,6 +135,7 @@ texture = ExtResource("1_620xr")
 [node name="PortraitBackEmotion" type="TextureRect" parent="PlayerBox" unique_id=1711088726]
 unique_name_in_owner = true
 show_behind_parent = true
+custom_minimum_size = Vector2(106, 106)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 18.0
@@ -80,15 +144,29 @@ offset_bottom = 118.0
 texture = ExtResource("3_ssqf0")
 stretch_mode = 4
 
-[node name="PortraitSprite" type="TextureRect" parent="PlayerBox" unique_id=1112742785]
+[node name="PortraitContainer" type="Control" parent="PlayerBox" unique_id=855607414]
+show_behind_parent = true
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 64.0
+offset_right = 96.0
+offset_bottom = 104.0
+
+[node name="PlayerAnimatedSprite" type="AnimatedSprite2D" parent="PlayerBox/PortraitContainer" unique_id=349055423]
 unique_name_in_owner = true
+position = Vector2(2, 1)
+sprite_frames = SubResource("SpriteFrames_id75v")
+
+[node name="PortraitSpriteBak" type="TextureRect" parent="PlayerBox" unique_id=1112742785]
+unique_name_in_owner = true
+visible = false
 show_behind_parent = true
 layout_mode = 0
 offset_left = 5.0
 offset_top = 12.0
 offset_right = 111.0
 offset_bottom = 118.0
-texture = ExtResource("3_ch7qn")
+texture = SubResource("CompressedTexture2D_id75v")
 
 [node name="HealthBar" type="TextureProgressBar" parent="PlayerBox" unique_id=106410690]
 unique_name_in_owner = true
@@ -215,6 +293,15 @@ offset_left = -9.0
 offset_right = 123.0
 offset_bottom = 173.0
 texture = ExtResource("7_ny1to")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerBox" unique_id=446196307]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_38l3p")
+script = ExtResource("10_id75v")
+sprite_frames = SubResource("SpriteFrames_38l3p")
+metadata/_custom_type_script = "uid://bbcs5e6bo315g"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1942459732]
 unique_name_in_owner = true

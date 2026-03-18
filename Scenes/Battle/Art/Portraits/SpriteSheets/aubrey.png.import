@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cam4exs5fq6m1"
-path="res://.godot/imported/hero_neutral3.png-5e22d5544b8cbdb2f5f24503b6622129.ctex"
+uid="uid://dpdlrjrhb6l3f"
+path="res://.godot/imported/aubrey.png-923f4560cee734cd4a59d2fc8e21b243.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/Portraits/hero_neutral3.png"
-dest_files=["res://.godot/imported/hero_neutral3.png-5e22d5544b8cbdb2f5f24503b6622129.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/SpriteSheets/aubrey.png"
+dest_files=["res://.godot/imported/aubrey.png-923f4560cee734cd4a59d2fc8e21b243.ctex"]
 
 [params]
 

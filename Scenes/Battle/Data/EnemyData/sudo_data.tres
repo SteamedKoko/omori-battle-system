@@ -6,11 +6,11 @@
 [ext_resource type="Resource" uid="uid://bv83gxiv347g4" path="res://Scenes/Battle/Data/EnemyData/Stats/sudo_stats.tres" id="3_ttosn"]
 [ext_resource type="Texture2D" uid="uid://cj8ku618m0y3j" path="res://Scenes/Battle/Art/hax_hurt.png" id="4_ttosn"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_ttosn"]
-frame_0/texture = ExtResource("3_apx5t")
-
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_5c8w2"]
 frame_0/texture = ExtResource("4_ttosn")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ttosn"]
+frame_0/texture = ExtResource("3_apx5t")
 
 [resource]
 script = ExtResource("1_c8t1m")

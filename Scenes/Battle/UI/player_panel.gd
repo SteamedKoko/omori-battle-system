@@ -8,9 +8,9 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @export var stats: Stats
 
 @onready var player_box: TextureRect = %PlayerBox
-@onready var player_texture: TextureRect = %PortraitSprite
+#@onready var player_texture: TextureRect = %PortraitSprite
 @onready var animation: AnimationPlayer = %AnimationPlayer
-
+@onready var animated_sprite: AnimatedSprite2D = %PlayerAnimatedSprite
 
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var juice_bar: TextureProgressBar = %JuiceBar
@@ -19,10 +19,21 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @onready var juice_max_text: RichTextLabel = %JuiceTextMax
 @onready var juice_current_text: RichTextLabel = %JuiceTextCurrent
 
+var sprite_frames: SpriteFrames
+
+enum SpriteStates {
+	NEUTRAL,
+	VICTORY,
+	ANGRY,
+	SAD,
+	HAPPY,
+	HURT,
+	TOAST
+}
+
 
 func _ready():
 	_set_panel_location(layout_position)
-	player_texture.texture = player_data.battle_sprites[player_data.BattleSpriteStates.NEUTRAL]
 
 	health_bar.max_value = stats.max_hp
 	juice_bar.max_value = stats.max_juice
@@ -37,9 +48,12 @@ func _ready():
 	player_data.player_stats.took_damage.connect(_took_damage)
 	player_data.player_stats.toasted.connect(_toasted)
 
-	animation.stop()
 
-	# player_data.player_stats.hp
+	if sprite_frames:
+		animated_sprite.sprite_frames = sprite_frames
+		animated_sprite.play('normal')
+
+	animation.stop()
 
 func _toasted():
 	#change portrait to toast
@@ -63,4 +77,5 @@ static func build(preset: Control.LayoutPreset, data: PlayerData) -> PlayerPanel
 	instance.layout_position = preset
 	instance.player_data = data
 	instance.stats = data.player_stats
+	instance.sprite_frames = data.sprite_frames
 	return instance

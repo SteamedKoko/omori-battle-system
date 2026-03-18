@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpqxbl624a16q"
-path="res://.godot/imported/kel_neutral3.png-3734c2f74d8ddfe3e8cfcb1fbe03dc3f.ctex"
+uid="uid://ip0q0j7pb4f2"
+path="res://.godot/imported/omori.png-53b4eacc7f1c96c595e8b372e3b1ef1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/Portraits/kel_neutral3.png"
-dest_files=["res://.godot/imported/kel_neutral3.png-3734c2f74d8ddfe3e8cfcb1fbe03dc3f.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/SpriteSheets/omori.png"
+dest_files=["res://.godot/imported/omori.png-53b4eacc7f1c96c595e8b372e3b1ef1d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwmwff4nrgd8t"
-path="res://.godot/imported/omori_neutral1.png-80974f49436b5f284eecc283fd4851e0.ctex"
+uid="uid://bgdd1beahwtje"
+path="res://.godot/imported/spamton_3.png-454b8cb473e48a4f3184a58bf541a40c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/Portraits/omori_neutral1.png"
-dest_files=["res://.godot/imported/omori_neutral1.png-80974f49436b5f284eecc283fd4851e0.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/SpriteSheets/spamton_3.png"
+dest_files=["res://.godot/imported/spamton_3.png-454b8cb473e48a4f3184a58bf541a40c.ctex"]
 
 [params]
 

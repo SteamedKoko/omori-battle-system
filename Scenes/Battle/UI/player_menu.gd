@@ -85,11 +85,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("ui_accept"):
 		if cancel_timer.is_stopped():
-			print('start timer')
 			can_press_cancel = false
 			cancel_timer.start(.2)
 	if event.is_action_pressed("ui_cancel") and can_press_cancel:
-		print('cancel pressed')
 		cancel_pressed.emit()
-		# close_menu()
 		get_viewport().set_input_as_handled()

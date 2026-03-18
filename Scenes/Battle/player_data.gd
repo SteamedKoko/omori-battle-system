@@ -3,11 +3,15 @@ extends Resource
 
 @export var player_name: String
 @export var player_stats: Stats
-@export var battle_sprites: Dictionary[BattleSpriteStates, AnimatedTexture]
+@export var sprite_frames: SpriteFrames
 @export var skills: Array[Skill]
 
 
 enum BattleSpriteStates {
+	NORMAL,
 	HURT,
-	NEUTRAL,
+	TOAST,
+	HAPPY,
+	SAD,
+	ANGRY
 }

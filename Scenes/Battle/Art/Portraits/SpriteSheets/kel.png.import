@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d17t0ah6svyhv"
-path="res://.godot/imported/kel_neutral1.png-82f5b687ad3595295017a0be13f2c607.ctex"
+uid="uid://c2ejf0od5his7"
+path="res://.godot/imported/kel.png-6d39b9bafb6ae22704628217d0b10a26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Battle/Art/Portraits/kel_neutral1.png"
-dest_files=["res://.godot/imported/kel_neutral1.png-82f5b687ad3595295017a0be13f2c607.ctex"]
+source_file="res://Scenes/Battle/Art/Portraits/SpriteSheets/kel.png"
+dest_files=["res://.godot/imported/kel.png-6d39b9bafb6ae22704628217d0b10a26.ctex"]
 
 [params]
 

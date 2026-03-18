@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dmbkp1igy7jw8"]
 
-[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/Battle/stats.gd" id="4_5543e"]
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Scenes/Battle/Data/stats.gd" id="4_5543e"]
 [ext_resource type="SpriteFrames" uid="uid://cit7qhgk12yc6" path="res://Scenes/Battle/Data/SpriteFrames/kel_frames.tres" id="4_ou7y0"]
-[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/player_data.gd" id="5_2pbmf"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/Data/player_data.gd" id="5_2pbmf"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Scenes/Battle/Data/skills/skill.gd" id="6_hk7jx"]
 
 [sub_resource type="Resource" id="Resource_lnetm"]

@@ -1,48 +1,3 @@
-
-2. Click fight slaps open menu for all player's turn - Top text says "What will %player% do?"
-    Attack  Skill
-    Snack   Toy
-
-3. After all players go, it is enemy turn
-
-
-4. Rinse and repeat until one party is dead
-
-
-
-done
-Battle States: State
-Battle Start
-Player Turn
-Enemy Turn
-
-BattleManager: StateMachine
-BattleState - BattleStart
-Players: Array
-Enemies: Array
-PlayerPortrait: Array
-BattleTextBox - (Autoscrolls during attacks) Leave last message active
-BattleBar - Goes to level 10, starts on 3 if engaging, 0 if engaged, on 10 special attack appears
-
-
-PlayerPortrait
-Status: Neutral, Angry, Happy, Sad, etc
-Sprite: Texture2D
-Listen to player stats??
-
-
-Player
-Name
-Stats
-Sprite for battle
-
-
-Enemy
-Name
-Stats
-Sprite for battle
-
-
 Flow
 Init
     Load up all necessary states
@@ -66,16 +21,5 @@ After all players go, enemy turn
 Enemy attacks player with whatever
 
 Back to player turn
-
-
-
-
-player menu node
- -> pass in player data
- -> pass in party items etc
-
-attack -> pick a target
-skill -> pick a skill -> pick a target
-
-
+--------------------------
 

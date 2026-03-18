@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://bd2jyxc6fp1v8"]
 
 [ext_resource type="Resource" uid="uid://ceitaeqkgsd3k" path="res://Scenes/Battle/Data/PlayerData/Stats/omori_stats.tres" id="1_3de5k"]
-[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/player_data.gd" id="2_m6jyc"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Scenes/Battle/Data/player_data.gd" id="2_m6jyc"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Scenes/Battle/Data/skills/skill.gd" id="3_khti3"]
 [ext_resource type="Resource" uid="uid://pjiw23keauh3" path="res://Scenes/Battle/Data/skills/omori/hack_away.tres" id="4_ietnf"]
 [ext_resource type="Resource" uid="uid://d0x2g6wph170v" path="res://Scenes/Battle/Data/skills/omori/lucky_slice.tres" id="5_3y4fa"]

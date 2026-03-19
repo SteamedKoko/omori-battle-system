@@ -45,6 +45,8 @@ enum DebuffType {
 @export var description: String
 @export var cost: int
 @export var damage: float
+@export var sound: AudioStreamMP3
+@export var skill_animation: SpriteFrames
 
 @export_subgroup("Target")
 @export var can_select_target: bool

@@ -1,6 +1,8 @@
 class_name PlayerPanel
 extends Control
 
+signal changed_mood(mood: String)
+
 const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 
 @export var layout_position: Control.LayoutPreset
@@ -8,7 +10,7 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @export var stats: Stats
 
 @onready var player_box: TextureRect = %PlayerBox
-#@onready var player_texture: TextureRect = %PortraitSprite
+@onready var player_mood: RichTextLabel = %PlayerMood
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = %PlayerAnimatedSprite
 
@@ -78,6 +80,7 @@ func _update_sprite_state(value: SpriteStates):
 
 func _toasted():
 	sprite_state = SpriteStates.TOAST
+	player_mood.text = ""
 
 func _took_damage(_amount: int):
 	#reduce hp via text and progressbar
@@ -92,7 +95,11 @@ func _set_panel_location(location: Control.LayoutPreset):
 
 func _set_mood(value: PlayerData.Emotions) -> void:
 	_mood = value
-	animated_sprite.player(PlayerData.Emotions.keys()[value].to_lower())
+	animated_sprite.play(PlayerData.Emotions.keys()[value].to_lower())
+	var new_mood = player_data.Emotions.keys()[_mood].to_upper()
+	player_mood.text = new_mood
+	changed_mood.emit(new_mood)
+
 
 func _get_mood() -> PlayerData.Emotions:
 	return _mood

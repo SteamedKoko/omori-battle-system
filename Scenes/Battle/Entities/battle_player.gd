@@ -19,7 +19,7 @@ func set_random_mood() -> void:
 		return
 	var emotions = player_data.emotions
 	emotions.pop_front() # Remove neutral let's make this fun
-	player_panel._set_mood(emotions)
+	player_panel._set_mood(emotions.pick_random())
 
 func focus_player() -> void:
 	player_panel.animation.play()

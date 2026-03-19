@@ -274,7 +274,8 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerBox" unique_id=820910468]
+[node name="PlayerMood" type="RichTextLabel" parent="PlayerBox" unique_id=820910468]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

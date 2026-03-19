@@ -63,3 +63,6 @@ unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("8_s7qhe")
 metadata/_custom_type_script = "uid://7dxblrs3lgkw"
+
+[node name="CancelTimer" type="Timer" parent="." unique_id=1215852573]
+unique_name_in_owner = true

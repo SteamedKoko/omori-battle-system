@@ -8,57 +8,49 @@ var skills: Array[SkillLabel] = []
 # var items: Array[Item] = []
 # var toys: Array[Toy] = []
 
+var can_press_cancel: bool = true
+var prepped_command: Command
 var _player_text: String
 var _battle_player: BattlePlayer
-
-var _battle_manager: BattleManager
+var _battle_manager: BattleManager #maybe tmp measure
 
 @onready var action_menu: Control = %ActionMenu
+@onready var attack_button: BattleButton = %AttackButton
+@onready var cancel_timer: Timer = %CancelTimer
 @onready var skill_submenu: Submenu = %SkillMenu
+@onready var skill_button: BattleButton = %SkillButton
 @onready var target_select: TargetSelect = %TargetSelect
-
-var cancel_timer: Timer
-var can_press_cancel: bool = true
-
 
 func _ready() -> void:
 	skill_submenu.hide()
-	skill_submenu.closed_menu.connect(func(): 
-		action_menu.show()
-		BattleEventBus.sent_battle_text.emit(_player_text)
-		%SkillButton.grab_focus()
-	)
-	%SkillButton.pressed.connect(func():
-		action_menu.hide()
-		skill_submenu.open_menu()
-	)
-	%AttackButton.pressed.connect(func(): 
-		hide()
-		target_select.start_selection(_battle_manager.enemies)
-	)
-	%AttackButton.grab_focus()
-	cancel_timer = Timer.new()
-	add_child(cancel_timer)
-	cancel_timer.timeout.connect(func(): 
-		cancel_timer.stop()
-		can_press_cancel = true
-	)
+	attack_button.grab_focus()
+	skill_submenu.closed_menu.connect(_on_close_submenu)
+	skill_button.pressed.connect(_on_skill_button_pressed)
+	attack_button.pressed.connect(_on_attack_button_pressed)
+	cancel_timer.timeout.connect(_on_cancel_timer_timeout)
+	target_select.target_cancelled.connect(_on_target_cancelled)
+	target_select.target_selected.connect(_on_target_selected)
 
-	target_select.target_cancelled.connect(func():
-		open_menu()
-	)
 
-	target_select.target_selected.connect(func(enemy: BattleEnemy):
-		# we can have dif kinds of commands like attackcommand, skillcommand etc
-		_battle_player.execute_command([enemy])
-	)
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		if cancel_timer.is_stopped():
+			can_press_cancel = false
+			cancel_timer.start(.2)
+			get_viewport().set_input_as_handled()
+
+	if Input.is_action_just_pressed("ui_cancel") and can_press_cancel:
+		cancel_pressed.emit()
+		get_viewport().set_input_as_handled()
+
 
 func load_player(player: BattlePlayer, manager: BattleManager) -> void:
-	_clear_skills()
+	prepped_command = null
 	_load_skills(player.player_data)
 	_battle_player = player
 	_player_text = "What should %s do?" % player.player_data.player_name
 	_battle_manager = manager
+
 
 func target_enemies() -> void:
 	var to_target:Array[BattleEnemy] = _battle_manager.enemies
@@ -68,18 +60,15 @@ func target_enemies() -> void:
 func open_menu() -> void:
 	BattleEventBus.sent_battle_text.emit(_player_text)
 	show()
-	%AttackButton.grab_focus()
+	attack_button.grab_focus()
 
-func close_menu() -> void:
-	hide()
-
-
-func _clear_skills() -> void:
-	for skill in skills:
-		skill.queue_free()
-	skills = []
 
 func _load_skills(data: PlayerData) -> void:
+	# clear out the current skills
+	for skill in skills:
+		skill.queue_free()
+
+	skills = []
 	var to_load: Array[Control] = []
 	for skill in data.skills:
 		var instance: SkillLabel = SkillLabel.build(skill)
@@ -88,13 +77,36 @@ func _load_skills(data: PlayerData) -> void:
 	skill_submenu.load_items(to_load)
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		if cancel_timer.is_stopped():
-			can_press_cancel = false
-			cancel_timer.start(.2)
-		get_viewport().set_input_as_handled()
+func _on_target_selected(enemy: BattleEnemy) -> void:
+	prepped_command.targets = [enemy]
+	BattleEventBus.player_action_queued.emit(prepped_command)
+	# _battle_player.execute_command([enemy])
 
-	if Input.is_action_just_pressed("ui_cancel") and can_press_cancel:
-		cancel_pressed.emit()
-		get_viewport().set_input_as_handled()
+
+
+func _on_target_cancelled() -> void:
+	prepped_command = null
+	open_menu()
+
+
+func _on_cancel_timer_timeout() -> void:
+	cancel_timer.stop()
+	can_press_cancel = true
+
+
+func _on_attack_button_pressed() -> void:
+	prepped_command = AttackCommand.new()
+	prepped_command.battle_player = _battle_player
+	hide()
+	target_select.start_selection(_battle_manager.enemies)
+
+
+func _on_skill_button_pressed() -> void:
+	action_menu.hide()
+	skill_submenu.open_menu()
+
+
+func _on_close_submenu() -> void:
+	action_menu.show()
+	BattleEventBus.sent_battle_text.emit(_player_text)
+	skill_button.grab_focus()

@@ -1,21 +1,8 @@
 class_name BattleManager
 extends Node2D
 
-var players: Array[BattlePlayer] = []
-var enemies: Array[BattleEnemy] = []
-var player_turn_index: int = 0
-var players_to_act: Array[BattlePlayer] = []
-
-var player_action_stack: Array[BattleAction] = []
-
 signal player_turn_end
 signal enemy_turn_end
-
-@onready var player_menu: PlayerMenu = %PlayerMenu
-@onready var start_menu: Control = %StartMenu
-@onready var fight_button: BattleButton = %FightButton
-@onready var run_button: BattleButton = %RunButton
-@onready var battle_text: RichTextLabel = %BattleText
 
 const OMORI_DATA = preload("uid://bd2jyxc6fp1v8")
 const AUBREY_DATA = preload("uid://dgybubuhy6o62")
@@ -23,10 +10,33 @@ const HERO_DATA = preload("uid://dtb7nn2gdr48b")
 const KEL_DATA = preload("uid://dmbkp1igy7jw8")
 const SUDO_DATA = preload("uid://bgcmm1twyftdq")
 
+const player_panel_presets: Array[Control.LayoutPreset] = [
+	Control.LayoutPreset.PRESET_BOTTOM_LEFT,
+	Control.LayoutPreset.PRESET_TOP_LEFT,
+	Control.LayoutPreset.PRESET_BOTTOM_RIGHT,
+	Control.LayoutPreset.PRESET_TOP_RIGHT,
+]
+
+var players: Array[BattlePlayer] = []
+var enemies: Array[BattleEnemy] = []
+var player_turn_index: int = 0
+var players_to_act: Array[BattlePlayer] = []
+var player_action_stack: Array[Command] = []
+
+@onready var player_menu: PlayerMenu = %PlayerMenu
+@onready var player_panel_container: MarginContainer = %PlayerPanelContainer
+@onready var start_menu: Control = %StartMenu
+@onready var fight_button: BattleButton = %FightButton
+@onready var run_button: BattleButton = %RunButton
+@onready var battle_text: RichTextLabel = %BattleText
+
 func _ready():
 	player_menu.cancel_pressed.connect(go_previous_player)
-	BattleEventBus.player_action_executed.connect(queue_player_action)
+	BattleEventBus.player_action_queued.connect(queue_player_action)
 	BattleEventBus.sent_battle_text.connect(populate_text)
+	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], [SUDO_DATA, SUDO_DATA])
+	%RunButton.pressed.connect(attempt_run)
+	%FightButton.pressed.connect(start_player_menu)
 	battle_loop()
 
 func refocus_main_menu() -> void:
@@ -39,54 +49,29 @@ func populate_text(text: String) -> void:
 	battle_text.text = text
 
 
-func start_battle() -> void:
-	#player panels
-	var omori_panel: PlayerPanel = PlayerPanel.build(Control.LayoutPreset.PRESET_BOTTOM_LEFT, OMORI_DATA)
-	var kel_panel = PlayerPanel.build(Control.LayoutPreset.PRESET_BOTTOM_RIGHT, KEL_DATA)
-	var aubrey_panel = PlayerPanel.build(Control.LayoutPreset.PRESET_TOP_LEFT, AUBREY_DATA)
-	var hero_panel = PlayerPanel.build(Control.LayoutPreset.PRESET_TOP_RIGHT, HERO_DATA)
-	%PlayerPanelContainer.add_child(omori_panel)
-	%PlayerPanelContainer.add_child(kel_panel)
-	%PlayerPanelContainer.add_child(aubrey_panel)
-	%PlayerPanelContainer.add_child(hero_panel)
+func start_battle(init_players: Array[PlayerData], init_enemies: Array[EnemyData]) -> void:
+	for i in range(init_players.size()):
+		var data: PlayerData = init_players[i]
+		var player_panel: PlayerPanel = PlayerPanel.build(player_panel_presets[i], data)
+		var player: BattlePlayer = BattlePlayer.new(data, player_panel)
+		player_panel_container.add_child(player_panel)
+		players.push_back(player)
+		add_child(player)
 
-	var omori: BattlePlayer = BattlePlayer.new(OMORI_DATA, omori_panel)
-	var kel: BattlePlayer = BattlePlayer.new(KEL_DATA, kel_panel)
-	var aubrey: BattlePlayer = BattlePlayer.new(AUBREY_DATA, aubrey_panel)
-	var hero: BattlePlayer = BattlePlayer.new(HERO_DATA, hero_panel)
-
-	for i in range(3):
-		var data = SUDO_DATA.duplicate(true)
+	for i in range(init_enemies.size()):
+		var data: EnemyData = init_enemies[i].duplicate(true)
 		var enemy: BattleEnemy = BattleEnemy.build(data)
 		enemies.push_back(enemy)
 		%EnemyContainer.add_child(enemy)
-
-	players.push_back(omori)
-	players.push_back(aubrey)
-	players.push_back(kel)
-	players.push_back(hero)
-
-
-	add_child(omori)
-	add_child(aubrey)
-	add_child(kel)
-	add_child(hero)
-
-
-	%RunButton.pressed.connect(attempt_run)
-	%FightButton.pressed.connect(start_player_menu)
-
-
-func end_battle() -> void:
-	pass
 
 
 func attempt_run() -> void:
 	battle_text.text = "You can't run sucker"
 	player_turn_end.emit()
 
-func queue_player_action(battle_action: BattleAction) -> void:
-	player_action_stack.push_back(battle_action)
+func queue_player_action(command: Command) -> void:
+	player_action_stack.push_back(command)
+	players_to_act[player_turn_index].unfocus_player()
 	go_next_player()
 
 func go_next_player() -> void:
@@ -117,8 +102,6 @@ func go_previous_player() -> void:
 		
 
 func player_turn_sequence_start() -> void:
-	#select fight or run
-	#show menu fight run
 	%StartMenu.show()
 	%FightButton.grab_focus()
 	players_to_act = []
@@ -132,7 +115,7 @@ func player_turn_sequence_start() -> void:
 
 
 func clean_player_menu() -> void:
-	player_menu.close_menu()
+	player_menu.hide()
 	%PlayerMenu.hide()
 	%StartMenu.hide()
 
@@ -161,7 +144,7 @@ func execute_player_actions() -> void:
 			enemy.target_select(false)
 
 	while(player_action_stack.size() > 0):
-		var action: BattleAction = player_action_stack.pop_front()
+		var action: Command = player_action_stack.pop_front()
 		await action.execute()
 
 	for enemy in enemies:
@@ -170,8 +153,6 @@ func execute_player_actions() -> void:
 	
 
 func battle_loop() -> void:
-	start_battle()
-
 	var player_won = false
 	var enemy_won = false
 
@@ -190,4 +171,3 @@ func battle_loop() -> void:
 
 
 	print('ending battle ', player_won, enemy_won)
-	end_battle()

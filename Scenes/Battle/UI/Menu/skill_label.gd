@@ -4,6 +4,7 @@ extends Control
 const SKILL_LABEL: Resource = preload("uid://dy5xdali0qnn3")
 
 var skill: Skill
+
 @onready var finger: Control = %FingerContainer
 @onready var option_text: RichTextLabel = %OptionText
 

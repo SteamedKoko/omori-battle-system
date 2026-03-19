@@ -60,4 +60,3 @@ func toggle_target_all(target_on: bool) -> void:
 	for enemy in enemies:
 		target_toggle(enemy, target_on)
 	
-

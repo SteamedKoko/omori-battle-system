@@ -43,7 +43,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 	if Input.is_action_just_pressed("ui_cancel") and can_press_cancel:
-		print('cancel pressed')
 		cancel_pressed.emit()
 		get_viewport().set_input_as_handled()
 
@@ -83,9 +82,9 @@ func _load_skills(data: PlayerData) -> void:
 
 
 func _on_target_selected(enemy: BattleEnemy) -> void:
+	is_active = false
 	prepped_command.targets = [enemy]
 	BattleEventBus.player_action_queued.emit(prepped_command)
-	is_active = false
 
 
 func _on_target_cancelled() -> void:

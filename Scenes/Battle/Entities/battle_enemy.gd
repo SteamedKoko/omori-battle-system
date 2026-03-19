@@ -31,8 +31,29 @@ func got_hurt(_amount: int) -> void:
 	enemy_sprite.texture = enemy_data.sprites.get(enemy_data.BattleSpriteStates.NEUTRAL)
 
 		
+func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
+	var to_attack: Array[BattlePlayer]
+	if skill.applicable_target == skill.ApplicableTarget.AllEnemy:
+		to_attack.append_array(targets)
+	if skill.applicable_target == skill.ApplicableTarget.Enemy:
+		to_attack = [targets.pick_random()]
 
-func act(targets: Array):
+	
+	#todo finish this bad boy off
+	if skill.target_effect_status == skill.MoodType.Random:
+		for target in targets:
+			target.set_random_mood()
+			# target.player_data.
+			await get_tree().create_timer(.5).timeout
+	# elif skill.target_effect_status != skill.MoodType.None:
+	# 	for target in targets:
+	# 		target.player_panel.mood =
+
+	
+	
+
+
+func attack(targets: Array[BattlePlayer]) -> void:
 	var target: BattlePlayer = targets.pick_random()
 	BattleEventBus.sent_battle_text.emit("")
 	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [enemy_data.enemy_name, target.player_data.player_name])
@@ -41,6 +62,13 @@ func act(targets: Array):
 	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage' % [target.player_data.player_name, stats.attack])
 	await get_tree().create_timer(1).timeout
 	acted.emit()
+
+func act(targets: Array):
+	if enemy_data.skills.size() > 0:
+		use_skill(enemy_data.skills[0], targets)
+		return
+
+	attack(targets)
 
 func target_select(show_pointer: bool = true):
 	enemy_info.show()

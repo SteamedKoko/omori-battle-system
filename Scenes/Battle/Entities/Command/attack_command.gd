@@ -24,7 +24,7 @@ func execute(battle_manager: BattleManager) -> void:
 			to_attack = alive_enemies.pick_random()
 
 		var enemy_name: String = to_attack.enemy_data.enemy_name
-		var damage_to_deal: int = initial_damage * 10
+		var damage_to_deal: int = initial_damage
 		BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ player_name, enemy_name ])
 		BattleEventBus.sent_battle_text_append.emit('%s takes %s damage!' % [ enemy_name, damage_to_deal ])
 		await Engine.get_main_loop().create_timer(1).timeout

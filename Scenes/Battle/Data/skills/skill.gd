@@ -27,7 +27,8 @@ enum MoodType {
 	MoreAngry,
 	VeryHappy,
 	VerySad,
-	VeryAngry
+	VeryAngry,
+	Random
 }
 
 enum DebuffType {

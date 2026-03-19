@@ -14,6 +14,13 @@ func celebrate() -> void:
 
 	player_panel.sprite_state = player_panel.SpriteStates.VICTORY
 
+func set_random_mood() -> void:
+	if !is_alive():
+		return
+	var emotions = player_data.emotions
+	emotions.pop_front() # Remove neutral let's make this fun
+	player_panel._set_mood(emotions)
+
 func focus_player() -> void:
 	player_panel.animation.play()
 

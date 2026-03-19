@@ -10,6 +10,7 @@ var skills: Array[SkillLabel] = []
 
 var can_press_cancel: bool = true
 var prepped_command: Command
+var is_active: bool
 var _player_text: String
 var _battle_player: BattlePlayer
 var _battle_manager: BattleManager #maybe tmp measure
@@ -31,8 +32,10 @@ func _ready() -> void:
 	target_select.target_cancelled.connect(_on_target_cancelled)
 	target_select.target_selected.connect(_on_target_selected)
 
-
 func _unhandled_input(_event: InputEvent) -> void:
+	if !is_active:
+		return
+
 	if Input.is_action_just_pressed("ui_accept"):
 		if cancel_timer.is_stopped():
 			can_press_cancel = false
@@ -40,6 +43,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 	if Input.is_action_just_pressed("ui_cancel") and can_press_cancel:
+		print('cancel pressed')
 		cancel_pressed.emit()
 		get_viewport().set_input_as_handled()
 
@@ -58,6 +62,7 @@ func target_enemies() -> void:
 
 
 func open_menu() -> void:
+	is_active = true
 	BattleEventBus.sent_battle_text.emit(_player_text)
 	show()
 	attack_button.grab_focus()
@@ -80,6 +85,7 @@ func _load_skills(data: PlayerData) -> void:
 func _on_target_selected(enemy: BattleEnemy) -> void:
 	prepped_command.targets = [enemy]
 	BattleEventBus.player_action_queued.emit(prepped_command)
+	is_active = false
 
 
 func _on_target_cancelled() -> void:

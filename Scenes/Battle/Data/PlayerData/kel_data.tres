@@ -23,4 +23,5 @@ script = ExtResource("5_2pbmf")
 player_name = "Kel"
 player_stats = SubResource("Resource_lnetm")
 sprite_frames = ExtResource("4_ou7y0")
+emotions = Array[int]([0, 1, 2, 4, 5, 7, 8])
 metadata/_custom_type_script = "uid://cpe47c776l4uc"

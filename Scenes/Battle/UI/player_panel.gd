@@ -23,6 +23,11 @@ var sprite_frames: SpriteFrames
 var sprite_state: SpriteStates:
 	set = _update_sprite_state
 
+var _mood: PlayerData.Emotions = PlayerData.Emotions.NEUTRAL
+var mood: PlayerData.Emotions:
+	set = _set_mood,
+	get = _get_mood
+
 
 enum SpriteStates {
 	NEUTRAL,
@@ -85,6 +90,12 @@ func _took_damage(_amount: int):
 func _set_panel_location(location: Control.LayoutPreset):
 	player_box.set_anchors_and_offsets_preset(location, Control.LayoutPresetMode.PRESET_MODE_KEEP_SIZE, 0)
 
+func _set_mood(value: PlayerData.Emotions) -> void:
+	_mood = value
+	animated_sprite.player(PlayerData.Emotions.keys()[value].to_lower())
+
+func _get_mood() -> PlayerData.Emotions:
+	return _mood
 
 static func build(preset: Control.LayoutPreset, data: PlayerData) -> PlayerPanel:
 	var instance: PlayerPanel = PLAYER_PANEL.instantiate()

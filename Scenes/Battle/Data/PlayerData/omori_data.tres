@@ -15,4 +15,5 @@ player_name = "Omori"
 player_stats = ExtResource("1_3de5k")
 sprite_frames = ExtResource("8_m6jyc")
 skills = Array[ExtResource("3_khti3")]([ExtResource("4_ietnf"), ExtResource("5_3y4fa"), ExtResource("6_rh3qy"), ExtResource("7_vcol7")])
+emotions = Array[int]([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 metadata/_custom_type_script = "uid://cpe47c776l4uc"

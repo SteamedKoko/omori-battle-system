@@ -20,6 +20,9 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @onready var juice_current_text: RichTextLabel = %JuiceTextCurrent
 
 var sprite_frames: SpriteFrames
+var sprite_state: SpriteStates:
+	set = _update_sprite_state
+
 
 enum SpriteStates {
 	NEUTRAL,
@@ -55,13 +58,21 @@ func _ready():
 
 	animation.stop()
 
-func _toasted():
-	#change portrait to toast
-	if player_data.player_name.to_lower() == "omori":
+func _update_sprite_state(value: SpriteStates):
+	if value == SpriteStates.NEUTRAL:
+		animated_sprite.play('normal')
+		return
+
+	# Omori can't be toasted, loser
+	if player_data.player_name.to_lower() == "omori" and value == SpriteStates.TOAST:
 		animated_sprite.play('defeated')
 		return
 
-	animated_sprite.play('toast')
+	animated_sprite.play(SpriteStates.keys()[value].to_lower())
+
+
+func _toasted():
+	sprite_state = SpriteStates.TOAST
 
 func _took_damage(_amount: int):
 	#reduce hp via text and progressbar

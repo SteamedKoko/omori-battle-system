@@ -34,7 +34,9 @@ func _ready():
 	player_menu.cancel_pressed.connect(go_previous_player)
 	BattleEventBus.player_action_queued.connect(queue_player_action)
 	BattleEventBus.sent_battle_text.connect(populate_text)
-	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], [SUDO_DATA, SUDO_DATA])
+	BattleEventBus.sent_battle_text_append.connect(append_text)
+	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
+	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
 	%RunButton.pressed.connect(attempt_run)
 	%FightButton.pressed.connect(start_player_menu)
 	battle_loop()
@@ -44,6 +46,9 @@ func refocus_main_menu() -> void:
 	start_menu.show()
 	fight_button.grab_focus()
 
+
+func append_text(text) -> void:
+	battle_text.text += text
 
 func populate_text(text: String) -> void:
 	battle_text.text = text
@@ -82,7 +87,6 @@ func go_next_player() -> void:
 
 	var current_player: BattlePlayer = players_to_act[player_turn_index]
 	current_player.focus_player()
-	print('current player ', current_player.player_data.player_name)
 	player_menu.load_player(current_player, self)
 	if player_turn_index > 0:
 		player_menu.open_menu()
@@ -102,8 +106,8 @@ func go_previous_player() -> void:
 		
 
 func player_turn_sequence_start() -> void:
-	%StartMenu.show()
-	%FightButton.grab_focus()
+	start_menu.show()
+	fight_button.grab_focus()
 	players_to_act = []
 	player_action_stack = []
 	player_turn_index = -1
@@ -116,14 +120,13 @@ func player_turn_sequence_start() -> void:
 
 func clean_player_menu() -> void:
 	player_menu.hide()
-	%PlayerMenu.hide()
-	%StartMenu.hide()
+	player_menu.hide()
+	start_menu.hide()
 
 
 func start_player_menu() -> void:
-	%StartMenu.hide()
-	%PlayerMenu.show()
-	%PlayerMenu.open_menu()
+	start_menu.hide()
+	player_menu.open_menu()
 
 
 func enemy_turn_start() -> void:
@@ -134,8 +137,6 @@ func enemy_turn_start() -> void:
 				break
 			enemy.act(to_attack)
 			await enemy.acted
-	
-	enemy_turn_end.emit()
 
 
 func execute_player_actions() -> void:
@@ -145,7 +146,8 @@ func execute_player_actions() -> void:
 
 	while(player_action_stack.size() > 0):
 		var action: Command = player_action_stack.pop_front()
-		await action.execute()
+		action.execute(self)
+		await action.command_finished
 
 	for enemy in enemies:
 		if enemy.is_alive():
@@ -163,11 +165,22 @@ func battle_loop() -> void:
 
 		await execute_player_actions()
 
-		enemy_turn_start()
-		await enemy_turn_end
+		await enemy_turn_start()
 
 		player_won = enemies.filter(func(e): return e.is_alive()).size() == 0
 		enemy_won = players.filter(func(e): return e.is_alive()).size() == 0
 
 
-	print('ending battle ', player_won, enemy_won)
+	if player_won:
+		for player in players:
+			player.celebrate()
+		BattleEventBus.sent_battle_text.emit("Beat those scrubs\n")
+		await get_tree().create_timer(.5).timeout
+		BattleEventBus.sent_battle_text_append.emit("Gained 69420 exp")
+		return
+
+	BattleEventBus.sent_battle_text.emit("You lost sucka")
+
+
+func alive_enemies() -> Array[BattleEnemy]:
+		return enemies.filter(func(e): return e.is_alive())

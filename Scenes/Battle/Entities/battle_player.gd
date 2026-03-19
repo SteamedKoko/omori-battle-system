@@ -8,6 +8,11 @@ func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
 	player_panel = panel
 
+func celebrate() -> void:
+	if !is_alive():
+		return
+
+	player_panel.sprite_state = player_panel.SpriteStates.VICTORY
 
 func focus_player() -> void:
 	player_panel.animation.play()

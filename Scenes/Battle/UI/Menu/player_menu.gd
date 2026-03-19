@@ -80,8 +80,6 @@ func _load_skills(data: PlayerData) -> void:
 func _on_target_selected(enemy: BattleEnemy) -> void:
 	prepped_command.targets = [enemy]
 	BattleEventBus.player_action_queued.emit(prepped_command)
-	# _battle_player.execute_command([enemy])
-
 
 
 func _on_target_cancelled() -> void:

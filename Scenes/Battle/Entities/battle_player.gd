@@ -4,6 +4,9 @@ extends Node
 var player_data: PlayerData
 var player_panel: PlayerPanel
 
+var player_name: String:
+	get: return player_data.player_name
+
 func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
 	player_panel = panel
@@ -17,7 +20,8 @@ func deal_damage(damage_to_deliver: int) -> void:
 
 func display_damage(damage_taken: int) -> void:
 	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [player_data.player_name, damage_taken])
-	await player_panel.show_damage(damage_taken)
+	BattleEventBus.queued_screen_shake.emit(false)
+	await player_panel.damage_container.show_damage(damage_taken)
 
 func celebrate() -> void:
 	if !is_alive():

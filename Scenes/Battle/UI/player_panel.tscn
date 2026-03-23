@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://jxbovxs3x53u" path="res://Scenes/Battle/Art/Portraits/portrait_turn_border.png" id="7_ny1to"]
 [ext_resource type="Script" uid="uid://bbcs5e6bo315g" path="res://Scenes/Battle/UI/sprite_texture_rect.gd" id="10_id75v"]
 [ext_resource type="Texture2D" uid="uid://dpdlrjrhb6l3f" path="res://Scenes/Battle/Art/Portraits/SpriteSheets/aubrey.png" id="11_38l3p"]
-[ext_resource type="FontFile" uid="uid://8l8p54j3mk2c" path="res://Scenes/Battle/Art/damage_numbers.png" id="11_ewtu1"]
+[ext_resource type="PackedScene" uid="uid://doy77fkalreq7" path="res://Scenes/Battle/UI/damage_container.tscn" id="11_ewtu1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_id75v"]
 
@@ -74,8 +74,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nxe5"]
-
 [sub_resource type="Animation" id="Animation_lhc11"]
 length = 0.001
 tracks/0/type = "value"
@@ -115,9 +113,7 @@ _data = {
 
 [node name="PlayerPanel" type="Control" unique_id=504470083]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -307,7 +303,7 @@ script = ExtResource("10_id75v")
 sprite_frames = SubResource("SpriteFrames_38l3p")
 metadata/_custom_type_script = "uid://bbcs5e6bo315g"
 
-[node name="DamageContainer" type="PanelContainer" parent="PlayerBox" unique_id=811877565]
+[node name="EffectContainer" type="MarginContainer" parent="PlayerBox" unique_id=585768902]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -315,21 +311,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = 4.0
-offset_right = 34.0
-offset_bottom = 44.0
+offset_top = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7nxe5")
 
-[node name="DamageNumber" type="Label" parent="PlayerBox/DamageContainer" unique_id=723984770]
+[node name="DamageContainer" parent="PlayerBox" unique_id=1152408868 instance=ExtResource("11_ewtu1")]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("11_ewtu1")
-theme_override_font_sizes/font_size = 36
-text = "74"
+layout_mode = 1
+offset_left = -36.0
+offset_top = 5.0
+offset_right = 33.0
+offset_bottom = 45.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1942459732]
 unique_name_in_owner = true

@@ -8,13 +8,12 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @export var layout_position: Control.LayoutPreset
 @export var player_data: PlayerData
 @export var stats: Stats
-@export var damage_fade_time: float = .2
-@export var length_to_show_damage: float = 1
 
 @onready var player_box: TextureRect = %PlayerBox
 @onready var player_mood: RichTextLabel = %PlayerMood
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = %PlayerAnimatedSprite
+@onready var effect_container: MarginContainer = %EffectContainer
 
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var juice_bar: TextureProgressBar = %JuiceBar
@@ -22,8 +21,7 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @onready var health_current_text: RichTextLabel = %HealthTextCurrent
 @onready var juice_max_text: RichTextLabel = %JuiceTextMax
 @onready var juice_current_text: RichTextLabel = %JuiceTextCurrent
-@onready var damage_text: Label = %DamageNumber
-@onready var damage_container: PanelContainer = %DamageContainer
+@onready var damage_container: DamageContainer = %DamageContainer
 
 var sprite_frames: SpriteFrames
 var sprite_state: SpriteStates:
@@ -71,14 +69,6 @@ func _ready():
 
 	animation.stop()
 
-func show_damage(amount: int) -> void:
-	var tween: Tween = get_tree().create_tween()
-	damage_text.text = str(amount)
-	damage_text.self_modulate = Color.WHITE
-	tween.tween_property(damage_container, "modulate:a", 1, damage_fade_time)
-	tween.tween_interval(length_to_show_damage)
-	tween.tween_property(damage_container, "modulate:a", 0, damage_fade_time)
-	await tween.finished
 
 func _update_sprite_state(value: SpriteStates):
 	if value == SpriteStates.NEUTRAL:

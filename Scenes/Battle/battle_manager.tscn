@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dg7ipultvufpg" path="res://Scenes/Battle/Art/casino.png" id="1_o4fs7"]
 [ext_resource type="Script" uid="uid://bbvxbcd31s3qo" path="res://Scenes/Battle/battle_manager.gd" id="1_ve3sm"]
 [ext_resource type="Texture2D" uid="uid://gwuq1s2c04wh" path="res://Scenes/Battle/Art/example.png" id="2_3madc"]
+[ext_resource type="Script" uid="uid://dbphmag8t6cw8" path="res://Scenes/Battle/battle_ui.gd" id="2_fjqb4"]
 [ext_resource type="Texture2D" uid="uid://muk65yybwec" path="res://Scenes/Battle/Art/MenuButtons/fight_button.png" id="3_6ac58"]
 [ext_resource type="Texture2D" uid="uid://drlun5nxp25x0" path="res://Scenes/Battle/Art/combo_bar.png" id="3_748wt"]
 [ext_resource type="Texture2D" uid="uid://dmrbfnj346kft" path="res://Scenes/Battle/Art/MenuButtons/run_button.png" id="4_748wt"]
@@ -19,6 +20,7 @@ border_width_bottom = 3
 script = ExtResource("1_ve3sm")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=218669756]
+script = ExtResource("2_fjqb4")
 
 [node name="BG" type="TextureRect" parent="BattleUI" unique_id=1282591112]
 anchors_preset = 15

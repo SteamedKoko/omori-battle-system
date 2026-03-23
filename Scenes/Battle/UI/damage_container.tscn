@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://doy77fkalreq7"]
+
+[ext_resource type="FontFile" uid="uid://8l8p54j3mk2c" path="res://Scenes/Battle/Art/damage_numbers.png" id="1_6idy7"]
+[ext_resource type="Script" uid="uid://bvudvimvfow58" path="res://Scenes/Battle/UI/damage_container.gd" id="1_km6vf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_km6vf"]
+
+[node name="DamageContainer" type="PanelContainer" unique_id=1152408868]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = 4.0
+offset_right = 34.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_km6vf")
+script = ExtResource("1_km6vf")
+
+[node name="DamageNumber" type="Label" parent="." unique_id=434393090]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_6idy7")
+theme_override_font_sizes/font_size = 36
+text = "123"

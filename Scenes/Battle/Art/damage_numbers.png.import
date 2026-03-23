@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://8l8p54j3mk2c"
+path="res://.godot/imported/damage_numbers.png-9dc0c121576c7fd5796b75e958adbf47.fontdata"
+
+[deps]
+
+source_file="res://Scenes/Battle/Art/damage_numbers.png"
+dest_files=["res://.godot/imported/damage_numbers.png-9dc0c121576c7fd5796b75e958adbf47.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-57 -8")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

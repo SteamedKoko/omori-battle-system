@@ -17,7 +17,7 @@ func deal_damage(damage_to_deliver: int) -> void:
 
 func display_damage(damage_taken: int) -> void:
 	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [player_data.player_name, damage_taken])
-	pass
+	await player_panel.show_damage(damage_taken)
 
 func celebrate() -> void:
 	if !is_alive():

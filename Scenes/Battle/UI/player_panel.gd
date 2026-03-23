@@ -8,6 +8,7 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @export var layout_position: Control.LayoutPreset
 @export var player_data: PlayerData
 @export var stats: Stats
+@export var length_to_show_damage: float = 1
 
 @onready var player_box: TextureRect = %PlayerBox
 @onready var player_mood: RichTextLabel = %PlayerMood
@@ -20,6 +21,7 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @onready var health_current_text: RichTextLabel = %HealthTextCurrent
 @onready var juice_max_text: RichTextLabel = %JuiceTextMax
 @onready var juice_current_text: RichTextLabel = %JuiceTextCurrent
+@onready var damage_text: Label = %DamageNumber
 
 var sprite_frames: SpriteFrames
 var sprite_state: SpriteStates:
@@ -45,6 +47,8 @@ enum SpriteStates {
 func _ready():
 	_set_panel_location(layout_position)
 
+	damage_text.self_modulate = Color.TRANSPARENT
+
 	health_bar.max_value = stats.max_hp
 	juice_bar.max_value = stats.max_juice
 	health_bar.value = stats.current_hp
@@ -64,6 +68,14 @@ func _ready():
 		animated_sprite.play('normal')
 
 	animation.stop()
+
+func show_damage(amount: int) -> void:
+	var tween: Tween = get_tree().create_tween()
+	damage_text.text = str(amount)
+	damage_text.self_modulate = Color.WHITE
+	tween.tween_property(damage_text, "self_modulate", Color.WHITE, 1)
+	tween.tween_property(damage_text, "self_modulate", Color.TRANSPARENT, 1)
+	await get_tree().create_timer(length_to_show_damage).timeout
 
 func _update_sprite_state(value: SpriteStates):
 	if value == SpriteStates.NEUTRAL:

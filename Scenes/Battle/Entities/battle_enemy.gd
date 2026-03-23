@@ -39,22 +39,28 @@ func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
 	if skill.applicable_target == skill.ApplicableTarget.Enemy:
 		to_attack = [targets.pick_random()]
 
-	# if skill.skill_animation_type:
-	# 	var skill_control: SkillControl = SkillControl.build(skill)
-	# 	add_child(skill_control)
-	# 	await skill_control.play_skill_animation()
 
 	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [enemy_data.enemy_name, skill.name])
 	BattleEventBus.queued_sound_effect.emit(skill.sound)
-	#todo finish this bad boy off
+
 	if skill.target_effect_status == skill.MoodType.Random:
+		var target_index: int = 0
 		for target: BattlePlayer in targets:
 			var skill_control: SkillControl = SkillControl.build(skill)
 			target.player_panel.player_box.add_child(skill_control)
-			skill_control.play_skill_animation()
+			if target_index == targets.size() - 1: # Only wait for the last one
+				await skill_control.play_skill_animation()
+			else:
+				skill_control.play_skill_animation()
+				target_index += 1
+
+		for target: BattlePlayer in targets:
 			target.set_random_mood()
 			target.deal_damage(floor(skill.damage))
-			await get_tree().create_timer(.5).timeout
+
+			# await get_tree().create_timer(.5).timeout
+
+	await get_tree().create_timer(2).timeout
 
 	acted.emit()
 

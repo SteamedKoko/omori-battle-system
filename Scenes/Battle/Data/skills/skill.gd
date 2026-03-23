@@ -46,7 +46,9 @@ enum DebuffType {
 @export var cost: int
 @export var damage: float
 @export var sound: AudioStreamMP3
-@export var skill_animation: SpriteFrames
+# @export var skill_animation: SpriteFrames
+@export var skill_texture: Texture2D
+@export var skill_animation_type: SkillControl.Animations
 
 @export_subgroup("Target")
 @export var can_select_target: bool

@@ -10,6 +10,8 @@ const HERO_DATA = preload("uid://dtb7nn2gdr48b")
 const KEL_DATA = preload("uid://dmbkp1igy7jw8")
 const SUDO_DATA = preload("uid://bgcmm1twyftdq")
 
+const _6WIP = preload("uid://dcvdgp11h2ree")
+
 const player_panel_presets: Array[Control.LayoutPreset] = [
 	Control.LayoutPreset.PRESET_BOTTOM_LEFT,
 	Control.LayoutPreset.PRESET_TOP_LEFT,
@@ -23,6 +25,8 @@ var player_turn_index: int = 0
 var players_to_act: Array[BattlePlayer] = []
 var player_action_stack: Array[Command] = []
 
+@onready var music_stream_player: AudioStreamPlayer = %MusicStreamPlayer
+@onready var sound_effect_stream_player: AudioStreamPlayer = %SoundEffectStreamPlayer
 @onready var player_menu: PlayerMenu = %PlayerMenu
 @onready var player_panel_container: MarginContainer = %PlayerPanelContainer
 @onready var start_menu: Control = %StartMenu
@@ -35,11 +39,22 @@ func _ready():
 	BattleEventBus.player_action_queued.connect(queue_player_action)
 	BattleEventBus.sent_battle_text.connect(populate_text)
 	BattleEventBus.sent_battle_text_append.connect(append_text)
+	BattleEventBus.queued_sound_effect.connect(play_sound_effect)
+	BattleEventBus.queued_music.connect(play_music)
 	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
 	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
 	%RunButton.pressed.connect(attempt_run)
 	%FightButton.pressed.connect(start_player_menu)
+	play_music(_6WIP)
 	battle_loop()
+
+func play_music(stream: AudioStreamMP3) -> void:
+	music_stream_player.stream = stream
+	music_stream_player.play()
+
+func play_sound_effect(stream: AudioStreamMP3) -> void:
+	sound_effect_stream_player.stream = stream
+	sound_effect_stream_player.play()
 
 func refocus_main_menu() -> void:
 	player_menu.hide()

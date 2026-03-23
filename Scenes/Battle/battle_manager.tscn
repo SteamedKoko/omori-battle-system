@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://dmrbfnj346kft" path="res://Scenes/Battle/Art/MenuButtons/run_button.png" id="4_748wt"]
 [ext_resource type="PackedScene" uid="uid://c0ravx86rx4er" path="res://Scenes/Battle/UI/Menu/menu_button.tscn" id="5_gthe3"]
 [ext_resource type="PackedScene" uid="uid://cfryc6d4hprrd" path="res://Scenes/Battle/UI/Menu/player_menu.tscn" id="8_fjqb4"]
-[ext_resource type="Script" uid="uid://by5pc3ygg7kld" path="res://Scenes/Battle/audio_stream_player.gd" id="9_fjqb4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ve3sm"]
 bg_color = Color(0, 0, 0, 1)
@@ -141,5 +140,10 @@ offset_bottom = 960.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_3madc")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1735849813]
-script = ExtResource("9_fjqb4")
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1735849813]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="SoundEffectStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1920615953]
+unique_name_in_owner = true
+bus = &"SoundEffect"

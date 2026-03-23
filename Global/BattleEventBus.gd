@@ -4,7 +4,8 @@ extends Node
 signal player_action_executed(battle_action: BattleAction)
 signal player_action_queued(command: Command)
 
-signal queued_audio_sample(audio: AudioStreamMP3)
+signal queued_sound_effect(audio: AudioStreamMP3)
+signal queued_music(audio: AudioStreamMP3)
 
 signal sent_battle_text(text: String)
 signal sent_battle_text_append(text: String)

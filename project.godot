@@ -15,6 +15,10 @@ run/main_scene="uid://cpsqp3mst8ibk"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://db258s57fjb2i"
+
 [autoload]
 
 BattleEventBus="*uid://ooh64kgvx4i1"

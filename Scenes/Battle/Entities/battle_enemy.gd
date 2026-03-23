@@ -40,24 +40,26 @@ func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
 		to_attack = [targets.pick_random()]
 
 	if skill.skill_animation:
+		SkillControl.build(skill.skill_texture, skill.skill_animation_type)
 		pass #play and await the animation
 	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [enemy_data.enemy_name, skill.name])
-	BattleEventBus.queued_audio_sample.emit(skill.sound)
+	BattleEventBus.queued_sound_effect.emit(skill.sound)
 	#todo finish this bad boy off
 	if skill.target_effect_status == skill.MoodType.Random:
 		for target in targets:
 			target.set_random_mood()
-			attack_single(target)
+			attack_single(target, floor(skill.damage))
 			await get_tree().create_timer(.5).timeout
 
 	await get_tree().create_timer(1).timeout
 
 	acted.emit()
 
-func attack_single(target: BattlePlayer) -> void:
-	target.player_data.player_stats.take_damage(stats.attack)
+func attack_single(target: BattlePlayer, incoming_damage: int) -> void:
+	print('incoming ', incoming_damage)
+	target.player_data.player_stats.take_damage(incoming_damage)
 	await get_tree().create_timer(1).timeout
-	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [target.player_data.player_name, stats.attack])
+	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [target.player_data.player_name, incoming_damage])
 	
 
 func attack(targets: Array[BattlePlayer]) -> void:

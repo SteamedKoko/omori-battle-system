@@ -12,14 +12,22 @@ metadata/__load_path__ = "res://Scenes/Battle/Data/EnemyData/Stats/sudo_stats.tr
 
 [node name="Enemy" type="PanelContainer" unique_id=3005296]
 custom_minimum_size = Vector2(200, 0)
-offset_right = 200.0
-offset_bottom = 118.0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.123
+anchor_right = 0.156
+anchor_bottom = 0.123
+offset_left = -99.840004
+offset_top = -59.04
+offset_right = 100.159996
+offset_bottom = 58.96
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fclfr")
 script = ExtResource("1_cpen0")
 stats = SubResource("Resource_fclfr")
 enemy_data = ExtResource("2_0hrbg")
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemySprite" type="TextureRect" parent="." unique_id=1543826525]
 unique_name_in_owner = true

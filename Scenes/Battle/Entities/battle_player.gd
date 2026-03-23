@@ -8,6 +8,16 @@ func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
 	player_panel = panel
 
+func _ready() -> void:
+	player_panel.stats.took_damage.connect(display_damage)
+
+func deal_damage(damage_to_deliver: int) -> void:
+	player_data.player_stats.take_damage(damage_to_deliver)
+	
+
+func display_damage(damage_taken: int) -> void:
+	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [player_data.player_name, damage_taken])
+	pass
 
 func celebrate() -> void:
 	if !is_alive():

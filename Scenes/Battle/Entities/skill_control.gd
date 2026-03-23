@@ -12,17 +12,25 @@ enum Animations {
 @onready var skill_texture: TextureRect = %SkillTexture
 
 var animation_to_play: String
+var texture_to_load: Texture2D
+
+func _ready() -> void:
+	if texture_to_load:
+		skill_texture.texture = texture_to_load
+
 
 func play_skill_animation() -> void:
 	if animation_to_play:
 		animation_player.play(animation_to_play)
 		await animation_player.animation_finished
-		return
 
+	queue_free()
 
-static func build(texture: Texture2D, animation: Animations) -> void:
+static func build(skill: Skill) -> SkillControl:
 	var instance: SkillControl = SKILL_CONTROL.instantiate()
-	instance.skill_texture.texture = texture
+	instance.texture_to_load = skill.skill_texture
 
-	if animation != Animations.None:
-		instance.animation_to_play = Animations.keys()[animation].to_lower()
+	if skill.skill_animation_type != Animations.None:
+		instance.animation_to_play = Animations.keys()[skill.skill_animation_type].to_lower()
+	
+	return instance

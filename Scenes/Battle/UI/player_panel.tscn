@@ -307,7 +307,8 @@ script = ExtResource("10_id75v")
 sprite_frames = SubResource("SpriteFrames_38l3p")
 metadata/_custom_type_script = "uid://bbcs5e6bo315g"
 
-[node name="PanelContainer" type="PanelContainer" parent="PlayerBox" unique_id=811877565]
+[node name="DamageContainer" type="PanelContainer" parent="PlayerBox" unique_id=811877565]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -322,7 +323,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7nxe5")
 
-[node name="DamageNumber" type="Label" parent="PlayerBox/PanelContainer" unique_id=723984770]
+[node name="DamageNumber" type="Label" parent="PlayerBox/DamageContainer" unique_id=723984770]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

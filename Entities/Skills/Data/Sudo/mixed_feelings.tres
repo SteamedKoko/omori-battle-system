@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://f2imlkvnfyxe"]
 
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_0t627"]
-[ext_resource type="Texture2D" uid="uid://nvck0sv1eodm" path="res://Scenes/Battle/Art/confuse.png" id="2_0gfjq"]
+[ext_resource type="Texture2D" uid="uid://nvck0sv1eodm" path="res://Art/confuse.png" id="2_0gfjq"]
 [ext_resource type="AudioStream" uid="uid://bsnvjy2lbtr0p" path="res://Audio/weeoo.mp3" id="2_gitak"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doy77fkalreq7"]
 
-[ext_resource type="FontFile" uid="uid://8l8p54j3mk2c" path="res://Scenes/Battle/Art/damage_numbers.png" id="1_6idy7"]
+[ext_resource type="FontFile" uid="uid://8l8p54j3mk2c" path="res://Art/damage_numbers.png" id="1_6idy7"]
 [ext_resource type="Script" uid="uid://bvudvimvfow58" path="res://UI/Battle/Damage/damage_container.gd" id="1_km6vf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_km6vf"]

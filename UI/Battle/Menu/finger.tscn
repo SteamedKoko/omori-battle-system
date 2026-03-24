@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgy08kn0emq26"]
 
-[ext_resource type="Texture2D" uid="uid://dwmsdqv7ua520" path="res://Scenes/Battle/Art/pointy_right.png" id="1_cq43n"]
+[ext_resource type="Texture2D" uid="uid://dwmsdqv7ua520" path="res://Art/pointy_right.png" id="1_cq43n"]
 
 [sub_resource type="Animation" id="Animation_8swtf"]
 length = 0.001

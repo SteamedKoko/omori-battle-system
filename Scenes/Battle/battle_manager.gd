@@ -76,13 +76,12 @@ func start_battle(init_players: Array[PlayerData], init_enemies: Array[EnemyData
 		var player: BattlePlayer = BattlePlayer.new(data, player_panel)
 		player_panel_container.add_child(player_panel)
 		players.push_back(player)
-		add_child(player)
 
 	for i in range(init_enemies.size()):
 		var data: EnemyData = init_enemies[i].duplicate(true)
-		var enemy: BattleEnemy = BattleEnemy.build(data)
+		var enemy: BattleEnemy = BattleEnemy.new(data)
 		enemies.push_back(enemy)
-		%EnemyContainer.add_child(enemy)
+		%EnemyContainer.add_child(enemy.enemy_panel)
 
 
 func attempt_run() -> void:
@@ -146,7 +145,7 @@ func start_player_menu() -> void:
 
 func enemy_turn_start() -> void:
 	for enemy in enemies:
-		if enemy.is_alive():
+		if enemy.enemy_data.is_alive:
 			var to_attack: Array[BattlePlayer] = players.filter(func(e): return e.is_alive())
 			if !to_attack:
 				break
@@ -156,7 +155,7 @@ func enemy_turn_start() -> void:
 
 func execute_player_actions() -> void:
 	for enemy in enemies:
-		if enemy.is_alive():
+		if enemy.enemy_data.is_alive:
 			enemy.target_select(false)
 
 	while(player_action_stack.size() > 0):
@@ -165,7 +164,7 @@ func execute_player_actions() -> void:
 		await action.command_finished
 
 	for enemy in enemies:
-		if enemy.is_alive():
+		if enemy.enemy_data.is_alive:
 			enemy.target_deselect(false)
 	
 

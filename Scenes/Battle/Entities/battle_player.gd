@@ -1,5 +1,5 @@
 class_name BattlePlayer
-extends Node
+extends RefCounted
 
 var player_data: PlayerData
 var player_panel: PlayerPanel

@@ -10,3 +10,6 @@ enum BattleSpriteStates {
 	HURT,
 	NEUTRAL,
 }
+
+var is_alive: bool:
+	get: return stats.current_hp > 0

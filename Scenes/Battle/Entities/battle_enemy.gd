@@ -1,48 +1,36 @@
 class_name BattleEnemy
-extends PanelContainer
+extends RefCounted
+
+signal acted
 
 @export var stats: Stats
 @export var enemy_data: EnemyData
 
-@onready var enemy_info: EnemyInfoPanel = %EnemyInfoPanel
-@onready var enemy_sprite: TextureRect = %EnemySprite
-@onready var damage_container: DamageContainer = %DamageContainer
-
-signal acted
+var enemy_panel: EnemyPanel
 
 var enemy_name: String:
 	get: return enemy_data.enemy_name
 
-const ENEMY: Resource = preload("uid://dgcegk1asy4cx")
+var is_alive: bool:
+	get: return enemy_data.is_alive
 
-func _ready() -> void:
-	stats.took_damage.connect(got_hurt)
-	damage_container.modulate = Color.TRANSPARENT
+func _init(data: EnemyData) -> void:
+	enemy_data = data
+	stats = data.stats
+	enemy_panel = EnemyPanel.build(enemy_data)
 
-func deal_damage(amount: int) -> void:
+func take_damage(amount: int) -> void:
 	stats.take_damage(amount)
 
-func got_hurt(_amount: int) -> void:
-	var hurt_sprite: AnimatedTexture = enemy_data.sprites.get(enemy_data.BattleSpriteStates.HURT)
-	if hurt_sprite:
-		enemy_sprite.texture = hurt_sprite
+func target_select(show_pointer: bool = true) -> void:
+	enemy_panel.target_select(show_pointer)
 
-	damage_container.show_damage(_amount)
-	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [enemy_data.enemy_name, _amount])
-	BattleEventBus.queued_screen_shake.emit(false)
-
-	await Engine.get_main_loop().create_timer(1).timeout
-
-	if !is_alive():
-		var tween: Tween = Engine.get_main_loop().create_tween()
-		tween.tween_property(self, "position", Vector2(position.x,500), .4)
-		await tween.finished
-		return
-
-	#TODO: change them back to their emotion
-	enemy_sprite.texture = enemy_data.sprites.get(enemy_data.BattleSpriteStates.NEUTRAL)
-
+func target_deselect(show_pointer: bool = true) -> void:
+	enemy_panel.target_deselect(show_pointer)
 		
+#TBH I could use the commands like the players do and have all combatants
+# have the same parent class and execute commands, but that'll take more work. 
+# I leave this task to any future person that wants to work on it
 func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
 	BattleEventBus.sent_battle_text.emit("")
 	var to_attack: Array[BattlePlayer]
@@ -70,7 +58,7 @@ func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
 			target.set_random_mood()
 			target.deal_damage(floor(skill.damage))
 
-	await get_tree().create_timer(2).timeout
+	await Engine.get_main_loop().create_timer(2).timeout
 
 	acted.emit()
 
@@ -80,9 +68,9 @@ func attack(targets: Array[BattlePlayer]) -> void:
 	BattleEventBus.sent_battle_text.emit("")
 	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [enemy_data.enemy_name, target.player_data.player_name])
 	target.player_data.player_stats.take_damage(stats.attack)
-	await get_tree().create_timer(1).timeout
+	await Engine.get_main_loop().create_timer(1).timeout
 	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage' % [target.player_data.player_name, stats.attack])
-	await get_tree().create_timer(1).timeout
+	await Engine.get_main_loop().create_timer(1).timeout
 	acted.emit()
 
 func act(targets: Array):
@@ -91,20 +79,3 @@ func act(targets: Array):
 		return
 
 	attack(targets)
-
-func target_select(show_pointer: bool = true):
-	enemy_info.show()
-	enemy_info.toggle_pointer(show_pointer)
-
-func target_deselect(show_pointer: bool = true):
-	enemy_info.hide()
-	enemy_info.toggle_pointer(show_pointer)
-
-func is_alive() -> bool: 
-	return stats.current_hp > 0
-
-static func build(data: EnemyData) -> BattleEnemy:
-	var enemy = ENEMY.instantiate()
-	enemy.stats = data.stats
-	enemy.enemy_data = data
-	return enemy

@@ -20,7 +20,7 @@ func execute(battle_manager: BattleManager) -> void:
 
 		BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ battle_player.player_name, target.enemy_name ])
 		await Engine.get_main_loop().create_timer(1).timeout
-		to_attack.deal_damage(damage_to_deal)
+		to_attack.take_damage(damage_to_deal)
 
 	await Engine.get_main_loop().create_timer(1).timeout
 
@@ -28,7 +28,7 @@ func execute(battle_manager: BattleManager) -> void:
 
 func find_target(battle_manager: BattleManager, target: BattleEnemy) -> BattleEnemy:
 	var to_attack: BattleEnemy = target
-	if !target.is_alive():
+	if !target.enemy_data.is_alive:
 		var alive_enemies = battle_manager.alive_enemies()
 		if alive_enemies.size() == 0:
 			return

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dtb7nn2gdr48b"]
 
-[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Entities/Data/stats.gd" id="4_2wp4a"]
-[ext_resource type="SpriteFrames" uid="uid://c063acfj6h711" path="res://Entities/Data/SpriteFrames/hero_frames.tres" id="4_5p46s"]
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Entities/Stats/stats.gd" id="4_2wp4a"]
+[ext_resource type="SpriteFrames" uid="uid://c063acfj6h711" path="res://UI/Battle/PlayerPanel/Data/SpriteFrames/hero_frames.tres" id="4_5p46s"]
 [ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Entities/PlayerData/player_data.gd" id="5_1mtsq"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="6_faiwy"]
 

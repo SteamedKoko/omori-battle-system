@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dgybubuhy6o62"]
+
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Entities/Data/stats.gd" id="1_8vfj8"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Entities/PlayerData/player_data.gd" id="2_pksnw"]
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="3_pfh1k"]
+[ext_resource type="SpriteFrames" uid="uid://bprjfkofr00v5" path="res://Entities/Data/SpriteFrames/aubrey_frames.tres" id="4_pksnw"]
+
+[sub_resource type="Resource" id="Resource_7wtex"]
+script = ExtResource("1_8vfj8")
+max_hp = 200
+max_juice = 101
+level = 10
+experience = 100
+current_hp = 200
+current_juice = 101
+attack = 53
+defense = 25
+speed = 15
+metadata/_custom_type_script = "uid://beeaos4sr20uv"
+
+[resource]
+script = ExtResource("2_pksnw")
+player_name = "Aubrey"
+player_stats = SubResource("Resource_7wtex")
+sprite_frames = ExtResource("4_pksnw")
+emotions = Array[int]([0, 1, 1, 4, 5, 7, 8])
+metadata/_custom_type_script = "uid://cpe47c776l4uc"

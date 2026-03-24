@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://c3yvqdc86eh43"]
+
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_v4w0d"]
+
+[resource]
+script = ExtResource("1_v4w0d")
+name = "Painful Truth"
+description = "Deals damage to a foe. Omori and the foe become sad."
+cost = 10
+damage = 50.0
+target_effect_status = 2
+caster_effect_status = 2
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

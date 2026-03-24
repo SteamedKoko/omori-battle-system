@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://pjiw23keauh3"]
+
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_dlcqc"]
+
+[resource]
+script = ExtResource("1_dlcqc")
+name = "Hack away"
+description = "Attack 3 times, hitting random foes."
+cost = 30
+damage = 40.0
+target_type = 1
+applicable_target = 1
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

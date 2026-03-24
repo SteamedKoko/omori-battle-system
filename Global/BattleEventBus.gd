@@ -1,7 +1,6 @@
 extends Node
 
 @warning_ignore_start('UNUSED_SIGNAL')
-signal player_action_executed(battle_action: BattleAction)
 signal player_action_queued(command: Command)
 
 signal queued_screen_shake(is_strong: bool)

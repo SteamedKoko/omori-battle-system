@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dgcegk1asy4cx"]
+
+[ext_resource type="Script" uid="uid://bcpyhs3xt0pe5" path="res://UI/Battle/Enemy/enemy_panel.gd" id="1_3pt7u"]
+[ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://Scenes/Battle/Art/hax.png" id="2_ufglf"]
+[ext_resource type="PackedScene" uid="uid://bl08atve24yhv" path="res://UI/Battle/Enemy/enemy_info_panel.tscn" id="3_8t06r"]
+[ext_resource type="PackedScene" uid="uid://doy77fkalreq7" path="res://UI/Battle/Damage/damage_container.tscn" id="4_ojsk3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fclfr"]
+
+[node name="EnemyPanel" type="PanelContainer" unique_id=3005296]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.123
+anchor_right = 0.156
+anchor_bottom = 0.123
+offset_left = -99.840004
+offset_top = -59.04
+offset_right = 100.159996
+offset_bottom = 58.96
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fclfr")
+script = ExtResource("1_3pt7u")
+metadata/_edit_use_anchors_ = true
+
+[node name="EnemySprite" type="TextureRect" parent="." unique_id=1543826525]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ufglf")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="EnemySprite" unique_id=1629124652]
+layout_mode = 0
+offset_left = -25.0
+offset_right = 175.0
+offset_bottom = 118.0
+theme_override_constants/margin_top = -20
+
+[node name="EnemyInfoPanel" parent="EnemySprite/MarginContainer" unique_id=744768568 instance=ExtResource("3_8t06r")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="DamageContainer" parent="EnemySprite" unique_id=1152408868 instance=ExtResource("4_ojsk3")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -43.5
+offset_top = 25.0
+offset_right = 25.5
+offset_bottom = 65.0

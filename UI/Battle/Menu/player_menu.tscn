@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cfryc6d4hprrd"]
+
+[ext_resource type="PackedScene" uid="uid://c0ravx86rx4er" path="res://UI/Battle/Menu/menu_button.tscn" id="1_6ca4m"]
+[ext_resource type="Script" uid="uid://xhdmtmwxdiuo" path="res://UI/Battle/Menu/player_menu.gd" id="1_mrfpn"]
+[ext_resource type="Texture2D" uid="uid://bv1yeaplg2885" path="res://Scenes/Battle/Art/MenuButtons/attack_button.png" id="2_mrfpn"]
+[ext_resource type="Texture2D" uid="uid://cahpky3fo4e4l" path="res://Scenes/Battle/Art/MenuButtons/skill_button.png" id="3_7awce"]
+[ext_resource type="Texture2D" uid="uid://dgjbr8226h5kw" path="res://Scenes/Battle/Art/MenuButtons/snack_button.png" id="4_8ng7p"]
+[ext_resource type="Texture2D" uid="uid://n5ja0hg5x8bb" path="res://Scenes/Battle/Art/MenuButtons/toy_button.png" id="5_uutds"]
+[ext_resource type="PackedScene" uid="uid://vt2a60kc64pg" path="res://UI/Battle/Menu/submenu.tscn" id="8_8ng7p"]
+[ext_resource type="Script" uid="uid://7dxblrs3lgkw" path="res://UI/Battle/TargetSelect/target_select.gd" id="8_s7qhe"]
+
+[node name="PlayerMenu" type="MarginContainer" unique_id=211941153]
+offset_right = 364.0
+offset_bottom = 84.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_mrfpn")
+
+[node name="ActionMenu" type="VBoxContainer" parent="." unique_id=2137837391]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionMenu" unique_id=1921953014]
+layout_mode = 2
+
+[node name="AttackButton" parent="ActionMenu/HBoxContainer" unique_id=190390897 instance=ExtResource("1_6ca4m")]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("2_mrfpn")
+
+[node name="SkillButton" parent="ActionMenu/HBoxContainer" unique_id=267542138 instance=ExtResource("1_6ca4m")]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("3_7awce")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ActionMenu" unique_id=1331718177]
+layout_mode = 2
+
+[node name="SnackButton" parent="ActionMenu/HBoxContainer2" unique_id=1941677058 instance=ExtResource("1_6ca4m")]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("4_8ng7p")
+
+[node name="ToyButton" parent="ActionMenu/HBoxContainer2" unique_id=2056890298 instance=ExtResource("1_6ca4m")]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_uutds")
+
+[node name="SkillMenu_bak" parent="." unique_id=1910930797 instance=ExtResource("8_8ng7p")]
+visible = false
+layout_mode = 2
+
+[node name="SkillMenu" parent="." unique_id=685827114 instance=ExtResource("8_8ng7p")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="TargetSelect" type="Control" parent="." unique_id=1542587140]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("8_s7qhe")
+metadata/_custom_type_script = "uid://7dxblrs3lgkw"
+
+[node name="CancelTimer" type="Timer" parent="." unique_id=1215852573]
+unique_name_in_owner = true

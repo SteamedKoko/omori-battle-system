@@ -126,7 +126,7 @@ func player_turn_sequence_start() -> void:
 	player_action_stack = []
 	player_turn_index = -1
 	for player in players:
-		if player.is_alive():
+		if player.is_alive:
 			players_to_act.push_back(player)
 
 	go_next_player()
@@ -146,7 +146,7 @@ func start_player_menu() -> void:
 func enemy_turn_start() -> void:
 	for enemy in enemies:
 		if enemy.enemy_data.is_alive:
-			var to_attack: Array[BattlePlayer] = players.filter(func(e): return e.is_alive())
+			var to_attack: Array[BattlePlayer] = players.filter(func(e): return e.is_alive)
 			if !to_attack:
 				break
 			enemy.act(to_attack)
@@ -181,8 +181,8 @@ func battle_loop() -> void:
 
 		await enemy_turn_start()
 
-		player_won = enemies.filter(func(e): return e.is_alive()).size() == 0
-		enemy_won = players.filter(func(e): return e.is_alive()).size() == 0
+		player_won = enemies.filter(func(e): return e.is_alive).size() == 0
+		enemy_won = players.filter(func(e): return e.is_alive).size() == 0
 
 
 	if player_won:
@@ -197,4 +197,4 @@ func battle_loop() -> void:
 
 
 func alive_enemies() -> Array[BattleEnemy]:
-		return enemies.filter(func(e): return e.is_alive())
+		return enemies.filter(func(e): return e.is_alive)

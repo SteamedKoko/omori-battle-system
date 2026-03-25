@@ -33,9 +33,7 @@ var player_action_stack: Array[Command] = []
 @onready var sound_effect_stream_player: AudioStreamPlayer = %SoundEffectStreamPlayer
 @onready var player_menu: PlayerMenu = %PlayerMenu
 @onready var player_panel_container: MarginContainer = %PlayerPanelContainer
-@onready var start_menu: Control = %StartMenu
-@onready var fight_button: BattleButton = %FightButton
-@onready var run_button: BattleButton = %RunButton
+@onready var start_menu: StartMenu = %StartMenu
 @onready var battle_text: RichTextLabel = %BattleText
 
 func _ready():
@@ -56,17 +54,10 @@ func _setup_connections() -> void:
 	BattleEventBus.sent_battle_text_append.connect(append_text)
 	BattleEventBus.queued_sound_effect.connect(play_sound_effect)
 	BattleEventBus.queued_music.connect(play_music)
-	fight_button.pressed.connect(start_player_menu)
-	run_button.pressed.connect(attempt_run)
-	start_menu.gui_input.connect(_on_gui_input)
+	start_menu.attempted_fight.connect(start_player_menu)
+	start_menu.attempted_run.connect(attempt_run)
 	player_menu.cancel_pressed.connect(go_previous_player)
 
-
-func _on_gui_input(event: InputEvent) -> void:
-	print('do something')
-	if event.is_action_pressed("up") or event.is_action_pressed("down"):
-		print('move')
-		play_sound_effect(SYS_MOVE)
 
 func play_music(stream: AudioStream) -> void:
 	music_stream_player.stream = stream
@@ -78,8 +69,7 @@ func play_sound_effect(stream: AudioStream) -> void:
 
 func refocus_main_menu() -> void:
 	player_menu.hide()
-	start_menu.show()
-	fight_button.grab_focus()
+	start_menu.open_menu()
 
 
 func append_text(text) -> void:
@@ -105,7 +95,9 @@ func start_battle(init_players: Array[PlayerData], init_enemies: Array[EnemyData
 
 
 func attempt_run() -> void:
+	start_menu.close_menu()
 	BattleEventBus.menu_not_allowed.emit()
+	await get_tree().create_timer(1).timeout
 	battle_text.text = "You can't run sucker"
 	player_turn_end.emit()
 
@@ -142,8 +134,7 @@ func go_previous_player() -> void:
 		
 
 func player_turn_sequence_start() -> void:
-	start_menu.show()
-	fight_button.grab_focus()
+	start_menu.open_menu()
 	players_to_act = []
 	player_action_stack = []
 	player_turn_index = -1
@@ -156,13 +147,12 @@ func player_turn_sequence_start() -> void:
 
 func clean_player_menu() -> void:
 	player_menu.hide()
-	player_menu.hide()
 	start_menu.hide()
 
 
 func start_player_menu() -> void:
 	BattleEventBus.menu_confirmed.emit()
-	start_menu.hide()
+	start_menu.close_menu()
 	player_menu.open_menu()
 
 

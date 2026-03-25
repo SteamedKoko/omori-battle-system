@@ -8,42 +8,45 @@ var skills: Array[SkillLabel] = []
 # var items: Array[Item] = []
 # var toys: Array[Toy] = []
 
-var can_press_cancel: bool = true
 var prepped_command: Command
-var is_active: bool
 var _player_text: String
 var _battle_player: BattlePlayer
-var _battle_manager: BattleManager #maybe tmp measure
+
+var available_enemies: Array[BattleEnemy]
 
 @onready var action_menu: Control = %ActionMenu
 @onready var attack_button: BattleButton = %AttackButton
-@onready var cancel_timer: Timer = %CancelTimer
-@onready var skill_submenu: Submenu = %SkillMenu
 @onready var skill_button: BattleButton = %SkillButton
+@onready var toy_button: BattleButton = %ToyButton
+@onready var snack_button: BattleButton = %SnackButton
+
+@onready var skill_submenu: Submenu = %SkillMenu
 @onready var target_select: TargetSelect = %TargetSelect
 
+@onready var focus_owner: Control = %AttackButton
+
 func _ready() -> void:
+	_toggle_process(false)
 	skill_submenu.hide()
 	attack_button.grab_focus()
+	snack_button.pressed.connect(func(): BattleEventBus.menu_not_allowed.emit())
+	toy_button.pressed.connect(func(): BattleEventBus.menu_not_allowed.emit())
 	skill_submenu.closed_menu.connect(_on_close_submenu)
 	skill_button.pressed.connect(_on_skill_button_pressed)
 	attack_button.pressed.connect(_on_attack_button_pressed)
-	cancel_timer.timeout.connect(_on_cancel_timer_timeout)
 	target_select.target_cancelled.connect(_on_target_cancelled)
 	target_select.target_selected.connect(_on_target_selected)
 
+
+func _process(_delta: float) -> void:
+	_play_sound_if_moved()
+
+
 func _unhandled_input(_event: InputEvent) -> void:
-	if !is_active:
-		return
-
-	if Input.is_action_just_pressed("ui_accept"):
-		if cancel_timer.is_stopped():
-			can_press_cancel = false
-			cancel_timer.start(.2)
-			get_viewport().set_input_as_handled()
-
-	if Input.is_action_just_pressed("ui_cancel") and can_press_cancel:
+	if Input.is_action_just_pressed("ui_cancel"):
 		cancel_pressed.emit()
+		BattleEventBus.menu_cancelled.emit()
+		_toggle_process(false)
 		get_viewport().set_input_as_handled()
 
 
@@ -52,19 +55,26 @@ func load_player(player: BattlePlayer, manager: BattleManager) -> void:
 	_load_skills(player.player_data)
 	_battle_player = player
 	_player_text = "What should %s do?" % player.player_data.player_name
-	_battle_manager = manager
+	available_enemies = manager.alive_enemies()
 
 
 func target_enemies() -> void:
-	var to_target:Array[BattleEnemy] = _battle_manager.enemies
+	var to_target: Array[BattleEnemy] = available_enemies
 	to_target[0].target_select()
 
 
 func open_menu() -> void:
-	is_active = true
 	BattleEventBus.sent_battle_text.emit(_player_text)
 	show()
 	attack_button.grab_focus()
+	_toggle_process.call_deferred(true) #need to call deferred here or else navigating backwards breaks
+
+
+func _play_sound_if_moved() -> void:
+	var new_focus = get_viewport().gui_get_focus_owner()
+	if focus_owner != new_focus:
+		BattleEventBus.menu_moved.emit()
+		focus_owner = new_focus
 
 
 func _load_skills(data: PlayerData) -> void:
@@ -82,34 +92,43 @@ func _load_skills(data: PlayerData) -> void:
 
 
 func _on_target_selected(enemy: BattleEnemy) -> void:
-	is_active = false
 	prepped_command.targets = [enemy]
 	BattleEventBus.player_action_queued.emit(prepped_command)
 
 
 func _on_target_cancelled() -> void:
+	_toggle_process(true)
 	prepped_command = null
 	open_menu()
 
 
-func _on_cancel_timer_timeout() -> void:
-	cancel_timer.stop()
-	can_press_cancel = true
-
-
 func _on_attack_button_pressed() -> void:
+	BattleEventBus.menu_confirmed.emit()
 	prepped_command = AttackCommand.new()
 	prepped_command.battle_player = _battle_player
 	hide()
-	target_select.start_selection(_battle_manager.enemies)
+	_start_target()
 
+func _start_target() -> void:
+	_toggle_process(false)
+	target_select.start_selection(available_enemies)
+	
 
 func _on_skill_button_pressed() -> void:
+	_toggle_process(false)
+	BattleEventBus.menu_confirmed.emit()
 	action_menu.hide()
 	skill_submenu.open_menu()
 
 
 func _on_close_submenu() -> void:
 	action_menu.show()
+	_toggle_process(true)
 	BattleEventBus.sent_battle_text.emit(_player_text)
 	skill_button.grab_focus()
+
+
+func _toggle_process(enable: bool) -> void:
+	set_process(enable)
+	set_process_unhandled_input(enable)
+	set_process_input(enable)

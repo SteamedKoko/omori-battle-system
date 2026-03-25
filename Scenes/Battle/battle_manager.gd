@@ -11,6 +11,10 @@ const KEL_DATA = preload("uid://dmbkp1igy7jw8")
 const SUDO_DATA = preload("uid://bgcmm1twyftdq")
 
 const SUDO_THEME = preload("uid://dcvdgp11h2ree")
+const SYS_MOVE = preload("uid://c28thvl6kw0if")
+const SYS_BUZZER = preload("uid://dmdsckhgutssy")
+const SYS_CANCEL = preload("uid://b6yyc16r0c3pl")
+const SYS_SELECT = preload("uid://ccn81gj75vu5v")
 
 const player_panel_presets: Array[Control.LayoutPreset] = [
 	Control.LayoutPreset.PRESET_BOTTOM_LEFT,
@@ -35,24 +39,40 @@ var player_action_stack: Array[Command] = []
 @onready var battle_text: RichTextLabel = %BattleText
 
 func _ready():
-	player_menu.cancel_pressed.connect(go_previous_player)
+	_setup_connections()
+	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
+	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
+	play_music(SUDO_THEME)
+	battle_loop()
+
+
+func _setup_connections() -> void:
+	BattleEventBus.menu_cancelled.connect(func(): play_sound_effect(SYS_CANCEL))
+	BattleEventBus.menu_confirmed.connect(func(): play_sound_effect(SYS_SELECT))
+	BattleEventBus.menu_moved.connect(func(): play_sound_effect(SYS_MOVE))
+	BattleEventBus.menu_not_allowed.connect(func(): play_sound_effect(SYS_BUZZER))
 	BattleEventBus.player_action_queued.connect(queue_player_action)
 	BattleEventBus.sent_battle_text.connect(populate_text)
 	BattleEventBus.sent_battle_text_append.connect(append_text)
 	BattleEventBus.queued_sound_effect.connect(play_sound_effect)
 	BattleEventBus.queued_music.connect(play_music)
-	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
-	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
-	%RunButton.pressed.connect(attempt_run)
-	%FightButton.pressed.connect(start_player_menu)
-	play_music(SUDO_THEME)
-	battle_loop()
+	fight_button.pressed.connect(start_player_menu)
+	run_button.pressed.connect(attempt_run)
+	start_menu.gui_input.connect(_on_gui_input)
+	player_menu.cancel_pressed.connect(go_previous_player)
 
-func play_music(stream: AudioStreamMP3) -> void:
+
+func _on_gui_input(event: InputEvent) -> void:
+	print('do something')
+	if event.is_action_pressed("up") or event.is_action_pressed("down"):
+		print('move')
+		play_sound_effect(SYS_MOVE)
+
+func play_music(stream: AudioStream) -> void:
 	music_stream_player.stream = stream
 	music_stream_player.play()
 
-func play_sound_effect(stream: AudioStreamMP3) -> void:
+func play_sound_effect(stream: AudioStream) -> void:
 	sound_effect_stream_player.stream = stream
 	sound_effect_stream_player.play()
 
@@ -85,6 +105,7 @@ func start_battle(init_players: Array[PlayerData], init_enemies: Array[EnemyData
 
 
 func attempt_run() -> void:
+	BattleEventBus.menu_not_allowed.emit()
 	battle_text.text = "You can't run sucker"
 	player_turn_end.emit()
 
@@ -117,6 +138,7 @@ func go_previous_player() -> void:
 	var current_player = players_to_act[player_turn_index]
 	current_player.focus_player()
 	player_menu.load_player(current_player, self)
+	player_menu.open_menu()
 		
 
 func player_turn_sequence_start() -> void:
@@ -139,6 +161,7 @@ func clean_player_menu() -> void:
 
 
 func start_player_menu() -> void:
+	BattleEventBus.menu_confirmed.emit()
 	start_menu.hide()
 	player_menu.open_menu()
 

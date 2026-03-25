@@ -8,28 +8,37 @@ const TARGET_SELECT = preload("uid://dv2gygkgghfb6")
 
 var enemies: Array[BattleEnemy]
 var enemy_index: int = 0
-var is_active = false
 
-func _unhandled_input(_event: InputEvent) -> void:
-	if !is_active:
-		return
+func _ready() -> void:
+	set_process_unhandled_input(false)
 
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_left"):
+		var index_before = enemy_index
 		change_target(-1)
+		if index_before != enemy_index:
+			BattleEventBus.menu_moved.emit()
+
 		get_viewport().set_input_as_handled()
 
 	if Input.is_action_just_pressed("ui_right"):
+		var index_before = enemy_index
 		change_target(1)
+		if index_before != enemy_index:
+			BattleEventBus.menu_moved.emit()
+
 		get_viewport().set_input_as_handled()
 
-	if Input.is_action_just_pressed("ui_accept"):
-		is_active = false
+	if Input.is_action_just_pressed_by_event("ui_accept", event, true):
+		set_process_unhandled_input(false)
+		BattleEventBus.menu_confirmed.emit()
 		enemies[enemy_index].target_deselect()
 		target_selected.emit(enemies[enemy_index])
 		get_viewport().set_input_as_handled()
 
 	if Input.is_action_just_pressed("ui_cancel"):
-		is_active = false
+		set_process_unhandled_input(false)
+		BattleEventBus.menu_cancelled.emit()
 		enemies[enemy_index].target_deselect()
 		target_cancelled.emit()
 		get_viewport().set_input_as_handled()
@@ -37,9 +46,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func start_selection(enemiesArray: Array[BattleEnemy]) -> void:
 	enemies = enemiesArray
-	is_active = true
 	enemy_index = 0
 	change_target(0)
+	# Mind BLOWN, I need to call deferred here, otherwise the target will immediately be selected as soon as the menu opens
+	# even though is_action_just_pressed is being used
+	set_process_unhandled_input.call_deferred(true)
 
 func change_target(amount_to_increase: int) -> void:
 	var amount: int = enemy_index + amount_to_increase

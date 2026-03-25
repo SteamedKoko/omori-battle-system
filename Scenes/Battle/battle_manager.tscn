@@ -108,6 +108,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_filter = 2
+mouse_behavior_recursive = 1
 
 [node name="FightButton" parent="BattleUI/MenuContainer/Menus/StartMenu" unique_id=190390897 instance=ExtResource("5_gthe3")]
 unique_name_in_owner = true

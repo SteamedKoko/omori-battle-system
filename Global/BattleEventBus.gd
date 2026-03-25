@@ -4,8 +4,14 @@ extends Node
 signal player_action_queued(command: Command)
 
 signal queued_screen_shake(is_strong: bool)
-signal queued_sound_effect(audio: AudioStreamMP3)
-signal queued_music(audio: AudioStreamMP3)
+signal queued_sound_effect(audio: AudioStream)
+signal queued_music(audio: AudioStream)
+
+#For audio
+signal menu_cancelled()
+signal menu_confirmed()
+signal menu_moved()
+signal menu_not_allowed()
 
 signal sent_battle_text(text: String)
 signal sent_battle_text_append(text: String)

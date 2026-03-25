@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cfoptwsymul31"]
 
-[ext_resource type="Texture2D" uid="uid://m67rs7cjjxhh" path="res://Art/Portraits/player_panel.png" id="1_620xr"]
+[ext_resource type="Texture2D" uid="uid://m67rs7cjjxhh" path="res://UI/Battle/PlayerPanel/Art/Portraits/player_panel.png" id="1_620xr"]
 [ext_resource type="Script" uid="uid://bol2fhk8iimev" path="res://UI/Battle/PlayerPanel/player_panel.gd" id="1_kqpfk"]
 [ext_resource type="Resource" uid="uid://bd2jyxc6fp1v8" path="res://Entities/PlayerData/Data/omori_data.tres" id="2_3c8xf"]
 [ext_resource type="Resource" uid="uid://ceitaeqkgsd3k" path="res://Entities/Stats/Data/omori_stats.tres" id="3_id75v"]
-[ext_resource type="Texture2D" uid="uid://wd0e3gehgs5y" path="res://Art/Portraits/health_bar.png" id="3_lhc11"]
-[ext_resource type="Texture2D" uid="uid://bf14tn3l1godn" path="res://Art/Portraits/portrait_back_neutral.png" id="3_ssqf0"]
-[ext_resource type="Texture2D" uid="uid://6jebq1l0n2u4" path="res://Art/Portraits/juice_bar.png" id="4_nb1cy"]
-[ext_resource type="Texture2D" uid="uid://jxbovxs3x53u" path="res://Art/Portraits/portrait_turn_border.png" id="7_ny1to"]
+[ext_resource type="Texture2D" uid="uid://wd0e3gehgs5y" path="res://UI/Battle/PlayerPanel/Art/Portraits/health_bar.png" id="3_lhc11"]
+[ext_resource type="Texture2D" uid="uid://bf14tn3l1godn" path="res://UI/Battle/PlayerPanel/Art/Portraits/portrait_back_neutral.png" id="3_ssqf0"]
+[ext_resource type="Texture2D" uid="uid://6jebq1l0n2u4" path="res://UI/Battle/PlayerPanel/Art/Portraits/juice_bar.png" id="4_nb1cy"]
+[ext_resource type="Texture2D" uid="uid://jxbovxs3x53u" path="res://UI/Battle/PlayerPanel/Art/Portraits/portrait_turn_border.png" id="7_ny1to"]
 [ext_resource type="PackedScene" uid="uid://doy77fkalreq7" path="res://UI/Battle/Damage/damage_container.tscn" id="11_ewtu1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_id75v"]

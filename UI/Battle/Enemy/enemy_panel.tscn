@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgcegk1asy4cx"]
 
 [ext_resource type="Script" uid="uid://bcpyhs3xt0pe5" path="res://UI/Battle/Enemy/enemy_panel.gd" id="1_3pt7u"]
-[ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://Art/hax.png" id="2_ufglf"]
+[ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://UI/Battle/Enemy/Art/hax.png" id="2_ufglf"]
 [ext_resource type="PackedScene" uid="uid://bl08atve24yhv" path="res://UI/Battle/Enemy/enemy_info_panel.tscn" id="3_8t06r"]
 [ext_resource type="PackedScene" uid="uid://doy77fkalreq7" path="res://UI/Battle/Damage/damage_container.tscn" id="4_ojsk3"]
 

@@ -10,7 +10,7 @@ const HERO_DATA = preload("uid://dtb7nn2gdr48b")
 const KEL_DATA = preload("uid://dmbkp1igy7jw8")
 const SUDO_DATA = preload("uid://bgcmm1twyftdq")
 
-const _6WIP = preload("uid://dcvdgp11h2ree")
+const SUDO_THEME = preload("uid://dcvdgp11h2ree")
 
 const player_panel_presets: Array[Control.LayoutPreset] = [
 	Control.LayoutPreset.PRESET_BOTTOM_LEFT,
@@ -45,7 +45,7 @@ func _ready():
 	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
 	%RunButton.pressed.connect(attempt_run)
 	%FightButton.pressed.connect(start_player_menu)
-	play_music(_6WIP)
+	play_music(SUDO_THEME)
 	battle_loop()
 
 func play_music(stream: AudioStreamMP3) -> void:
@@ -152,6 +152,8 @@ func enemy_turn_start() -> void:
 			enemy.act(to_attack)
 			await enemy.acted
 
+	enemy_turn_end.emit()
+
 
 func execute_player_actions() -> void:
 	for enemy in enemies:
@@ -179,7 +181,8 @@ func battle_loop() -> void:
 
 		await execute_player_actions()
 
-		await enemy_turn_start()
+		enemy_turn_start()
+		await enemy_turn_end
 
 		player_won = enemies.filter(func(e): return e.is_alive).size() == 0
 		enemy_won = players.filter(func(e): return e.is_alive).size() == 0

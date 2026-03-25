@@ -18,6 +18,7 @@ enum ApplicableTarget {
 
 enum MoodType {
 	None,
+	Neutral,
 	Happy,
 	Sad,
 	Angry,

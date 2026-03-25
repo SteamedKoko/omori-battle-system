@@ -87,8 +87,11 @@ func _toasted():
 	sprite_state = SpriteStates.TOAST
 	player_mood.text = ""
 
-func _took_damage(_amount: int):
+func _took_damage(damage_taken: int):
 	#reduce hp via text and progressbar
+	_update_health()
+
+func _update_health() -> void:
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(health_bar, 'value', stats.current_hp, .3)

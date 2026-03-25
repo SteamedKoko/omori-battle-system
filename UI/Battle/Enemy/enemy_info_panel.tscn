@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ds7chyy52x6xd" path="res://UI/Battle/Enemy/enemy_info_panel.gd" id="1_n1gho"]
 [ext_resource type="Texture2D" uid="uid://b3k37thuwyynb" path="res://UI/Battle/Enemy/Art/enemy_box.png" id="2_c52ns"]
-[ext_resource type="Texture2D" uid="uid://dr4fl37yb3g7k" path="res://Art/Portraits/heart.png" id="3_q3py1"]
+[ext_resource type="Texture2D" uid="uid://dr4fl37yb3g7k" path="res://UI/Battle/PlayerPanel/Art/Portraits/heart.png" id="3_q3py1"]
 [ext_resource type="Texture2D" uid="uid://bwa8x3rqqo7ad" path="res://UI/Battle/Enemy/Art/enemy_progress_bar.png" id="4_0505w"]
 [ext_resource type="Texture2D" uid="uid://s7sf1b07mily" path="res://UI/Battle/Enemy/Art/enemy_progress_value.png" id="5_7i24a"]
-[ext_resource type="Texture2D" uid="uid://bh7u7yv0cfe8r" path="res://Art/pointy_down.png" id="6_c52ns"]
+[ext_resource type="Texture2D" uid="uid://bh7u7yv0cfe8r" path="res://UI/Battle/Enemy/Art/pointy_down.png" id="6_c52ns"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1sme"]
 

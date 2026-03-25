@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://i8rcsttb7qg0"]
 
-[ext_resource type="Texture2D" uid="uid://ip0q0j7pb4f2" path="res://Art/Portraits/SpriteSheets/omori.png" id="1_x162m"]
-[ext_resource type="Texture2D" uid="uid://de45pbhngupld" path="res://Art/Portraits/SpriteSheets/spamton_1.png" id="2_opjp7"]
-[ext_resource type="Texture2D" uid="uid://dl7jhxoykcu4x" path="res://Art/Portraits/SpriteSheets/spamton_2.png" id="3_14tfc"]
-[ext_resource type="Texture2D" uid="uid://bgdd1beahwtje" path="res://Art/Portraits/SpriteSheets/spamton_3.png" id="4_kmpwm"]
+[ext_resource type="Texture2D" uid="uid://ip0q0j7pb4f2" path="res://UI/Battle/PlayerPanel/Art/Portraits/SpriteSheets/omori.png" id="1_x162m"]
+[ext_resource type="Texture2D" uid="uid://de45pbhngupld" path="res://UI/Battle/PlayerPanel/Art/Portraits/SpriteSheets/spamton_1.png" id="2_opjp7"]
+[ext_resource type="Texture2D" uid="uid://dl7jhxoykcu4x" path="res://UI/Battle/PlayerPanel/Art/Portraits/SpriteSheets/spamton_2.png" id="3_14tfc"]
+[ext_resource type="Texture2D" uid="uid://bgdd1beahwtje" path="res://UI/Battle/PlayerPanel/Art/Portraits/SpriteSheets/spamton_3.png" id="4_kmpwm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x162m"]
 atlas = ExtResource("1_x162m")

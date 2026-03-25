@@ -36,7 +36,7 @@ func set_emotion(new_emotion: PlayerData.Emotions) -> void:
 	if !is_alive:
 		return
 
-	player_panel._set_mood(new_emotion)
+	player_panel.mood = new_emotion
 
 func set_random_mood() -> void:
 	if !is_alive:
@@ -44,7 +44,7 @@ func set_random_mood() -> void:
 
 	var emotions = player_data.emotions.duplicate()
 	emotions.pop_front() # Remove neutral let's make this fun
-	player_panel._set_mood(emotions.pick_random())
+	player_panel.mood = emotions.pick_random()
 
 
 func focus_player() -> void:

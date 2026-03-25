@@ -10,6 +10,6 @@ cost = 15
 damage = 40.0
 can_select_target = true
 applicable_target = 1
-damage_multiplyer_if = 1
+damage_multiplyer_if = 2
 damage_multiplyer = 1.5
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

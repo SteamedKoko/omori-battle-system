@@ -42,6 +42,7 @@ func load_items(items: Array[Control]) -> void:
 func open_menu() -> void:
 	show()
 	if submenu_items.size() > 0:
+		focus_owner = submenu_items[0]
 		submenu_items[0].grab_focus()
 
 	set_process_unhandled_input.call_deferred(true)

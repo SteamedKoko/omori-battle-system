@@ -70,6 +70,7 @@ func target_enemies() -> void:
 func open_menu() -> void:
 	BattleEventBus.sent_battle_text.emit(_player_text)
 	show()
+	action_menu.show()
 	attack_button.grab_focus()
 	_toggle_process.call_deferred(true) #need to call deferred here or else navigating backwards breaks
 

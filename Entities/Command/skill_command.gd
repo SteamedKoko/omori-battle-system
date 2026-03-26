@@ -10,8 +10,8 @@ func execute(alive_enemies: Array[BattleEnemy]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 
 	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [battle_player.player_name, skill.name])
-	BattleEventBus.queued_sound_effect.emit(skill.sound)
 
+	BattleEventBus.queued_sound_effect.emit(skill.sound)
 	await play_skill_animation(targets)
 
 	# for i in range(skill.times_to_hit):
@@ -24,11 +24,9 @@ func play_skill_animation(targets: Array[BattleEnemy]) -> void:
 	match skill.skill_animation_target:
 		Skill.SkillAnimationTargets.Screen:
 			var skill_control: SkillEffectControl = SkillEffectControl.build(skill)
-			#TODO: need to add this as a child somewhere
+			#This allows a handler to push the animation to center screen in battle manager
 			BattleEventBus.queued_battle_animation.emit(skill_control)
-			print('playing anim')
 			await skill_control.play_skill_animation()
-			# await skill_control.animation_player.animation_finished
 
 		Skill.SkillAnimationTargets.Enemy:
 			var target_index: int = 0

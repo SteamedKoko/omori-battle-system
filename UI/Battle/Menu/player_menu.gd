@@ -29,11 +29,15 @@ func _ready() -> void:
 	_toggle_process(false)
 	skill_submenu.hide()
 	attack_button.grab_focus()
+
+	attack_button.pressed.connect(_on_attack_button_pressed)
+	skill_button.pressed.connect(_on_skill_button_pressed)
 	snack_button.pressed.connect(func(): BattleEventBus.menu_not_allowed.emit())
 	toy_button.pressed.connect(func(): BattleEventBus.menu_not_allowed.emit())
+
+	skill_submenu.chose_command.connect(_on_chose_command)
 	skill_submenu.closed_menu.connect(_on_close_submenu)
-	skill_button.pressed.connect(_on_skill_button_pressed)
-	attack_button.pressed.connect(_on_attack_button_pressed)
+
 	target_select.target_cancelled.connect(_on_target_cancelled)
 	target_select.target_selected.connect(_on_target_selected)
 
@@ -103,22 +107,24 @@ func _on_target_cancelled() -> void:
 
 
 func _on_attack_button_pressed() -> void:
+	_toggle_process(false)
 	BattleEventBus.menu_confirmed.emit()
 	prepped_command = AttackCommand.new()
 	prepped_command.battle_player = _battle_player
 	hide()
-	_start_target()
-
-func _start_target() -> void:
-	_toggle_process(false)
 	target_select.start_selection(available_enemies)
-	
 
 func _on_skill_button_pressed() -> void:
 	_toggle_process(false)
 	BattleEventBus.menu_confirmed.emit()
 	action_menu.hide()
 	skill_submenu.open_menu()
+
+func _on_chose_command(command: Command) -> void:
+	skill_submenu.close_menu()
+	hide()
+	command.battle_player = _battle_player
+	BattleEventBus.player_action_queued.emit(command)
 
 
 func _on_close_submenu() -> void:

@@ -12,7 +12,7 @@ var enemy_index: int = 0
 func _ready() -> void:
 	set_process_unhandled_input(false)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_left"):
 		var index_before = enemy_index
 		change_target(-1)
@@ -29,7 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		get_viewport().set_input_as_handled()
 
-	if Input.is_action_just_pressed_by_event("ui_accept", event, true):
+	if Input.is_action_just_pressed("ui_accept"):
 		set_process_unhandled_input(false)
 		BattleEventBus.menu_confirmed.emit()
 		enemies[enemy_index].target_deselect()

@@ -87,7 +87,7 @@ func _toasted():
 	sprite_state = SpriteStates.TOAST
 	player_mood.text = ""
 
-func _took_damage(damage_taken: int):
+func _took_damage(_damage_taken: int):
 	#reduce hp via text and progressbar
 	_update_health()
 

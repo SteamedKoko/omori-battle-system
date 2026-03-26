@@ -11,6 +11,7 @@ var skill: Skill
 func _ready() -> void:
 	if skill:
 		option_text.text = skill.name
+
 	focus_entered.connect(_focused)
 	focus_exited.connect(_unfocused)
 

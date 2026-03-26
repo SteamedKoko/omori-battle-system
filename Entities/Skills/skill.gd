@@ -7,13 +7,13 @@ enum TargetType {
 }
 
 enum ApplicableTarget {
+	None,
 	Ally,
 	Enemy,
 	Self,
 	AllEnemy,
 	AllAlly,
 	All,
-	None
 }
 
 enum MoodType {
@@ -40,15 +40,25 @@ enum DebuffType {
 	MajorAttack
 }
 
+enum SkillAnimationTargets {
+	None,
+	Self,
+	Enemy,
+	Screen
+}
 
 @export_subgroup("Basic")
 @export var name: String
 @export var description: String
 @export var cost: int
 @export var damage: float
-@export var sound: AudioStreamMP3
-# @export var skill_animation: SpriteFrames
+@export var times_to_hit: int = 1
+@export var sound: AudioStream
+
+@export_subgroup("Animation")
 @export var skill_texture: Texture2D
+@export var skill_sprite_frames: SpriteFrames
+@export var skill_animation_target: SkillAnimationTargets
 @export var skill_animation_type: SkillEffectControl.Animations
 
 @export_subgroup("Target")

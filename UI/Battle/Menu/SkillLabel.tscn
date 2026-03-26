@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bl2xcstexl001" path="res://UI/Battle/Menu/skill_label.gd" id="1_ay6v8"]
 [ext_resource type="PackedScene" uid="uid://cgy08kn0emq26" path="res://UI/Battle/Menu/finger.tscn" id="2_4y477"]
 
-[node name="SkillLabel" type="Control" unique_id=1960645905]
+[node name="SkillLabel" type="Control" unique_id=1418404018]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 200.0
@@ -13,18 +13,22 @@ size_flags_vertical = 2
 focus_mode = 2
 script = ExtResource("1_ay6v8")
 
-[node name="OptionText" type="RichTextLabel" parent="." unique_id=832991772]
+[node name="OptionText" type="RichTextLabel" parent="." unique_id=1647536408]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 93.0
+offset_right = 66.0
 offset_bottom = 23.0
-text = "asdfasdasdf"
-fit_content = true
-autowrap_mode = 0
+text = "asdfasdf"
+scroll_active = false
 
-[node name="Node" type="Node2D" parent="." unique_id=15179290]
-position = Vector2(-37, 6)
+[node name="Control" type="Control" parent="." unique_id=335085991]
+anchors_preset = 0
+offset_left = -37.0
+offset_top = 6.0
+offset_right = -37.0
+offset_bottom = 6.0
 
-[node name="FingerContainer" parent="Node" unique_id=1335291844 instance=ExtResource("2_4y477")]
+[node name="FingerContainer" parent="Control" unique_id=1335291844 instance=ExtResource("2_4y477")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 0

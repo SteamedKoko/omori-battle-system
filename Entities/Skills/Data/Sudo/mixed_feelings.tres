@@ -13,6 +13,6 @@ sound = ExtResource("2_gitak")
 skill_texture = ExtResource("2_cglbr")
 skill_animation_type = 1
 target_type = 1
-applicable_target = 3
+applicable_target = 4
 target_effect_status = 12
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

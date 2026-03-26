@@ -27,12 +27,14 @@ var player_action_stack: Array[Command] = []
 @onready var player_panel_container: MarginContainer = %PlayerPanelContainer
 @onready var start_menu: StartMenu = %StartMenu
 @onready var battle_text: RichTextLabel = %BattleText
+@onready var screen_skill_container: Control = %ScreenSkillContainer
 
 func _ready():
 	_setup_connections()
 	add_child(BattleAudioManager.new())
 	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
-	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
+	# start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
+	start_battle([OMORI_DATA], start_enemies)
 	battle_loop()
 
 
@@ -40,10 +42,14 @@ func _setup_connections() -> void:
 	BattleEventBus.player_action_queued.connect(queue_player_action)
 	BattleEventBus.sent_battle_text.connect(populate_text)
 	BattleEventBus.sent_battle_text_append.connect(append_text)
+	BattleEventBus.queued_battle_animation.connect(_on_queued_battle_animation)
 	start_menu.attempted_fight.connect(start_player_menu)
 	start_menu.attempted_run.connect(attempt_run)
 	player_menu.cancel_pressed.connect(go_previous_player)
 
+func _on_queued_battle_animation(skill_control: SkillEffectControl) -> void:
+	screen_skill_container.add_child(skill_control)
+	
 
 func refocus_main_menu() -> void:
 	player_menu.hide()
@@ -153,8 +159,9 @@ func execute_player_actions() -> void:
 
 	while(player_action_stack.size() > 0):
 		var action: Command = player_action_stack.pop_front()
-		action.execute(self)
-		await action.command_finished
+
+		@warning_ignore("REDUNDANT_AWAIT")
+		await action.execute(alive_enemies())
 
 	for enemy in enemies:
 		if enemy.enemy_data.is_alive:

@@ -8,6 +8,7 @@ var submenu_items: Array[Control] = []
 var focus_owner: Control
 
 signal closed_menu
+signal chose_command(command: Command)
 
 func _ready() -> void:
 	for child in %ItemContainer.get_children():
@@ -20,14 +21,22 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		_handle_option_pressed(focus_owner)
+		get_viewport().set_input_as_handled()
+
 	if event.is_action_pressed("ui_cancel"):
 		close_menu()
+		closed_menu.emit()
 		BattleEventBus.menu_cancelled.emit()
 		get_viewport().set_input_as_handled()
 
 func _process(_delta: float) -> void:
 	_play_sound_if_moved()
 	
+func _handle_option_pressed(item: Control):
+	if item is SkillLabel:
+		_on_choose_skill(item.skill)
 
 func load_items(items: Array[Control]) -> void:
 	for child in %ItemContainer.get_children():
@@ -38,6 +47,14 @@ func load_items(items: Array[Control]) -> void:
 	for item in submenu_items:
 		%ItemContainer.add_child(item)
 	
+var prepped_command: Command
+
+func _on_choose_skill(skill: Skill) -> void:
+	prepped_command = SkillCommand.new(skill)
+
+	if !skill.can_select_target:
+		chose_command.emit(prepped_command)
+		#return this and wrap it up
 
 func open_menu() -> void:
 	show()
@@ -51,7 +68,6 @@ func open_menu() -> void:
 
 func close_menu() -> void:
 	hide()
-	closed_menu.emit()
 	set_process_unhandled_input(false)
 	set_process(false)
 

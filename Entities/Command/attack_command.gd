@@ -1,9 +1,7 @@
 class_name AttackCommand
 extends Command
 
-var battle_player: BattlePlayer
-
-func execute(battle_manager: BattleManager) -> void:
+func execute(alive_enemies: Array[BattleEnemy]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 	var initial_damage: int = battle_player.player_data.player_stats.attack
 
@@ -11,7 +9,7 @@ func execute(battle_manager: BattleManager) -> void:
 
 	#calculations all happen here
 	for target in targets:
-		var to_attack: BattleEnemy = find_target(battle_manager, target)
+		var to_attack: BattleEnemy = find_target(alive_enemies, target)
 		if !to_attack:
 			break
 
@@ -23,16 +21,3 @@ func execute(battle_manager: BattleManager) -> void:
 		to_attack.take_damage(damage_to_deal)
 
 	await Engine.get_main_loop().create_timer(1).timeout
-
-	command_finished.emit()
-
-func find_target(battle_manager: BattleManager, target: BattleEnemy) -> BattleEnemy:
-	var to_attack: BattleEnemy = target
-	if !target.enemy_data.is_alive:
-		var alive_enemies = battle_manager.alive_enemies()
-		if alive_enemies.size() == 0:
-			return
-
-		to_attack = alive_enemies.pick_random()
-
-	return to_attack

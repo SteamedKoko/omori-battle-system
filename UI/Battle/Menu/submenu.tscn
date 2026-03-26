@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vt2a60kc64pg"]
 
 [ext_resource type="Script" uid="uid://bqojfvcc22p3x" path="res://UI/Battle/Menu/submenu.gd" id="1_cvonr"]
+[ext_resource type="Script" uid="uid://7dxblrs3lgkw" path="res://UI/Battle/TargetSelect/target_select.gd" id="2_rtsm4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_778ss"]
 bg_color = Color(0, 0, 0, 1)
@@ -82,30 +83,8 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Body/MarginContainer/ItemContainer" unique_id=1867485213]
+[node name="TargetSelect" type="Control" parent="." unique_id=1624238375]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "asdf"
-fit_content = true
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Body/MarginContainer/ItemContainer" unique_id=2097619185]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "asdf"
-fit_content = true
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="Body/MarginContainer/ItemContainer" unique_id=2133906423]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "asdf"
-fit_content = true
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="Body/MarginContainer/ItemContainer" unique_id=650546225]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "asdf"
-fit_content = true
+script = ExtResource("2_rtsm4")
+metadata/_custom_type_script = "uid://7dxblrs3lgkw"

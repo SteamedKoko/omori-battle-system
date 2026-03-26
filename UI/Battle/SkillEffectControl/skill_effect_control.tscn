@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b51pskhjahqax"]
 
 [ext_resource type="Script" uid="uid://dql8kt21dp5r6" path="res://UI/Battle/SkillEffectControl/skill_effect_control.gd" id="1_i56ea"]
-[ext_resource type="Texture2D" uid="uid://nvck0sv1eodm" path="res://Entities/Skills/Art/confuse.png" id="2_0lv7y"]
+[ext_resource type="Texture2D" uid="uid://de1sfbtp3a7rq" path="res://Entities/Skills/Art/hack_away_sprite_sheet.png" id="2_svby7"]
 
 [sub_resource type="Animation" id="Animation_7husd"]
 length = 0.001
@@ -40,9 +40,16 @@ _data = {
 &"rotate": SubResource("Animation_lqt04")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv5wu"]
+atlas = ExtResource("2_svby7")
+
 [node name="Skill" type="Control" unique_id=1878726055]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_i56ea")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=23861841]
@@ -51,6 +58,7 @@ libraries/ = SubResource("AnimationLibrary_71n2j")
 
 [node name="SkillTexture" type="TextureRect" parent="." unique_id=704870385]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,4 +72,18 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(25, 25)
-texture = ExtResource("2_0lv7y")
+texture = SubResource("AtlasTexture_jv5wu")
+
+[node name="Control" type="Control" parent="." unique_id=1361567075]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control" unique_id=278853231]
+unique_name_in_owner = true
+autoplay = "default"

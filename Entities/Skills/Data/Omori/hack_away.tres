@@ -10,6 +10,7 @@ name = "Hack away"
 description = "Attack 3 times, hitting random foes."
 cost = 30
 damage = 40.0
+times_to_hit = 3
 sound = ExtResource("2_bwlkl")
 skill_sprite_frames = ExtResource("2_0tn0q")
 skill_animation_target = 3

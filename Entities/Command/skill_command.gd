@@ -12,10 +12,15 @@ func execute(alive_enemies: Array[BattleEnemy]) -> void:
 	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [battle_player.player_name, skill.name])
 
 	BattleEventBus.queued_sound_effect.emit(skill.sound)
-	await play_skill_animation(targets)
+	await play_skill_animation([target])
 
-	# for i in range(skill.times_to_hit):
-	# 	var target = find_target(alive_enemies, targets)
+	#TODO: set mood to all targets
+
+	for i in range(skill.times_to_hit):
+		var target: BattleEnemy = find_target(alive_enemies, target)
+
+		if target:
+			target.take_damage(skill.damage)
 
 	await Engine.get_main_loop().create_timer(1).timeout
 
@@ -30,9 +35,9 @@ func play_skill_animation(targets: Array[BattleEnemy]) -> void:
 
 		Skill.SkillAnimationTargets.Enemy:
 			var target_index: int = 0
-			for target in targets:
+			for _target in targets:
 				var skill_control: SkillEffectControl = SkillEffectControl.build(skill)
-				target.player_panel.effect_container.add_child(skill_control)
+				_target.player_panel.effect_container.add_child(skill_control)
 
 				if target_index == targets.size() - 1: # Only wait for the last one, hacky I know
 					await skill_control.play_skill_animation()

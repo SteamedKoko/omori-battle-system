@@ -15,12 +15,12 @@ var is_alive: bool:
 func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
 	player_panel = panel
-	player_panel.stats.took_damage.connect(_take_damage)
+	player_panel.stats.took_damage.connect(_on_take_damage)
 
 func take_damage(damage_to_deliver: int) -> void:
 	player_data.player_stats.take_damage(damage_to_deliver)
 	
-func _take_damage(damage_taken: int) -> void:
+func _on_take_damage(damage_taken: int) -> void:
 	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [player_data.player_name, damage_taken])
 	BattleEventBus.queued_screen_shake.emit(false)
 	await player_panel.damage_container.show_damage(damage_taken)

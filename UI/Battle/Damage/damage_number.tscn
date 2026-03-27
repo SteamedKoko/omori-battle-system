@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bhuhrn5s4d7b1"]
+
+[ext_resource type="FontFile" uid="uid://8l8p54j3mk2c" path="res://Fonts/damage_numbers.png" id="1_lydwx"]
+
+[node name="DamageNumber" type="Label" unique_id=2076934429]
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_lydwx")
+theme_override_font_sizes/font_size = 36
+text = "123"

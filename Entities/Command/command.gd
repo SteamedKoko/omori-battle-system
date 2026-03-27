@@ -1,7 +1,7 @@
 class_name Command
 extends RefCounted
 
-var targets: Array[BattleEnemy] = []
+var target: BattleEnemy
 var battle_player: BattlePlayer
 
 func execute(_alive_enemies: Array[BattleEnemy]) -> void:
@@ -9,7 +9,7 @@ func execute(_alive_enemies: Array[BattleEnemy]) -> void:
 
 func find_target(alive_enemies: Array[BattleEnemy], target: BattleEnemy) -> BattleEnemy:
 	var to_attack: BattleEnemy = target
-	if !target.is_alive:
+	if !target or !target.is_alive:
 		if alive_enemies.size() == 0:
 			return
 

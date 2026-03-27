@@ -8,16 +8,15 @@ func execute(alive_enemies: Array[BattleEnemy]) -> void:
 	await Engine.get_main_loop().create_timer(1).timeout
 
 	#calculations all happen here
-	for target in targets:
-		var to_attack: BattleEnemy = find_target(alive_enemies, target)
-		if !to_attack:
-			break
+	var to_attack: BattleEnemy = find_target(alive_enemies, target)
+	if !to_attack:
+		return
 
-		# TODO: Bro maybe we need to do more here based on emotions etc
-		var damage_to_deal: int = initial_damage
+	# TODO: Bro maybe we need to do more here based on emotions etc
+	var damage_to_deal: int = initial_damage
 
-		BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ battle_player.player_name, target.enemy_name ])
-		await Engine.get_main_loop().create_timer(1).timeout
-		to_attack.take_damage(damage_to_deal)
+	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ battle_player.player_name, target.enemy_name ])
+	await Engine.get_main_loop().create_timer(1).timeout
+	to_attack.take_damage(damage_to_deal)
 
 	await Engine.get_main_loop().create_timer(1).timeout

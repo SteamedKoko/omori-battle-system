@@ -37,7 +37,7 @@ func celebrate() -> void:
 
 	player_panel.sprite_state = player_panel.SpriteStates.VICTORY
 
-func set_emotion(new_emotion: PlayerData.Emotions) -> void:
+func set_emotion(new_emotion: BattleEnums.Emotions) -> void:
 	if !is_alive:
 		return
 

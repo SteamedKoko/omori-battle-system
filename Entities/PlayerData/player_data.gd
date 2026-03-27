@@ -5,22 +5,7 @@ extends Resource
 @export var player_stats: Stats
 @export var sprite_frames: SpriteFrames
 @export var skills: Array[Skill]
-@export var emotions: Array[Emotions]
-
-
-enum Emotions {
-	NEUTRAL,
-	HAPPY,
-	ECSTATIC,
-	MANIC,
-	SAD,
-	DEPRESSED,
-	MISERABLE,
-	ANGRY,
-	ENRAGED,
-	FURIOUS,
-	SPAMTON,
-}
+@export var emotions: Array[BattleEnums.Emotions]
 
 enum BattleSpriteStates {
 	HURT,

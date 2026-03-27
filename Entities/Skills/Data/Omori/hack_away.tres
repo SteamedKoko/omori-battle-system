@@ -1,8 +1,15 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://pjiw23keauh3"]
 
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_dlcqc"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_n8w16"]
 [ext_resource type="SpriteFrames" uid="uid://ch5j631m14p22" path="res://Entities/Skills/Data/SpriteFrames/hack_away.tres" id="2_0tn0q"]
 [ext_resource type="AudioStream" uid="uid://cdl37evn7lvti" path="res://Entities/Skills/Audio/BA_hack_away.ogg" id="2_bwlkl"]
+
+[sub_resource type="Resource" id="Resource_1g7rp"]
+script = ExtResource("1_n8w16")
+sprite_frames = ExtResource("2_0tn0q")
+animation_audio = ExtResource("2_bwlkl")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
 [resource]
 script = ExtResource("1_dlcqc")
@@ -12,8 +19,7 @@ cost = 30
 times_to_hit = 3
 sound = ExtResource("2_bwlkl")
 damage_multiplyer = 2.0
-skill_sprite_frames = ExtResource("2_0tn0q")
-skill_animation_target = 3
+animation_kind = SubResource("Resource_1g7rp")
 target_type = 1
 applicable_target = 1
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

@@ -16,21 +16,21 @@ enum ApplicableTarget {
 	All,
 }
 
-enum MoodType {
-	None,
-	Neutral,
-	Happy,
-	Sad,
-	Angry,
-	Scared,
-	MoreHappy,
-	MoreSad,
-	MoreAngry,
-	VeryHappy,
-	VerySad,
-	VeryAngry,
-	Random
-}
+# enum MoodType {
+# 	None,
+# 	Neutral,
+# 	Happy,
+# 	Sad,
+# 	Angry,
+# 	Scared,
+# 	MoreHappy,
+# 	MoreSad,
+# 	MoreAngry,
+# 	VeryHappy,
+# 	VerySad,
+# 	VeryAngry,
+# 	Random
+# }
 
 enum DebuffType {
 	None,
@@ -40,12 +40,6 @@ enum DebuffType {
 	MajorAttack
 }
 
-enum SkillAnimationTargets {
-	None,
-	Self,
-	Enemy,
-	Screen
-}
 
 @export_subgroup("Basic")
 @export var name: String
@@ -58,27 +52,28 @@ enum SkillAnimationTargets {
 
 @export_subgroup("Damage Overrides")
 @export var has_damage_override: bool = false
-@export var damage_multiplier_override_emotion: PlayerData.Emotions = PlayerData.Emotions.NEUTRAL
+@export var damage_multiplier_override_emotion: BattleEnums.Emotions = BattleEnums.Emotions.NEUTRAL
 @export var damage_multiplier_override: float = 1
 
 @export var damage_variance: Vector2 = Vector2(.8, 1.2)
 
 @export_subgroup("Animation")
-@export var skill_texture: Texture2D
-@export var skill_sprite_frames: SpriteFrames
-@export var skill_animation_target: SkillAnimationTargets
-@export var skill_animation_type: SkillEffectControl.Animations
+@export var animation_kind: AnimationKind
 
 @export_subgroup("Target")
 @export var can_select_target: bool
 @export var target_type: TargetType
 @export var applicable_target: ApplicableTarget
 
-@export_subgroup("Effect")
-@export var target_effect_status: MoodType = MoodType.None
-@export var caster_effect_status: MoodType = MoodType.None
+@export_subgroup("Change Emotion")
+@export var can_set_target_emotion: bool = false
+@export var is_emotion_random: bool = false
+@export var set_target_emotion: BattleEnums.Emotions
+@export var can_set_caster_emotion: bool = false
+@export var set_caster_emotion: BattleEnums.Emotions
 
 @export_subgroup("Debuff")
-@export var debuff_apply_if: MoodType
+@export var can_apply_debuff: bool = false
+@export var requires_emotion_for_debuff: bool = false
+@export var debuff_apply_if: BattleEnums.Emotions
 @export var debuff_apply: DebuffType
-

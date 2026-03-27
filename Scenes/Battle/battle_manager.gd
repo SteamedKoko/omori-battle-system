@@ -33,8 +33,8 @@ func _ready():
 	_setup_connections()
 	add_child(BattleAudioManager.new())
 	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
-	# start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
-	start_battle([OMORI_DATA], start_enemies)
+	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
+	# start_battle([OMORI_DATA], start_enemies)
 	battle_loop()
 
 

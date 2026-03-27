@@ -39,7 +39,9 @@ func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
 
 	await _play_skill_animation_on_targets(skill, to_attack)
 
-	_set_target_mood(skill.target_effect_status, to_attack)
+	for current_target in to_attack:
+		_set_target_mood(skill, current_target)
+
 	_damage_targets(skill.damage_multiplyer * stats.attack, to_attack)
 
 	await Engine.get_main_loop().create_timer(2).timeout
@@ -55,30 +57,14 @@ func _determine_targets(applicable_target: Skill.ApplicableTarget ,targets: Arra
 	return to_attack
 			
 
-func _set_target_mood(new_mood: Skill.MoodType, targets: Array[BattlePlayer]) -> void:
-	if new_mood == Skill.MoodType.None:
+func _set_target_mood(skill: Skill, current_target: BattlePlayer) -> void:
+	if !skill.can_set_target_emotion:
 		return
 
-	for target: BattlePlayer in targets:
-		if new_mood == Skill.MoodType.Random:
-			target.set_random_mood()
-		else:
-			var new_emotion: PlayerData.Emotions = _get_emotion_from_mood(new_mood)
-			target.set_emotion(new_emotion)
-
-
-func _get_emotion_from_mood(from_mood: Skill.MoodType) -> PlayerData.Emotions:
-	match from_mood:
-		Skill.MoodType.Happy: return PlayerData.Emotions.HAPPY
-		Skill.MoodType.MoreHappy: return PlayerData.Emotions.ECSTATIC
-		Skill.MoodType.VeryHappy: return PlayerData.Emotions.MANIC
-		Skill.MoodType.Sad: return PlayerData.Emotions.SAD
-		Skill.MoodType.MoreSad: return PlayerData.Emotions.DEPRESSED
-		Skill.MoodType.VerySad: return PlayerData.Emotions.MISERABLE
-		Skill.MoodType.Angry: return PlayerData.Emotions.ANGRY
-		Skill.MoodType.MoreAngry: return PlayerData.Emotions.ENRAGED
-		Skill.MoodType.VeryAngry: return PlayerData.Emotions.FURIOUS
-		_: return PlayerData.Emotions.NEUTRAL
+	if skill.is_emotion_random:
+		current_target.set_random_mood()
+	else:
+		current_target.set_emotion(skill.set_target_emotion)
 
 
 func _damage_targets(damage_to_deal: float, targets: Array[BattlePlayer]) -> void:
@@ -89,7 +75,7 @@ func _damage_targets(damage_to_deal: float, targets: Array[BattlePlayer]) -> voi
 func _play_skill_animation_on_targets(skill: Skill, targets: Array[BattlePlayer]) -> void:
 	var target_index: int = 0
 	for target: BattlePlayer in targets:
-		var skill_control: SkillEffectControl = SkillEffectControl.build(skill)
+		var skill_control: SkillEffectControl = SkillEffectControl.build(skill.animation_kind)
 		target.player_panel.effect_container.add_child(skill_control)
 
 		if target_index == targets.size() - 1: # Only wait for the last one, hacky I know

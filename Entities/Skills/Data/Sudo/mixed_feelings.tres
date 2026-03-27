@@ -1,18 +1,26 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://f2imlkvnfyxe"]
 
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_0t627"]
+[ext_resource type="Script" uid="uid://ddtebo68wrg7v" path="res://Entities/Skills/texture_animation_kind.gd" id="2_65n7f"]
 [ext_resource type="Texture2D" uid="uid://nvck0sv1eodm" path="res://Entities/Skills/Art/confuse.png" id="2_cglbr"]
 [ext_resource type="AudioStream" uid="uid://bsnvjy2lbtr0p" path="res://Audio/weeoo.mp3" id="2_gitak"]
+
+[sub_resource type="Resource" id="Resource_4feve"]
+script = ExtResource("2_65n7f")
+texture = ExtResource("2_cglbr")
+animation_target = 2
+adhoc_animation = 1
+animation_audio = ExtResource("2_gitak")
+metadata/_custom_type_script = "uid://ddtebo68wrg7v"
 
 [resource]
 script = ExtResource("1_0t627")
 name = "Mixed Feelings"
 description = "Makes you feel like shiat"
-damage = 50.0
 sound = ExtResource("2_gitak")
-skill_texture = ExtResource("2_cglbr")
-skill_animation_type = 1
+animation_kind = SubResource("Resource_4feve")
 target_type = 1
 applicable_target = 4
-target_effect_status = 12
+can_set_target_emotion = true
+is_emotion_random = true
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

@@ -27,8 +27,8 @@ var sprite_frames: SpriteFrames
 var sprite_state: SpriteStates:
 	set = _update_sprite_state
 
-var _mood: PlayerData.Emotions = PlayerData.Emotions.NEUTRAL
-var mood: PlayerData.Emotions:
+var _mood: BattleEnums.Emotions = BattleEnums.Emotions.NEUTRAL
+var mood: BattleEnums.Emotions:
 	set = _set_mood,
 	get = _get_mood
 
@@ -101,15 +101,15 @@ func _update_health() -> void:
 func _set_panel_location(location: Control.LayoutPreset):
 	player_box.set_anchors_and_offsets_preset(location, Control.LayoutPresetMode.PRESET_MODE_KEEP_SIZE, 0)
 
-func _set_mood(value: PlayerData.Emotions) -> void:
+func _set_mood(value: BattleEnums.Emotions) -> void:
 	_mood = value
-	animated_sprite.play(PlayerData.Emotions.keys()[value].to_lower())
-	var new_mood = player_data.Emotions.keys()[_mood].to_upper()
+	animated_sprite.play(BattleEnums.Emotions.keys()[value].to_lower())
+	var new_mood = BattleEnums.Emotions.keys()[_mood].to_upper()
 	player_mood.text = new_mood
 	changed_mood.emit(new_mood)
 
 
-func _get_mood() -> PlayerData.Emotions:
+func _get_mood() -> BattleEnums.Emotions:
 	return _mood
 
 static func build(preset: Control.LayoutPreset, data: PlayerData) -> PlayerPanel:

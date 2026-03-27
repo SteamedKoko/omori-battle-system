@@ -34,17 +34,17 @@ func execute(alive_enemies: Array[BattleEnemy]) -> void:
 # 	pass
 
 func play_skill_animation(targets: Array[BattleEnemy]) -> void:
-	match skill.skill_animation_target:
-		Skill.SkillAnimationTargets.Screen:
-			var skill_control: SkillEffectControl = SkillEffectControl.build(skill)
+	match skill.animation_kind.animation_target:
+		AnimationKind.SkillAnimationTargets.Screen:
+			var skill_control: SkillEffectControl = SkillEffectControl.build(skill.animation_kind)
 			#This allows a handler to push the animation to center screen in battle manager
 			BattleEventBus.queued_battle_animation.emit(skill_control)
 			await skill_control.play_skill_animation()
 
-		Skill.SkillAnimationTargets.Enemy:
+		AnimationKind.SkillAnimationTargets.Enemy:
 			var target_index: int = 0
 			for _target in targets:
-				var skill_control: SkillEffectControl = SkillEffectControl.build(skill)
+				var skill_control: SkillEffectControl = SkillEffectControl.build(skill.animation_kind)
 				_target.player_panel.effect_container.add_child(skill_control)
 
 				if target_index == targets.size() - 1: # Only wait for the last one, hacky I know

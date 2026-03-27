@@ -4,10 +4,6 @@ extends Control
 
 const SKILL_EFFECT_CONTROL = preload("uid://b51pskhjahqax")
 
-enum Animations {
-	None,
-	Rotate
-}
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var skill_texture: TextureRect = %SkillTexture
@@ -51,13 +47,17 @@ func play_skill_animation() -> void:
 	queue_free()
 
 
-static func build(skill: Skill) -> SkillEffectControl:
+static func build(anim: AnimationKind) -> SkillEffectControl:
 	var instance: SkillEffectControl = SKILL_EFFECT_CONTROL.instantiate()
-	instance.texture_to_load = skill.skill_texture
-	instance.sprite_frames = skill.skill_sprite_frames
-	instance.audio_to_play = skill.sound
 
-	if skill.skill_animation_type != Animations.None:
-		instance.animation_to_play = Animations.keys()[skill.skill_animation_type].to_lower()
+	instance.audio_to_play = anim.animation_audio
+
+	if anim is SpriteAnimationKind:
+		instance.sprite_frames = anim.sprite_frames
+	if anim is TextureAnimationKind:
+		instance.texture_to_load = anim.texture
+
+	if anim.adhoc_animation != AnimationKind.AdhocAnimations.None:
+		instance.animation_to_play = AnimationKind.AdhocAnimations.keys()[anim.adhoc_animation].to_lower()
 
 	return instance

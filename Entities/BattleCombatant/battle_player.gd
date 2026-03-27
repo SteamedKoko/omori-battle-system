@@ -3,6 +3,7 @@ extends RefCounted
 
 signal finished_taking_damage
 
+var player_stats: Stats
 var player_data: PlayerData
 var player_panel: PlayerPanel
 
@@ -12,8 +13,12 @@ var player_name: String:
 var is_alive: bool:
 	get: return player_data.player_stats.is_alive
 
+var battle_attack: float:
+	get: return player_stats.attack #Do additional modificatio
+
 func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
+	player_stats = data.player_stats
 	player_panel = panel
 	player_panel.stats.took_damage.connect(_on_take_damage)
 
@@ -44,7 +49,7 @@ func set_random_mood() -> void:
 
 	var emotions = player_data.emotions.duplicate()
 	emotions.pop_front() # Remove neutral let's make this fun
-	player_panel.mood = emotions.pick_random()
+	set_emotion(emotions.pick_random())
 
 
 func focus_player() -> void:

@@ -97,7 +97,7 @@ func _load_skills(data: PlayerData) -> void:
 
 
 func _on_target_selected(enemy: BattleEnemy) -> void:
-	prepped_command.target = enemy
+	prepped_command.selected_target = enemy
 	BattleEventBus.player_action_queued.emit(prepped_command)
 
 

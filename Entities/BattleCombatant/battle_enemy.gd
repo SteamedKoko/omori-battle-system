@@ -40,7 +40,7 @@ func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
 	await _play_skill_animation_on_targets(skill, to_attack)
 
 	_set_target_mood(skill.target_effect_status, to_attack)
-	_damage_targets(skill.damage, to_attack)
+	_damage_targets(skill.damage_multiplyer * stats.attack, to_attack)
 
 	await Engine.get_main_loop().create_timer(2).timeout
 
@@ -83,7 +83,7 @@ func _get_emotion_from_mood(from_mood: Skill.MoodType) -> PlayerData.Emotions:
 
 func _damage_targets(damage_to_deal: float, targets: Array[BattlePlayer]) -> void:
 	for target: BattlePlayer in targets:
-		target.take_damage(floor(damage_to_deal))
+		target.take_damage( floor(damage_to_deal))
 
 
 func _play_skill_animation_on_targets(skill: Skill, targets: Array[BattlePlayer]) -> void:

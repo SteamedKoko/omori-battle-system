@@ -51,9 +51,17 @@ enum SkillAnimationTargets {
 @export var name: String
 @export var description: String
 @export var cost: int
-@export var damage: float
 @export var times_to_hit: int = 1
 @export var sound: AudioStream
+@export var damage_multiplyer: float = 1
+@export var additional_flat_damage: float = 0
+
+@export_subgroup("Damage Overrides")
+@export var has_damage_override: bool = false
+@export var damage_multiplier_override_emotion: PlayerData.Emotions = PlayerData.Emotions.NEUTRAL
+@export var damage_multiplier_override: float = 1
+
+@export var damage_variance: Vector2 = Vector2(.8, 1.2)
 
 @export_subgroup("Animation")
 @export var skill_texture: Texture2D
@@ -74,6 +82,3 @@ enum SkillAnimationTargets {
 @export var debuff_apply_if: MoodType
 @export var debuff_apply: DebuffType
 
-@export_subgroup("DamageMultiplyer")
-@export var damage_multiplyer_if: MoodType
-@export var damage_multiplyer: float = 1

@@ -1,7 +1,7 @@
 class_name Command
 extends RefCounted
 
-var target: BattleEnemy
+var selected_target: BattleEnemy
 var battle_player: BattlePlayer
 
 func execute(_alive_enemies: Array[BattleEnemy]) -> void:

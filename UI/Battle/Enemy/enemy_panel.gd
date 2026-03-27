@@ -39,7 +39,7 @@ func got_hurt(_amount: int) -> void:
 
 	await Engine.get_main_loop().create_timer(1).timeout
 
-	if !enemy_data.is_alive:
+	if !enemy_data.stats.is_alive:
 		await _play_death_animation()
 		return
 

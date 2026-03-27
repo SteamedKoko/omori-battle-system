@@ -6,7 +6,7 @@ signal target_selected(enemy: BattleEnemy)
 
 const TARGET_SELECT = preload("uid://dv2gygkgghfb6")
 
-var enemies: Array[BattleEnemy]
+var enemies: Array[BattleCombatant]
 var enemy_index: int = 0
 
 func _ready() -> void:
@@ -44,7 +44,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		
 
-func start_selection(enemiesArray: Array[BattleEnemy]) -> void:
+func start_selection(enemiesArray: Array[BattleCombatant]) -> void:
 	enemies = enemiesArray
 	enemy_index = 0
 	change_target(0)

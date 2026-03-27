@@ -1,23 +1,17 @@
 class_name BattleEnemy
-extends RefCounted
+extends BattleCombatant
 
-signal acted
-
-@export var stats: Stats
 @export var enemy_data: EnemyData
 
 var enemy_panel: EnemyPanel
-
-var enemy_name: String:
-	get: return enemy_data.enemy_name
-
-var is_alive: bool:
-	get: return enemy_data.is_alive
 
 func _init(data: EnemyData) -> void:
 	enemy_data = data
 	stats = data.stats
 	enemy_panel = EnemyPanel.build(enemy_data)
+
+func get_combatant_name() -> String:
+	return enemy_data.enemy_name
 
 func take_damage(amount: int) -> void:
 	stats.take_damage(amount)
@@ -28,25 +22,6 @@ func target_select(show_pointer: bool = true) -> void:
 func target_deselect(show_pointer: bool = true) -> void:
 	enemy_panel.target_deselect(show_pointer)
 		
-#TBH I could use the commands like the players do and have all combatants
-# have the same parent class and execute commands, but that'll take more work. 
-# I leave this task to any future person that wants to work on it
-func use_skill(skill: Skill, targets: Array[BattlePlayer]) -> void:
-	var to_attack: Array[BattlePlayer] = _determine_targets(skill.applicable_target, targets)
-
-	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [enemy_data.enemy_name, skill.name])
-	BattleEventBus.queued_sound_effect.emit(skill.sound)
-
-	await _play_skill_animation_on_targets(skill, to_attack)
-
-	for current_target in to_attack:
-		_set_target_mood(skill, current_target)
-
-	_damage_targets(skill.damage_multiplyer * stats.attack, to_attack)
-
-	await Engine.get_main_loop().create_timer(2).timeout
-
-	acted.emit()
 
 func _determine_targets(applicable_target: Skill.ApplicableTarget ,targets: Array[BattlePlayer]) -> Array[BattlePlayer]:
 	var to_attack: Array[BattlePlayer]
@@ -85,20 +60,11 @@ func _play_skill_animation_on_targets(skill: Skill, targets: Array[BattlePlayer]
 			target_index += 1
 	
 
-func attack(targets: Array[BattlePlayer]) -> void:
-	var target: BattlePlayer = targets.pick_random()
-	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [enemy_data.enemy_name, target.player_data.player_name])
-	target.player_data.player_stats.take_damage(stats.attack)
-	await Engine.get_main_loop().create_timer(1).timeout
-	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage' % [target.player_data.player_name, stats.attack])
-	await Engine.get_main_loop().create_timer(1).timeout
-	acted.emit()
-
-
-func act(targets: Array):
+func get_action(_targets: Array) -> Command:
 	BattleEventBus.sent_battle_text.emit("")
+	var cmd: Command = AttackCommand.new()
 	if enemy_data.skills.size() > 0:
-		use_skill(enemy_data.skills[0], targets)
-		return
+		cmd = SkillCommand.new(enemy_data.skills[0])
 
-	attack(targets)
+	cmd.caster = self
+	return cmd

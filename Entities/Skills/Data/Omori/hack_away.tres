@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_1g7rp"]
 script = ExtResource("1_n8w16")
 sprite_frames = ExtResource("2_0tn0q")
+animation_target = 3
 animation_audio = ExtResource("2_bwlkl")
 metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
@@ -21,5 +22,5 @@ sound = ExtResource("2_bwlkl")
 damage_multiplyer = 2.0
 animation_kind = SubResource("Resource_1g7rp")
 target_type = 1
-applicable_target = 1
+applicable_target = 2
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

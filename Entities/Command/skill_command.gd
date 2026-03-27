@@ -6,26 +6,62 @@ var skill: Skill
 func _init(_skill: Skill) -> void:
 	skill = _skill
 
-func execute(alive_enemies: Array[BattleEnemy]) -> void:
+func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 
-	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [battle_player.player_name, skill.name])
+	var alive_targets: Array[BattleCombatant] = determine_targets(_possible_enemies, _possible_allies)
+	if alive_targets.size() == 0:
+		command_executed.emit()
+		return
 
-	BattleEventBus.queued_sound_effect.emit(skill.sound)
-	await play_skill_animation([selected_target])
+	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [caster.get_combatant_name(), skill.name])
+
+	await play_skill_animation(alive_targets)
 
 	#TODO: set mood to all targets
 
 	#damage the targets
 	for i in range(skill.times_to_hit):
-		var to_attack: BattleEnemy = find_target(alive_enemies, selected_target)
+		for current_target: BattleCombatant in alive_targets:
+			var to_attack: BattleCombatant = find_attack_target(alive_targets, current_target)
+			if !to_attack:
+				break
+			attack_target(to_attack)
 
-		if to_attack:
-			var calculated_damage: float = battle_player.battle_attack * skill.damage_multiplyer - to_attack.stats.defense
-			calculated_damage *= randf_range(skill.damage_variance.x, skill.damage_variance.y)
-			to_attack.take_damage(round(calculated_damage))
+		alive_targets = determine_targets(_possible_enemies, _possible_allies)
+
 
 	await Engine.get_main_loop().create_timer(1).timeout
+	command_executed.emit()
+
+func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_targets: Array[BattleCombatant]) -> Array[BattleCombatant]:
+	var current_target: BattleCombatant
+	if selected_targets.size() > 0:
+			current_target = selected_targets[0]
+
+	match skill.applicable_target:
+		Skill.ApplicableTarget.AllEnemy: 
+			return _possible_enemy_targets.filter(func(t): return t.is_alive)
+		Skill.ApplicableTarget.AllAlly:
+			return _possible_ally_targets.filter(func(t): return t.is_alive)
+		Skill.ApplicableTarget.All:
+			var all_targets: Array[BattleCombatant] = []
+			all_targets.append_array(_possible_enemy_targets)
+			all_targets.append_array(_possible_ally_targets)
+			return all_targets.filter(func(t): return t.is_alive)
+		Skill.ApplicableTarget.Self:
+			return selected_targets
+		Skill.ApplicableTarget.Enemy:
+			return [find_attack_target(_possible_enemy_targets, current_target)]
+		Skill.ApplicableTarget.Ally:
+			return [find_attack_target(_possible_ally_targets, current_target)]
+		_: return []
+
+
+func attack_target(target: BattleCombatant) -> void:
+	var calculated_damage: float = caster.battle_attack * skill.damage_multiplyer - target.stats.defense
+	calculated_damage *= randf_range(skill.damage_variance.x, skill.damage_variance.y)
+	target.take_damage(round(calculated_damage))
 
 #This value varies depending only on the defender's emotion tier. So, for example, if the attacker is ecstatic and the defender is angry, the attack will only deal 50% more damage, while if the attacker is angry but the defender is ecstatic, the attack will deal 35% less damage.
 # * Emotion Resistance: Takes 20% / 35% / 50% less damage from the weaker emotion.
@@ -33,7 +69,7 @@ func execute(alive_enemies: Array[BattleEnemy]) -> void:
 # func get_emotion_multiplier(caster_emotion: PlayerData.Emotions, target_emotion: PlayerData.Emotions) -> float:
 # 	pass
 
-func play_skill_animation(targets: Array[BattleEnemy]) -> void:
+func play_skill_animation(targets: Array[BattleCombatant]) -> void:
 	match skill.animation_kind.animation_target:
 		AnimationKind.SkillAnimationTargets.Screen:
 			var skill_control: SkillEffectControl = SkillEffectControl.build(skill.animation_kind)

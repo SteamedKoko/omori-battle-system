@@ -17,8 +17,8 @@ const player_panel_presets: Array[Control.LayoutPreset] = [
 	Control.LayoutPreset.PRESET_TOP_RIGHT,
 ]
 
-var players: Array[BattlePlayer] = []
-var enemies: Array[BattleEnemy] = []
+var players: Array[BattleCombatant] = []
+var enemies: Array[BattleCombatant] = []
 var player_turn_index: int = 0
 var players_to_act: Array[BattlePlayer] = []
 var player_action_stack: Array[Command] = []
@@ -33,6 +33,7 @@ func _ready():
 	_setup_connections()
 	add_child(BattleAudioManager.new())
 	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
+	# var start_enemies: Array[EnemyData] = [SUDO_DATA]
 	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
 	# start_battle([OMORI_DATA], start_enemies)
 	battle_loop()
@@ -102,6 +103,7 @@ func go_next_player() -> void:
 	if player_turn_index > 0:
 		player_menu.open_menu()
 
+
 func go_previous_player() -> void:
 	if player_turn_index <= 0:
 		refocus_main_menu()
@@ -141,30 +143,34 @@ func start_player_menu() -> void:
 
 
 func enemy_turn_start() -> void:
+	#Give a small buffer to start enemy turn
+	await get_tree().create_timer(1).timeout
+
 	for enemy in enemies:
-		if enemy.enemy_data.is_alive:
-			var to_attack: Array[BattlePlayer] = players.filter(func(e): return e.is_alive)
+		if enemy.is_alive:
+			var to_attack: Array[BattleCombatant] = players.filter(func(e): return e.is_alive)
 			if !to_attack:
 				break
-			enemy.act(to_attack)
-			await enemy.acted
+			var action: Command = enemy.get_action(to_attack)
+			action.execute(players, enemies)
+			await action.command_executed
 
 	enemy_turn_end.emit()
 
 
 func execute_player_actions() -> void:
 	for enemy in enemies:
-		if enemy.enemy_data.is_alive:
+		if enemy.is_alive:
 			enemy.target_select(false)
 
 	while(player_action_stack.size() > 0):
 		var action: Command = player_action_stack.pop_front()
 
-		@warning_ignore("REDUNDANT_AWAIT")
-		await action.execute(alive_enemies())
+		action.execute(enemies, players)
+		await action.command_executed
 
 	for enemy in enemies:
-		if enemy.enemy_data.is_alive:
+		if enemy.is_alive:
 			enemy.target_deselect(false)
 	
 
@@ -186,6 +192,7 @@ func battle_loop() -> void:
 		enemy_won = players.filter(func(e): return e.is_alive).size() == 0
 
 
+	print('battle over ',player_won, enemy_won)
 	if player_won:
 		for player in players:
 			player.celebrate()
@@ -197,5 +204,5 @@ func battle_loop() -> void:
 	BattleEventBus.sent_battle_text.emit("You lost sucka")
 
 
-func alive_enemies() -> Array[BattleEnemy]:
+func alive_enemies() -> Array[BattleCombatant]:
 		return enemies.filter(func(e): return e.is_alive)

@@ -12,7 +12,7 @@ var prepped_command: Command
 var _player_text: String
 var _battle_player: BattlePlayer
 
-var available_enemies: Array[BattleEnemy]
+var available_enemies: Array[BattleCombatant]
 
 @onready var action_menu: Control = %ActionMenu
 @onready var attack_button: BattleButton = %AttackButton
@@ -63,7 +63,7 @@ func load_player(player: BattlePlayer, manager: BattleManager) -> void:
 
 
 func target_enemies() -> void:
-	var to_target: Array[BattleEnemy] = available_enemies
+	var to_target: Array[BattleCombatant] = available_enemies
 	to_target[0].target_select()
 
 
@@ -96,7 +96,7 @@ func _load_skills(data: PlayerData) -> void:
 	skill_submenu.load_items(to_load)
 
 
-func _on_target_selected(enemy: BattleEnemy) -> void:
+func _on_target_selected(enemy: BattleCombatant) -> void:
 	prepped_command.selected_target = enemy
 	BattleEventBus.player_action_queued.emit(prepped_command)
 
@@ -111,7 +111,7 @@ func _on_attack_button_pressed() -> void:
 	_toggle_process(false)
 	BattleEventBus.menu_confirmed.emit()
 	prepped_command = AttackCommand.new()
-	prepped_command.battle_player = _battle_player
+	prepped_command.caster = _battle_player
 	hide()
 	target_select.start_selection(available_enemies)
 
@@ -124,7 +124,7 @@ func _on_skill_button_pressed() -> void:
 func _on_chose_command(command: Command) -> void:
 	skill_submenu.close_menu()
 	hide()
-	command.battle_player = _battle_player
+	command.caster = _battle_player
 	BattleEventBus.player_action_queued.emit(command)
 
 

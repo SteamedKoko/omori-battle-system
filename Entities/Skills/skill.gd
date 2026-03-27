@@ -16,22 +16,6 @@ enum ApplicableTarget {
 	All,
 }
 
-# enum MoodType {
-# 	None,
-# 	Neutral,
-# 	Happy,
-# 	Sad,
-# 	Angry,
-# 	Scared,
-# 	MoreHappy,
-# 	MoreSad,
-# 	MoreAngry,
-# 	VeryHappy,
-# 	VerySad,
-# 	VeryAngry,
-# 	Random
-# }
-
 enum DebuffType {
 	None,
 	Defense,

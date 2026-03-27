@@ -1,30 +1,22 @@
 class_name BattlePlayer
-extends RefCounted
+extends BattleCombatant
 
 signal finished_taking_damage
 
-var player_stats: Stats
 var player_data: PlayerData
 var player_panel: PlayerPanel
 
-var player_name: String:
-	get: return player_data.player_name
-
-var is_alive: bool:
-	get: return player_data.player_stats.is_alive
-
-var battle_attack: float:
-	get: return player_stats.attack #Do additional modificatio
 
 func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
-	player_stats = data.player_stats
+	stats = data.player_stats
 	player_panel = panel
 	player_panel.stats.took_damage.connect(_on_take_damage)
 
-func take_damage(damage_to_deliver: int) -> void:
-	player_data.player_stats.take_damage(damage_to_deliver)
-	
+func get_combatant_name() -> String:
+	return player_data.player_name
+
+
 func _on_take_damage(damage_taken: int) -> void:
 	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [player_data.player_name, damage_taken])
 	BattleEventBus.queued_screen_shake.emit(false)

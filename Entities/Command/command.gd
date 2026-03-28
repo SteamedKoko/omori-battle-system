@@ -17,8 +17,11 @@ func find_attack_target(potential_targets: Array[BattleCombatant], current_targe
 	if current_target and current_target.is_alive:
 		return current_target
 
+	if !potential_targets or potential_targets.size() == 0:
+		return
+
 	var alive_targets: Array[BattleCombatant] = potential_targets.filter(func(t): return t.is_alive)
 	if alive_targets.size() == 0:
 		return
 
-	return potential_targets.pick_random()
+	return alive_targets.pick_random()

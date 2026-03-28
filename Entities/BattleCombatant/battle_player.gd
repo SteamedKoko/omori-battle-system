@@ -11,7 +11,9 @@ func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
 	stats = data.player_stats
 	player_panel = panel
+	possible_emotions = player_data.emotions.duplicate()
 	player_panel.stats.took_damage.connect(_on_take_damage)
+	changed_emotion.connect(_on_changed_emotion)
 
 func get_combatant_name() -> String:
 	return player_data.player_name
@@ -29,20 +31,8 @@ func celebrate() -> void:
 
 	player_panel.sprite_state = player_panel.SpriteStates.VICTORY
 
-func set_emotion(new_emotion: BattleEnums.Emotions) -> void:
-	if !is_alive:
-		return
-
+func _on_changed_emotion(new_emotion: BattleEnums.Emotions) -> void:
 	player_panel.mood = new_emotion
-
-func set_random_mood() -> void:
-	if !is_alive:
-		return
-
-	var emotions = player_data.emotions.duplicate()
-	emotions.pop_front() # Remove neutral let's make this fun
-	set_emotion(emotions.pick_random())
-
 
 func focus_player() -> void:
 	player_panel.animation.play()

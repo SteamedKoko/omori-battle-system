@@ -28,6 +28,9 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 				break
 			attack_target(to_attack)
 
+			# if skill.can_set_target_emotion:
+			# 	current_target.m
+
 		alive_targets = determine_targets(_possible_enemies, _possible_allies)
 
 
@@ -52,9 +55,15 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 		Skill.ApplicableTarget.Self:
 			return selected_targets
 		Skill.ApplicableTarget.Enemy:
-			return [find_attack_target(_possible_enemy_targets, current_target)]
+			var to_target: BattleCombatant = find_attack_target(_possible_enemy_targets, current_target)
+			if to_target:
+				return [to_target]
+			return []
 		Skill.ApplicableTarget.Ally:
-			return [find_attack_target(_possible_ally_targets, current_target)]
+			var to_target: BattleCombatant = find_attack_target(_possible_ally_targets, current_target)
+			if to_target:
+				return [to_target]
+			return []
 		_: return []
 
 

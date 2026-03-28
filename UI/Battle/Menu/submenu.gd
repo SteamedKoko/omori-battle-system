@@ -56,6 +56,8 @@ func _on_choose_skill(skill: Skill) -> void:
 		chose_command.emit(prepped_command)
 		#return this and wrap it up
 
+	#TODO: what happens when you can select?
+
 func open_menu() -> void:
 	show()
 	if submenu_items.size() > 0:

@@ -32,14 +32,14 @@ func _determine_targets(applicable_target: Skill.ApplicableTarget ,targets: Arra
 	return to_attack
 			
 
-func _set_target_mood(skill: Skill, current_target: BattlePlayer) -> void:
-	if !skill.can_set_target_emotion:
-		return
-
-	if skill.is_emotion_random:
-		current_target.set_random_mood()
-	else:
-		current_target.set_emotion(skill.set_target_emotion)
+# func _set_target_mood(skill: Skill, current_target: BattlePlayer) -> void:
+# 	if !skill.can_set_target_emotion:
+# 		return
+#
+# 	if skill.is_emotion_random:
+# 		current_target.set_random_emotion()
+# 	else:
+# 		current_target.set_emotion(skill.set_target_emotion)
 
 
 func _damage_targets(damage_to_deal: float, targets: Array[BattlePlayer]) -> void:

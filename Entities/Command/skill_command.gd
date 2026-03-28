@@ -18,8 +18,6 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 
 	await play_skill_animation(alive_targets)
 
-	#TODO: set mood to all targets
-
 	#damage the targets
 	for i in range(skill.times_to_hit):
 		for current_target: BattleCombatant in alive_targets:
@@ -36,9 +34,13 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 
 		alive_targets = determine_targets(_possible_enemies, _possible_allies)
 
+	if skill.can_set_caster_emotion:
+		caster.set_emotion(skill.set_caster_emotion)
+
 
 	await Engine.get_main_loop().create_timer(1).timeout
 	command_executed.emit()
+
 
 func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_targets: Array[BattleCombatant]) -> Array[BattleCombatant]:
 	var current_target: BattleCombatant
@@ -71,7 +73,14 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 
 
 func attack_target(target: BattleCombatant) -> void:
-	var calculated_damage: float = caster.battle_attack * skill.damage_multiplyer - target.stats.defense
+	var calculated_damage: float = caster.battle_attack 
+	var damage_multiplier: float = skill.damage_multiplyer
+	if skill.has_damage_override:
+		if skill.damage_multiplier_override_emotion == caster.current_emotion:
+			damage_multiplier = skill.damage_multiplier_override
+
+	calculated_damage *= damage_multiplier
+	calculated_damage -= target.stats.defense
 	calculated_damage *= randf_range(skill.damage_variance.x, skill.damage_variance.y)
 	target.take_damage(round(calculated_damage))
 

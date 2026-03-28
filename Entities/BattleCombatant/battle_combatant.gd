@@ -35,3 +35,6 @@ func set_random_emotion() -> void:
 	var emotions: Array[BattleEnums.Emotions] = possible_emotions.duplicate()
 	emotions.pop_front() # Remove neutral let's make this fun
 	set_emotion(emotions.pick_random())
+
+func add_skill_animation(_skill_control: SkillEffectControl) -> void:
+	pass

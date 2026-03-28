@@ -37,6 +37,8 @@ func _on_changed_emotion(new_emotion: BattleEnums.Emotions) -> void:
 func focus_player() -> void:
 	player_panel.animation.play()
 
+func add_skill_animation(skill_control: SkillEffectControl) -> void:
+	player_panel.effect_container.add_child(skill_control)
 
 func unfocus_player() -> void:
 	player_panel.animation.stop()

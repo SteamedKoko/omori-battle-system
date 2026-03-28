@@ -56,8 +56,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func load_player(player: BattlePlayer, manager: BattleManager) -> void:
 	prepped_command = null
-	_load_skills(player.player_data)
 	_battle_player = player
+	_load_skills(player.player_data)
 	_player_text = "What should %s do?" % player.player_data.player_name
 	available_enemies = manager.alive_enemies()
 
@@ -93,11 +93,11 @@ func _load_skills(data: PlayerData) -> void:
 		var instance: SkillLabel = SkillLabel.build(skill)
 		to_load.push_back(instance)
 
-	skill_submenu.load_items(to_load)
+	skill_submenu.load_items(to_load, _battle_player)
 
 
 func _on_target_selected(enemy: BattleCombatant) -> void:
-	prepped_command.selected_target = enemy
+	prepped_command.selected_targets = [enemy]
 	BattleEventBus.player_action_queued.emit(prepped_command)
 
 

@@ -8,7 +8,12 @@ func execute(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_tar
 	await Engine.get_main_loop().create_timer(1).timeout
 
 	#calculations all happen here
-	var to_attack: BattleCombatant = find_attack_target(_possible_enemy_targets, selected_target)
+
+	var current_target: BattleCombatant
+	if selected_targets.size() > 0:
+			current_target = selected_targets[0]
+
+	var to_attack: BattleCombatant = find_attack_target(_possible_enemy_targets, current_target)
 	if !to_attack:
 		command_executed.emit()
 		return

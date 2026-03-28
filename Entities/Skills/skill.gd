@@ -30,9 +30,9 @@ enum DebuffType {
 @export var description: String
 @export var cost: int
 @export var times_to_hit: int = 1
-@export var sound: AudioStream
 @export var damage_multiplyer: float = 1
 @export var additional_flat_damage: float = 0
+@export var animation_kind: AnimationKind
 
 @export_subgroup("Damage Overrides")
 @export var has_damage_override: bool = false
@@ -41,8 +41,6 @@ enum DebuffType {
 
 @export var damage_variance: Vector2 = Vector2(.8, 1.2)
 
-@export_subgroup("Animation")
-@export var animation_kind: AnimationKind
 
 @export_subgroup("Target")
 @export var can_select_target: bool

@@ -4,7 +4,6 @@ extends RefCounted
 @warning_ignore("UNUSED_SIGNAL")
 signal command_executed
 
-var selected_target: BattleCombatant
 var selected_targets: Array[BattleCombatant]
 var caster: BattleCombatant
 

@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var enemy_info: EnemyInfoPanel = %EnemyInfoPanel
 @onready var enemy_sprite: TextureRect = %EnemySprite
 @onready var damage_container: DamageContainer = %DamageContainer
+@onready var effect_container: Control = %EffectContainer
 
 @export var enemy_data: EnemyData
 

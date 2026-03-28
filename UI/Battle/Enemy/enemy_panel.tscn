@@ -53,3 +53,9 @@ offset_left = -43.5
 offset_top = 25.0
 offset_right = 25.5
 offset_bottom = 65.0
+
+[node name="EffectContainer" type="Control" parent="." unique_id=1582692020]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

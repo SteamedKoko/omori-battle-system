@@ -3,9 +3,12 @@ extends VBoxContainer
 
 @onready var header_left: RichTextLabel = %HeaderLeft
 @onready var header_right: RichTextLabel = %HeaderRight
+@onready var target_select: TargetSelect = %TargetSelect
 
+var battle_manager: BattleManager
 var submenu_items: Array[Control] = []
 var focus_owner: Control
+var current_player: BattlePlayer
 
 signal closed_menu
 signal chose_command(command: Command)
@@ -16,9 +19,21 @@ func _ready() -> void:
 
 	submenu_items = []
 	BattleEventBus.updated_submenu_title.connect(_update_header)
+	target_select.target_selected.connect(_on_target_selected)
+	target_select.target_cancelled.connect(_on_target_cancelled)
+	battle_manager = get_tree().get_first_node_in_group("BattleManager")
+
 	set_process_unhandled_input(false)
 	set_process(false)
 
+
+func _on_target_selected(target: BattleCombatant) -> void:
+	close_menu()
+	prepped_command.selected_targets = [target]
+	BattleEventBus.player_action_queued.emit(prepped_command)
+
+func _on_target_cancelled() -> void:
+	open_menu()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
@@ -31,18 +46,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		BattleEventBus.menu_cancelled.emit()
 		get_viewport().set_input_as_handled()
 
+
 func _process(_delta: float) -> void:
 	_play_sound_if_moved()
 	
+
 func _handle_option_pressed(item: Control):
 	if item is SkillLabel:
 		_on_choose_skill(item.skill)
 
-func load_items(items: Array[Control]) -> void:
+
+func load_items(items: Array[Control], _current_player: BattlePlayer) -> void:
 	for child in %ItemContainer.get_children():
 		%ItemContainer.remove_child(child)
 		
 	submenu_items = items
+	current_player = _current_player
 
 	for item in submenu_items:
 		%ItemContainer.add_child(item)
@@ -50,17 +69,21 @@ func load_items(items: Array[Control]) -> void:
 var prepped_command: Command
 
 func _on_choose_skill(skill: Skill) -> void:
-	prepped_command = SkillCommand.new(skill)
+	prepped_command = SkillCommand.new(skill, current_player)
+	BattleEventBus.menu_confirmed.emit()
 
 	if !skill.can_select_target:
 		chose_command.emit(prepped_command)
-		#return this and wrap it up
+		return
 
-	#TODO: what happens when you can select?
+	close_menu()
+	target_select.start_selection(battle_manager.alive_enemies())
 
-func open_menu() -> void:
+
+
+func open_menu(reset_focus: bool = true) -> void:
 	show()
-	if submenu_items.size() > 0:
+	if submenu_items.size() > 0 and reset_focus:
 		focus_owner = submenu_items[0]
 		submenu_items[0].grab_focus()
 

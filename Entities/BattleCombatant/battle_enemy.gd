@@ -10,14 +10,31 @@ func _init(data: EnemyData) -> void:
 	stats = data.stats
 	enemy_panel = EnemyPanel.build(enemy_data)
 
+func add_skill_animation(skill_control: SkillEffectControl) -> void:
+	enemy_panel.effect_container.add_child(skill_control)
+
+
+func get_action(_targets: Array) -> Command:
+	BattleEventBus.sent_battle_text.emit("")
+	var cmd: Command = AttackCommand.new()
+	if enemy_data.skills.size() > 0:
+		cmd = SkillCommand.new(enemy_data.skills[0], self)
+
+	cmd.caster = self
+	return cmd
+
+
 func get_combatant_name() -> String:
 	return enemy_data.enemy_name
+
 
 func take_damage(amount: int) -> void:
 	stats.take_damage(amount)
 
+
 func target_select(show_pointer: bool = true) -> void:
 	enemy_panel.target_select(show_pointer)
+
 
 func target_deselect(show_pointer: bool = true) -> void:
 	enemy_panel.target_deselect(show_pointer)
@@ -31,16 +48,6 @@ func _determine_targets(applicable_target: Skill.ApplicableTarget ,targets: Arra
 
 	return to_attack
 			
-
-# func _set_target_mood(skill: Skill, current_target: BattlePlayer) -> void:
-# 	if !skill.can_set_target_emotion:
-# 		return
-#
-# 	if skill.is_emotion_random:
-# 		current_target.set_random_emotion()
-# 	else:
-# 		current_target.set_emotion(skill.set_target_emotion)
-
 
 func _damage_targets(damage_to_deal: float, targets: Array[BattlePlayer]) -> void:
 	for target: BattlePlayer in targets:
@@ -59,12 +66,3 @@ func _play_skill_animation_on_targets(skill: Skill, targets: Array[BattlePlayer]
 			skill_control.play_skill_animation()
 			target_index += 1
 	
-
-func get_action(_targets: Array) -> Command:
-	BattleEventBus.sent_battle_text.emit("")
-	var cmd: Command = AttackCommand.new()
-	if enemy_data.skills.size() > 0:
-		cmd = SkillCommand.new(enemy_data.skills[0])
-
-	cmd.caster = self
-	return cmd

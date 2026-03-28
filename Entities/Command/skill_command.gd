@@ -3,8 +3,9 @@ extends Command
 
 var skill: Skill
 
-func _init(_skill: Skill) -> void:
+func _init(_skill: Skill, _caster: BattleCombatant) -> void:
 	skill = _skill
+	caster = _caster
 
 func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
@@ -100,9 +101,9 @@ func play_skill_animation(targets: Array[BattleCombatant]) -> void:
 
 		AnimationKind.SkillAnimationTargets.Enemy:
 			var target_index: int = 0
-			for _target in targets:
+			for _target: BattleCombatant in targets:
 				var skill_control: SkillEffectControl = SkillEffectControl.build(skill.animation_kind)
-				_target.player_panel.effect_container.add_child(skill_control)
+				_target.add_skill_animation(skill_control)
 
 				if target_index == targets.size() - 1: # Only wait for the last one, hacky I know
 					await skill_control.play_skill_animation()

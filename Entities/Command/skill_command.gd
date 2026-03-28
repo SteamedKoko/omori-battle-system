@@ -28,8 +28,11 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 				break
 			attack_target(to_attack)
 
-			# if skill.can_set_target_emotion:
-			# 	current_target.m
+			if skill.can_set_target_emotion:
+				if skill.is_emotion_random:
+					current_target.set_random_emotion()
+				else:
+					current_target.set_emotion(skill.set_target_emotion)
 
 		alive_targets = determine_targets(_possible_enemies, _possible_allies)
 

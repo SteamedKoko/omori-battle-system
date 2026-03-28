@@ -13,4 +13,5 @@ current_juice = 150
 attack = 100
 defense = 30
 speed = 30
+luck = 100
 metadata/_custom_type_script = "uid://beeaos4sr20uv"

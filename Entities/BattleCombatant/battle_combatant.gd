@@ -8,9 +8,15 @@ var possible_emotions: Array[BattleEnums.Emotions] = []
 var stats: Stats
 var current_emotion: BattleEnums.Emotions
 
-
+ #Do additional modifications, buffs, etc
 var battle_attack: float:
-	get: return stats.attack #Do additional modificatio
+	get: return stats.attack
+var battle_luck: float:
+	get: return stats.luck
+var battle_speed: float:
+	get: return stats.speed
+var battle_defense: float:
+	get: return stats.defense
 
 var is_alive: bool:
 	get: return stats.is_alive

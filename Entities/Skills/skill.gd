@@ -24,12 +24,20 @@ enum DebuffType {
 	MajorAttack
 }
 
+enum StatType {
+	Attack,
+	Defense,
+	Speed,
+	Luck
+}
+
 
 @export_subgroup("Basic")
 @export var name: String
 @export var description: String
 @export var cost: int
 @export var times_to_hit: int = 1
+@export var base_damage_stat: Array[StatType] = [StatType.Attack]
 @export var damage_multiplyer: float = 1
 @export var additional_flat_damage: float = 0
 @export var animation_kind: AnimationKind

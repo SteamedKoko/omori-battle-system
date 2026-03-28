@@ -15,6 +15,7 @@ signal toasted
 @export var attack: int
 @export var defense: int
 @export var speed: int
+@export var luck: int
 
 var is_alive: bool:
 	get: return current_hp > 0

@@ -72,9 +72,19 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 			return []
 		_: return []
 
+func get_base_stat(base_stat_type: Skill.StatType) -> float:
+	match base_stat_type:
+		Skill.StatType.Attack: return caster.battle_attack
+		Skill.StatType.Luck: return caster.battle_luck
+		Skill.StatType.Speed: return caster.battle_speed
+		Skill.StatType.Defense: return caster.battle_defense
+		_: return 0
 
 func attack_target(target: BattleCombatant) -> void:
-	var calculated_damage: float = caster.battle_attack 
+	var calculated_damage: float = 0
+	for base_stat in skill.base_damage_stat:
+		calculated_damage += get_base_stat(base_stat)
+		
 	var damage_multiplier: float = skill.damage_multiplyer
 	if skill.has_damage_override:
 		if skill.damage_multiplier_override_emotion == caster.current_emotion:

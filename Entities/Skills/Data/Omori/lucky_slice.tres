@@ -53,6 +53,7 @@ script = ExtResource("1_7y1io")
 name = "Lucky Slice"
 description = "Acts first. An attack that's stronger when Omori is happy."
 cost = 15
+base_damage_stat = Array[int]([0, 3])
 damage_multiplyer = 1.5
 animation_kind = SubResource("Resource_0thfe")
 has_damage_override = true

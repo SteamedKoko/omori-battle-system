@@ -1,13 +1,17 @@
-todo:
+TODO:
+subtrack juice after using skill
+don't allow to use skill if not enough juice
+Ally targeting
+Emotion stacks - sad, depressed, etc
+Emotion stat effects (battle player and enemy could have something that interfaces over stats and calculates stat values based on emotions and buffs)
 emotions change bg of portrait
 font for portrait??
 
-
-MISSING
-Combo bar charge (goes up to 10, forgot what charges it)
+HOMEWORK:
 Combo attacks (before attacking there could be a 3 second wait or something that pops up the bubbles, if user chooses one then act on it)
+Combo bar charge (goes up to 10, forgot what charges it)
 Stat buffs & debuffs (are these permanent in a battle? if they are active for x turns, then at the start of each turn it could tick down one until depleted, also can be stored in battleplayer or battleenemy)
-Emotion stat effects (battle player and enemy could have something that interfaces over stats and calculates stat values based on emotions and buffs)
-Omori plot armor (surviving with 1hp once per battle)
 Toys (more or less same implementation as skills)
 Snacks (more or less same implementation as skills)
+Omori plot armor (surviving with 1hp once per battle)
+

@@ -10,6 +10,8 @@ func _init(_skill: Skill, _caster: BattleCombatant) -> void:
 func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 
+	await Engine.get_main_loop().create_timer(1).timeout
+
 	var alive_targets: Array[BattleCombatant] = determine_targets(_possible_enemies, _possible_allies)
 	if alive_targets.size() == 0:
 		command_executed.emit()
@@ -38,6 +40,7 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 	if skill.can_set_caster_emotion:
 		caster.set_emotion(skill.set_caster_emotion)
 
+	#TODO: Probably apply debuffs here
 
 	await Engine.get_main_loop().create_timer(1).timeout
 	command_executed.emit()
@@ -70,7 +73,9 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 			if to_target:
 				return [to_target]
 			return []
-		_: return []
+		_: 
+			push_error("unknown applicable target")
+			return []
 
 func get_base_stat(base_stat_type: Skill.StatType) -> float:
 	match base_stat_type:

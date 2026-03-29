@@ -1,15 +1,99 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://cu4p6gf4paarc"]
 
+[ext_resource type="AudioStream" uid="uid://uheheapqcr5u" path="res://Entities/Skills/Audio/BA_shun.ogg" id="1_2nboa"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_ep4r7"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_u80ao"]
+[ext_resource type="Texture2D" uid="uid://bq05ypmaod3nl" path="res://Entities/Skills/Art/shun_sprite_sheet.png" id="2_nsn7l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nboa"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(0, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qslb2"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(480, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pspu4"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(960, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kcm5"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(1440, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr47y"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(1920, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7qss"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(2400, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bche7"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(2880, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msoeu"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(3360, 0, 480, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1du8i"]
+atlas = ExtResource("2_nsn7l")
+region = Rect2(3840, 0, 480, 448)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nsn7l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nboa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qslb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pspu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kcm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr47y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7qss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bche7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msoeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1du8i")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_2nboa"]
+script = ExtResource("1_u80ao")
+sprite_frames = SubResource("SpriteFrames_nsn7l")
+animation_target = 2
+animation_audio = ExtResource("1_2nboa")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
 [resource]
 script = ExtResource("1_ep4r7")
 name = "Shun"
 description = "Deal damage. If the foe is sad, greatly reduce defense."
 cost = 20
-damage = 40.0
+damage_multiplyer = 3.0
+animation_kind = SubResource("Resource_2nboa")
 can_select_target = true
-applicable_target = 1
-debuff_apply_if = 2
+applicable_target = 2
+can_apply_debuff = true
+requires_emotion_for_debuff = true
+debuff_apply_if = 4
 debuff_apply = 2
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

@@ -1,13 +1,127 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://c3yvqdc86eh43"]
 
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_da8y7"]
+[ext_resource type="AudioStream" uid="uid://uv1dkap03bxk" path="res://Entities/Skills/Audio/BA_sad_poem.ogg" id="1_nv4s0"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_v4w0d"]
+[ext_resource type="Texture2D" uid="uid://60iljh47kacp" path="res://Entities/Skills/Art/painful_truth_sprite_sheet.png" id="2_nv4s0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1poc"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjosh"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2fmt"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syljp"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnbw2"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5d2m"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t23c"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtghy"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piu7v"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(1536, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttw6g"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(1728, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m06so"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(1920, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f6og"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(2112, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1osb"]
+atlas = ExtResource("2_nv4s0")
+region = Rect2(2304, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5yc5u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1poc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjosh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2fmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syljp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnbw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5d2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t23c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtghy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piu7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttw6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m06so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f6og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1osb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_itdqh"]
+script = ExtResource("1_da8y7")
+sprite_frames = SubResource("SpriteFrames_5yc5u")
+animation_target = 2
+animation_audio = ExtResource("1_nv4s0")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
 [resource]
 script = ExtResource("1_v4w0d")
 name = "Painful Truth"
 description = "Deals damage to a foe. Omori and the foe become sad."
 cost = 10
-damage = 50.0
-target_effect_status = 3
-caster_effect_status = 3
+damage_multiplyer = 2.0
+animation_kind = SubResource("Resource_itdqh")
+can_select_target = true
+applicable_target = 2
+can_set_target_emotion = true
+set_target_emotion = 4
+can_set_caster_emotion = true
+set_caster_emotion = 4
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

@@ -33,7 +33,7 @@ func _on_target_selected(target: BattleCombatant) -> void:
 	BattleEventBus.player_action_queued.emit(prepped_command)
 
 func _on_target_cancelled() -> void:
-	open_menu()
+	open_menu(false)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
@@ -85,7 +85,8 @@ func open_menu(reset_focus: bool = true) -> void:
 	show()
 	if submenu_items.size() > 0 and reset_focus:
 		focus_owner = submenu_items[0]
-		submenu_items[0].grab_focus()
+
+	focus_owner.grab_focus()
 
 	set_process_unhandled_input.call_deferred(true)
 	set_process.call_deferred(true)

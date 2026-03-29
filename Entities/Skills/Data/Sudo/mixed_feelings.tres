@@ -21,5 +21,5 @@ animation_kind = SubResource("Resource_4feve")
 target_type = 1
 applicable_target = 4
 can_set_target_emotion = true
-set_target_emotion = 4
+is_emotion_random = true
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

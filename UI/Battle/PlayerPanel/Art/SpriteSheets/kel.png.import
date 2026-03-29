@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de45pbhngupld"
-path="res://.godot/imported/spamton_1.png-9d4edfcf677f13230455601b20ba31d1.ctex"
+uid="uid://c2ejf0od5his7"
+path="res://.godot/imported/kel.png-9f64dbc787b83262527a41e2ff8bbc79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Battle/PlayerPanel/Art/Portraits/SpriteSheets/spamton_1.png"
-dest_files=["res://.godot/imported/spamton_1.png-9d4edfcf677f13230455601b20ba31d1.ctex"]
+source_file="res://UI/Battle/PlayerPanel/Art/SpriteSheets/kel.png"
+dest_files=["res://.godot/imported/kel.png-9f64dbc787b83262527a41e2ff8bbc79.ctex"]
 
 [params]
 

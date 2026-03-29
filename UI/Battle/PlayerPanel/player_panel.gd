@@ -8,9 +8,12 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @export var layout_position: Control.LayoutPreset
 @export var player_data: PlayerData
 @export var stats: Stats
+@export var portrait_labels: Dictionary[BattleEnums.Emotions, Texture2D]
+@export var portrait_backgrounds: Dictionary[BattleEnums.Emotions, Texture2D]
 
 @onready var player_box: TextureRect = %PlayerBox
-@onready var player_mood: RichTextLabel = %PlayerMood
+@onready var portrait_text_emotion: TextureRect = %PlayerMood
+@onready var portrait_back_emotion: TextureRect = %PortraitBackEmotion
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = %PlayerAnimatedSprite
 @onready var effect_container: MarginContainer = %EffectContainer
@@ -24,7 +27,7 @@ const PLAYER_PANEL = preload("uid://cfoptwsymul31")
 @onready var damage_container: DamageContainer = %DamageContainer
 
 var sprite_frames: SpriteFrames
-var sprite_state: SpriteStates:
+var sprite_state: PlayerStates:
 	set = _update_sprite_state
 
 var _mood: BattleEnums.Emotions = BattleEnums.Emotions.NEUTRAL
@@ -33,12 +36,9 @@ var mood: BattleEnums.Emotions:
 	get = _get_mood
 
 
-enum SpriteStates {
+enum PlayerStates {
 	NEUTRAL,
 	VICTORY,
-	ANGRY,
-	SAD,
-	HAPPY,
 	HURT,
 	TOAST
 }
@@ -66,27 +66,27 @@ func _ready():
 
 	if sprite_frames:
 		animated_sprite.sprite_frames = sprite_frames
-		animated_sprite.play('normal')
+		animated_sprite.play("neutral")
 
 	animation.stop()
 
 
-func _update_sprite_state(value: SpriteStates):
-	if value == SpriteStates.NEUTRAL:
-		animated_sprite.play('normal')
+func _update_sprite_state(value: PlayerStates):
+	if value == PlayerStates.NEUTRAL:
+		animated_sprite.play("neutral")
 		return
 
 	# Omori can't be toasted, loser
-	if player_data.player_name.to_lower() == "omori" and value == SpriteStates.TOAST:
+	if player_data.player_name.to_lower() == "omori" and value == PlayerStates.TOAST:
 		animated_sprite.play('defeated')
 		return
 
-	animated_sprite.play(SpriteStates.keys()[value].to_lower())
+	animated_sprite.play(PlayerStates.keys()[value].to_lower())
 
 
 func _toasted():
-	sprite_state = SpriteStates.TOAST
-	player_mood.text = ""
+	sprite_state = PlayerStates.TOAST
+	portrait_text_emotion.text = ""
 
 func _took_damage(_damage_taken: int):
 	#reduce hp via text and progressbar
@@ -112,7 +112,8 @@ func _set_mood(value: BattleEnums.Emotions) -> void:
 	_mood = value
 	animated_sprite.play(BattleEnums.Emotions.keys()[value].to_lower())
 	var new_mood = BattleEnums.Emotions.keys()[_mood].to_upper()
-	player_mood.text = new_mood
+	portrait_text_emotion.texture = portrait_labels.get(value)
+	portrait_back_emotion.texture = portrait_backgrounds.get(value)
 	changed_mood.emit(new_mood)
 
 

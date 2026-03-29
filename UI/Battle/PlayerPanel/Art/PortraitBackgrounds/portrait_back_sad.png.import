@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhb0wnfdblv4h"
-path="res://.godot/imported/portrait_back_happy.png-afb46b9bf141ca4abf1badb5ae668047.ctex"
+uid="uid://dvtr7uvetv3dy"
+path="res://.godot/imported/portrait_back_sad.png-8d4ed6622769800514e0e704f5b347b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Battle/PlayerPanel/Art/Portraits/portrait_back_happy.png"
-dest_files=["res://.godot/imported/portrait_back_happy.png-afb46b9bf141ca4abf1badb5ae668047.ctex"]
+source_file="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_sad.png"
+dest_files=["res://.godot/imported/portrait_back_sad.png-8d4ed6622769800514e0e704f5b347b1.ctex"]
 
 [params]
 

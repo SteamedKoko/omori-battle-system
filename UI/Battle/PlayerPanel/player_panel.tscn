@@ -1,21 +1,37 @@
 [gd_scene format=3 uid="uid://cfoptwsymul31"]
 
-[ext_resource type="Texture2D" uid="uid://m67rs7cjjxhh" path="res://UI/Battle/PlayerPanel/Art/Portraits/player_panel.png" id="1_620xr"]
+[ext_resource type="Texture2D" uid="uid://m67rs7cjjxhh" path="res://UI/Battle/PlayerPanel/Art/player_panel.png" id="1_620xr"]
 [ext_resource type="Script" uid="uid://bol2fhk8iimev" path="res://UI/Battle/PlayerPanel/player_panel.gd" id="1_kqpfk"]
 [ext_resource type="Resource" uid="uid://bd2jyxc6fp1v8" path="res://Entities/PlayerData/Data/omori_data.tres" id="2_3c8xf"]
 [ext_resource type="Resource" uid="uid://ceitaeqkgsd3k" path="res://Entities/Stats/Data/omori_stats.tres" id="3_id75v"]
-[ext_resource type="Texture2D" uid="uid://wd0e3gehgs5y" path="res://UI/Battle/PlayerPanel/Art/Portraits/health_bar.png" id="3_lhc11"]
-[ext_resource type="Texture2D" uid="uid://bf14tn3l1godn" path="res://UI/Battle/PlayerPanel/Art/Portraits/portrait_back_neutral.png" id="3_ssqf0"]
-[ext_resource type="Texture2D" uid="uid://6jebq1l0n2u4" path="res://UI/Battle/PlayerPanel/Art/Portraits/juice_bar.png" id="4_nb1cy"]
-[ext_resource type="Texture2D" uid="uid://jxbovxs3x53u" path="res://UI/Battle/PlayerPanel/Art/Portraits/portrait_turn_border.png" id="7_ny1to"]
+[ext_resource type="Texture2D" uid="uid://wd0e3gehgs5y" path="res://UI/Battle/PlayerPanel/Art/health_bar.png" id="3_lhc11"]
+[ext_resource type="Texture2D" uid="uid://6jebq1l0n2u4" path="res://UI/Battle/PlayerPanel/Art/juice_bar.png" id="4_nb1cy"]
+[ext_resource type="Texture2D" uid="uid://c5fnjhjeejvu7" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_happy.png" id="5_n5nab"]
+[ext_resource type="Texture2D" uid="uid://bg3dgtrb52cbi" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_neutral.png" id="5_rpfs6"]
+[ext_resource type="Texture2D" uid="uid://nm2y8s4rux02" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_exstatic.png" id="6_xkc0v"]
+[ext_resource type="Texture2D" uid="uid://jxbovxs3x53u" path="res://UI/Battle/PlayerPanel/Art/portrait_turn_border.png" id="7_ny1to"]
+[ext_resource type="Texture2D" uid="uid://dnajtoi53v2wg" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_manic.png" id="7_ro71h"]
+[ext_resource type="Texture2D" uid="uid://vtws0pevlt0q" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_sad.png" id="8_5kvkc"]
+[ext_resource type="Texture2D" uid="uid://cnblyf114smx6" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_neutral.png" id="8_87on7"]
+[ext_resource type="Texture2D" uid="uid://u5x006np5db3" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_depressed.png" id="9_0lq5a"]
+[ext_resource type="Texture2D" uid="uid://dveiy8wvt4gkr" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_miserable.png" id="10_7oqd7"]
 [ext_resource type="PackedScene" uid="uid://doy77fkalreq7" path="res://UI/Battle/Damage/damage_container.tscn" id="11_ewtu1"]
+[ext_resource type="Texture2D" uid="uid://66jtdnr881hv" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_angry.png" id="11_xnn1g"]
+[ext_resource type="Texture2D" uid="uid://1fiwppcdidmq" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_enraged.png" id="12_wowmf"]
+[ext_resource type="Texture2D" uid="uid://dml838srrsksb" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_furious.png" id="13_x3w5s"]
+[ext_resource type="Texture2D" uid="uid://nqq0dohuys17" path="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_spamton.png" id="14_uya4j"]
+[ext_resource type="Texture2D" uid="uid://dhb0wnfdblv4h" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_happy.png" id="16_41ew1"]
+[ext_resource type="Texture2D" uid="uid://bo050e23564ip" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_ecstatic.png" id="17_abum7"]
+[ext_resource type="Texture2D" uid="uid://p6hlgxt1nk2u" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_manic.png" id="18_cn71j"]
+[ext_resource type="Texture2D" uid="uid://dvtr7uvetv3dy" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_sad.png" id="19_7nfdr"]
+[ext_resource type="Texture2D" uid="uid://d3pe4pfbuhwui" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_depressed.png" id="20_jihib"]
+[ext_resource type="Texture2D" uid="uid://c8h81a8s1pb84" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_miserable.png" id="21_j7vw5"]
+[ext_resource type="Texture2D" uid="uid://ckh4knnheo24y" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_angry.png" id="22_m2ie5"]
+[ext_resource type="Texture2D" uid="uid://cieslu1gafb5a" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_enraged.png" id="23_4w3cb"]
+[ext_resource type="Texture2D" uid="uid://01fhngt1ba44" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_furious.png" id="24_mdy3p"]
+[ext_resource type="Texture2D" uid="uid://d3nm7emorwt1x" path="res://UI/Battle/PlayerPanel/Art/PortraitBackgrounds/portrait_back_spamton.png" id="25_41ew1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_id75v"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_id75v"]
-load_path = "res://.godot/imported/omori_neutral3.png-fd246934268e3596f6d0bbc643c99d56.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_38l3p"]
 
 [sub_resource type="Animation" id="Animation_lhc11"]
 length = 0.001
@@ -64,6 +80,32 @@ size_flags_vertical = 3
 script = ExtResource("1_kqpfk")
 player_data = ExtResource("2_3c8xf")
 stats = ExtResource("3_id75v")
+portrait_labels = Dictionary[int, Texture2D]({
+0: ExtResource("8_87on7"),
+1: ExtResource("5_n5nab"),
+2: ExtResource("6_xkc0v"),
+3: ExtResource("7_ro71h"),
+4: ExtResource("8_5kvkc"),
+5: ExtResource("9_0lq5a"),
+6: ExtResource("10_7oqd7"),
+7: ExtResource("11_xnn1g"),
+8: ExtResource("12_wowmf"),
+9: ExtResource("13_x3w5s"),
+10: ExtResource("14_uya4j")
+})
+portrait_backgrounds = Dictionary[int, Texture2D]({
+0: ExtResource("5_rpfs6"),
+1: ExtResource("16_41ew1"),
+2: ExtResource("17_abum7"),
+3: ExtResource("18_cn71j"),
+4: ExtResource("19_7nfdr"),
+5: ExtResource("20_jihib"),
+6: ExtResource("21_j7vw5"),
+7: ExtResource("22_m2ie5"),
+8: ExtResource("23_4w3cb"),
+9: ExtResource("24_mdy3p"),
+10: ExtResource("25_41ew1")
+})
 
 [node name="PlayerBox" type="TextureRect" parent="." unique_id=694156896]
 unique_name_in_owner = true
@@ -83,7 +125,7 @@ offset_left = 7.0
 offset_top = 18.0
 offset_right = 107.0
 offset_bottom = 118.0
-texture = ExtResource("3_ssqf0")
+texture = ExtResource("25_41ew1")
 stretch_mode = 4
 
 [node name="PortraitContainer" type="Control" parent="PlayerBox" unique_id=855607414]
@@ -98,17 +140,6 @@ offset_bottom = 104.0
 unique_name_in_owner = true
 position = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_id75v")
-
-[node name="PortraitSpriteBak" type="TextureRect" parent="PlayerBox" unique_id=1112742785]
-unique_name_in_owner = true
-visible = false
-show_behind_parent = true
-layout_mode = 0
-offset_left = 5.0
-offset_top = 12.0
-offset_right = 111.0
-offset_bottom = 118.0
-texture = SubResource("CompressedTexture2D_id75v")
 
 [node name="HealthBar" type="TextureProgressBar" parent="PlayerBox" unique_id=106410690]
 unique_name_in_owner = true
@@ -216,18 +247,19 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2
 
-[node name="PlayerMood" type="RichTextLabel" parent="PlayerBox" unique_id=820910468]
+[node name="PlayerMood" type="TextureRect" parent="PlayerBox" unique_id=536522400]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -55.0
-offset_right = 55.0
-offset_bottom = 24.0
+offset_left = -50.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 45.0
 grow_horizontal = 2
-text = "Neutral"
-horizontal_alignment = 1
+texture = ExtResource("14_uya4j")
+stretch_mode = 4
 
 [node name="TurnOutline" type="TextureRect" parent="PlayerBox" unique_id=144387152]
 unique_name_in_owner = true
@@ -236,13 +268,6 @@ offset_left = -9.0
 offset_right = 123.0
 offset_bottom = 173.0
 texture = ExtResource("7_ny1to")
-
-[node name="TextureRect" type="TextureRect" parent="PlayerBox" unique_id=446196307]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("AtlasTexture_38l3p")
-metadata/_custom_type_script = "uid://bbcs5e6bo315g"
 
 [node name="EffectContainer" type="MarginContainer" parent="PlayerBox" unique_id=585768902]
 unique_name_in_owner = true

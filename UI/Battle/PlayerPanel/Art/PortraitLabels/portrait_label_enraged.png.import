@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jxbovxs3x53u"
-path="res://.godot/imported/portrait_turn_border.png-0dd553401a853e364406f37fa6f4156b.ctex"
+uid="uid://1fiwppcdidmq"
+path="res://.godot/imported/portrait_label_enraged.png-7ce74424b72d1328e6008645c00dc20a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Battle/PlayerPanel/Art/Portraits/portrait_turn_border.png"
-dest_files=["res://.godot/imported/portrait_turn_border.png-0dd553401a853e364406f37fa6f4156b.ctex"]
+source_file="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_enraged.png"
+dest_files=["res://.godot/imported/portrait_label_enraged.png-7ce74424b72d1328e6008645c00dc20a.ctex"]
 
 [params]
 

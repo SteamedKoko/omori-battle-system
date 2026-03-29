@@ -34,8 +34,8 @@ func _ready():
 	add_child(BattleAudioManager.new())
 	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
 	# var start_enemies: Array[EnemyData] = [SUDO_DATA]
-	# start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
-	start_battle([OMORI_DATA], start_enemies)
+	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
+	# start_battle([OMORI_DATA], start_enemies)
 	battle_loop()
 
 
@@ -70,6 +70,7 @@ func start_battle(init_players: Array[PlayerData], init_enemies: Array[EnemyData
 		var player_panel: PlayerPanel = PlayerPanel.build(player_panel_presets[i], data)
 		var player: BattlePlayer = BattlePlayer.new(data, player_panel)
 		player_panel_container.add_child(player_panel)
+		player.set_emotion(BattleEnums.Emotions.NEUTRAL)
 		players.push_back(player)
 
 	for i in range(init_enemies.size()):

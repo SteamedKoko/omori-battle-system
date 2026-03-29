@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckh4knnheo24y"
-path="res://.godot/imported/portrait_back_angry.png-30fdaf1cba41bb37393227c2d9f695ee.ctex"
+uid="uid://vtws0pevlt0q"
+path="res://.godot/imported/portrait_label_sad.png-58a7df9d605ec025ff099cbf9b628cb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Battle/PlayerPanel/Art/Portraits/portrait_back_angry.png"
-dest_files=["res://.godot/imported/portrait_back_angry.png-30fdaf1cba41bb37393227c2d9f695ee.ctex"]
+source_file="res://UI/Battle/PlayerPanel/Art/PortraitLabels/portrait_label_sad.png"
+dest_files=["res://.godot/imported/portrait_label_sad.png-58a7df9d605ec025ff099cbf9b628cb9.ctex"]
 
 [params]
 

@@ -86,7 +86,7 @@ func _update_sprite_state(value: PlayerStates):
 
 func _toasted():
 	sprite_state = PlayerStates.TOAST
-	portrait_text_emotion.text = ""
+	portrait_text_emotion.texture = null
 
 func _took_damage(_damage_taken: int):
 	#reduce hp via text and progressbar

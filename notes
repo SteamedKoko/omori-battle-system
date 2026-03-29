@@ -1,9 +1,6 @@
 TODO:
-	sound effect for attacks
-
-Ally targeting
-Emotion stacks - sad, depressed, etc
 Emotion stat effects (battle player and enemy could have something that interfaces over stats and calculates stat values based on emotions and buffs)
+Ally targeting
 
 HOMEWORK:
 Combo attacks (before attacking there could be a 3 second wait or something that pops up the bubbles, if user chooses one then act on it)
@@ -12,4 +9,3 @@ Stat buffs & debuffs (are these permanent in a battle? if they are active for x 
 Toys (more or less same implementation as skills)
 Snacks (more or less same implementation as skills)
 Omori plot armor (surviving with 1hp once per battle)
-

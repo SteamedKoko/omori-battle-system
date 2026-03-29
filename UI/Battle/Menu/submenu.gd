@@ -69,6 +69,10 @@ func load_items(items: Array[Control], _current_player: BattlePlayer) -> void:
 var prepped_command: Command
 
 func _on_choose_skill(skill: Skill) -> void:
+	if current_player.stats.current_juice < skill.cost:
+		BattleEventBus.menu_not_allowed.emit()
+		return
+
 	prepped_command = SkillCommand.new(skill, current_player)
 	BattleEventBus.menu_confirmed.emit()
 

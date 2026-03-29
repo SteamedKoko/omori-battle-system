@@ -2,6 +2,7 @@ class_name Stats
 extends Resource
 
 signal took_damage(amount: int)
+signal used_juice(amount: int)
 signal toasted
 
 @export var max_hp: int
@@ -26,3 +27,8 @@ func take_damage(amount: int) -> void:
 	took_damage.emit(damage_to_take)
 	if current_hp == 0:
 		toasted.emit()
+
+func lose_juice(amount: int) -> void:
+	var juice_to_use = maxi(amount, 0)
+	current_juice = maxi(current_juice - juice_to_use, 0)
+	used_juice.emit(juice_to_use)

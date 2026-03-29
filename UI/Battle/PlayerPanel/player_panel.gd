@@ -60,6 +60,7 @@ func _ready():
 	juice_current_text.text = str(stats.current_juice)
 
 	player_data.player_stats.took_damage.connect(_took_damage)
+	player_data.player_stats.used_juice.connect(func(_used: int): _update_juice())
 	player_data.player_stats.toasted.connect(_toasted)
 
 
@@ -96,6 +97,12 @@ func _update_health() -> void:
 	tween.set_parallel(true)
 	tween.tween_property(health_bar, 'value', stats.current_hp, .3)
 	tween.tween_property(health_current_text, 'text', str(stats.current_hp), .3)
+
+func _update_juice() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(juice_bar, 'value', stats.current_juice, .3)
+	tween.tween_property(juice_current_text, 'text', str(stats.current_juice), .3)
 
 
 func _set_panel_location(location: Control.LayoutPreset):

@@ -1,11 +1,11 @@
 TODO:
-subtrack juice after using skill
-don't allow to use skill if not enough juice
+	don't allow to use skill if not enough juice
+	emotions change bg of portrait
+	font for portrait??
+
 Ally targeting
 Emotion stacks - sad, depressed, etc
 Emotion stat effects (battle player and enemy could have something that interfaces over stats and calculates stat values based on emotions and buffs)
-emotions change bg of portrait
-font for portrait??
 
 HOMEWORK:
 Combo attacks (before attacking there could be a 3 second wait or something that pops up the bubbles, if user chooses one then act on it)

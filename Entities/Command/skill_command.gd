@@ -10,6 +10,7 @@ func _init(_skill: Skill, _caster: BattleCombatant) -> void:
 func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 
+	caster.stats.lose_juice(skill.cost)
 	await Engine.get_main_loop().create_timer(1).timeout
 
 	var alive_targets: Array[BattleCombatant] = determine_targets(_possible_enemies, _possible_allies)

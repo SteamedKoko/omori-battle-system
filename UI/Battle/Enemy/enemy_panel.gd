@@ -7,6 +7,8 @@ extends PanelContainer
 @onready var effect_container: Control = %EffectContainer
 
 @export var enemy_data: EnemyData
+@export var emotion_colors: Dictionary[BattleEnums.Emotions, Color]
+@export var default_emotion_color: Color
 
 const ENEMY_PANEL = preload("uid://dgcegk1asy4cx")
 
@@ -20,14 +22,24 @@ func _ready() -> void:
 	enemy_info.enemy_data = enemy_data
 	enemy_data.stats.took_damage.connect(got_hurt)
 	damage_container.modulate = Color.TRANSPARENT
+	enemy_sprite.material.set_shader_parameter("outline_color", default_emotion_color)
+
 
 func target_select(show_pointer: bool = true):
 	enemy_info.show()
 	enemy_info.toggle_pointer(show_pointer)
 
+
 func target_deselect(show_pointer: bool = true):
 	enemy_info.hide()
 	enemy_info.toggle_pointer(show_pointer)
+
+
+func change_emotion_outline(emotion: BattleEnums.Emotions) -> void :
+	var emotion_type: BattleEnums.Emotions = EmotionHelper.determine_emotion_type(emotion)
+	var color_to_set: Color = emotion_colors.get(emotion_type, default_emotion_color)
+	enemy_sprite.material.set_shader_parameter("outline_color", color_to_set)
+
 
 func got_hurt(_amount: int) -> void:
 	var hurt_sprite: AnimatedTexture = enemy_data.sprites.get(enemy_data.BattleSpriteStates.HURT)

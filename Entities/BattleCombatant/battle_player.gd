@@ -6,7 +6,6 @@ signal finished_taking_damage
 var player_data: PlayerData
 var player_panel: PlayerPanel
 
-
 func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_data = data
 	stats = data.player_stats

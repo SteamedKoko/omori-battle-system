@@ -28,7 +28,8 @@ func celebrate() -> void:
 	if !is_alive:
 		return
 
-	player_panel.sprite_state = player_panel.PlayerStates.VICTORY
+	player_panel.mood = BattleEnums.Emotions.NEUTRAL
+	player_panel.player_state = PlayerPanel.PlayerStates.VICTORY
 
 func _on_changed_emotion(new_emotion: BattleEnums.Emotions) -> void:
 	player_panel.mood = new_emotion

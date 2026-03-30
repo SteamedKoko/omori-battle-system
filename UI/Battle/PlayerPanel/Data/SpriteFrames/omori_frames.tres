@@ -17,18 +17,6 @@ region = Rect2(429, 256, 106, 106)
 atlas = ExtResource("1_vk7mb")
 region = Rect2(536, 256, 106, 106)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kmpwm"]
-atlas = ExtResource("1_vk7mb")
-region = Rect2(643, 135, 106, 106)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ltfa3"]
-atlas = ExtResource("1_vk7mb")
-region = Rect2(750, 135, 106, 106)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_molrx"]
-atlas = ExtResource("1_vk7mb")
-region = Rect2(857, 135, 106, 106)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m4d44"]
 atlas = ExtResource("1_vk7mb")
 region = Rect2(1, 377, 106, 106)
@@ -161,6 +149,18 @@ region = Rect2(750, 14, 106, 106)
 atlas = ExtResource("1_vk7mb")
 region = Rect2(857, 14, 106, 106)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmpwm"]
+atlas = ExtResource("1_vk7mb")
+region = Rect2(643, 135, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltfa3"]
+atlas = ExtResource("1_vk7mb")
+region = Rect2(750, 135, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_molrx"]
+atlas = ExtResource("1_vk7mb")
+region = Rect2(857, 135, 106, 106)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_00lw0"]
 atlas = ExtResource("1_vk7mb")
 region = Rect2(1, 135, 106, 106)
@@ -187,20 +187,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"angry",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kmpwm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ltfa3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_molrx")
-}],
-"loop": true,
-"name": &"defeated",
 "speed": 5.0
 }, {
 "frames": [{
@@ -369,6 +355,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"succumb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmpwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltfa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_molrx")
+}],
+"loop": true,
+"name": &"toast",
 "speed": 5.0
 }, {
 "frames": [{

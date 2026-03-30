@@ -60,6 +60,7 @@ func load_items(items: Array[Control], _current_player: BattlePlayer) -> void:
 	for child in %ItemContainer.get_children():
 		%ItemContainer.remove_child(child)
 		
+	focus_owner = null
 	submenu_items = items
 	current_player = _current_player
 
@@ -90,7 +91,8 @@ func open_menu(reset_focus: bool = true) -> void:
 	if submenu_items.size() > 0 and reset_focus:
 		focus_owner = submenu_items[0]
 
-	focus_owner.grab_focus()
+	if focus_owner:
+		focus_owner.grab_focus()
 
 	set_process_unhandled_input.call_deferred(true)
 	set_process.call_deferred(true)

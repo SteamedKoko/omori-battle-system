@@ -140,7 +140,6 @@ func _set_panel_location(location: Control.LayoutPreset):
 	player_box.set_anchors_and_offsets_preset(location, Control.LayoutPresetMode.PRESET_MODE_KEEP_SIZE, 0)
 
 
-
 func _get_mood() -> BattleEnums.Emotions:
 	return _mood
 

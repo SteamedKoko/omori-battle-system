@@ -7,6 +7,7 @@ func _init(_skill: Skill, _caster: BattleCombatant) -> void:
 	skill = _skill
 	caster = _caster
 
+
 func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 
@@ -78,6 +79,7 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 			push_error("unknown applicable target")
 			return []
 
+
 func get_base_stat(base_stat_type: Skill.StatType) -> float:
 	match base_stat_type:
 		Skill.StatType.Attack: return caster.battle_attack
@@ -85,6 +87,7 @@ func get_base_stat(base_stat_type: Skill.StatType) -> float:
 		Skill.StatType.Speed: return caster.battle_speed
 		Skill.StatType.Defense: return caster.battle_defense
 		_: return 0
+
 
 func attack_target(target: BattleCombatant) -> void:
 	var calculated_damage: float = 0
@@ -97,15 +100,11 @@ func attack_target(target: BattleCombatant) -> void:
 			damage_multiplier = skill.damage_multiplier_override
 
 	calculated_damage *= damage_multiplier
+	calculated_damage *= EmotionHelper.get_emotion_multiplier(caster.current_emotion, target.current_emotion)
 	calculated_damage -= target.stats.defense
 	calculated_damage *= randf_range(skill.damage_variance.x, skill.damage_variance.y)
 	target.take_damage(round(calculated_damage))
 
-#This value varies depending only on the defender's emotion tier. So, for example, if the attacker is ecstatic and the defender is angry, the attack will only deal 50% more damage, while if the attacker is angry but the defender is ecstatic, the attack will deal 35% less damage.
-# * Emotion Resistance: Takes 20% / 35% / 50% less damage from the weaker emotion.
-# * Emotion Weakness: Deals 50% / 100% / 150% more damage to the weaker emotion.
-# func get_emotion_multiplier(caster_emotion: PlayerData.Emotions, target_emotion: PlayerData.Emotions) -> float:
-# 	pass
 
 func play_skill_animation(targets: Array[BattleCombatant]) -> void:
 	match skill.animation_kind.animation_target:

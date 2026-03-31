@@ -12,6 +12,7 @@ func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	player_panel = panel
 	possible_emotions = player_data.emotions.duplicate()
 	player_panel.stats.took_damage.connect(_on_take_damage)
+	crit_sound = player_data.crit_sound
 	changed_emotion.connect(_on_changed_emotion)
 
 func get_combatant_name() -> String:

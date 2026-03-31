@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b8r347rppi1pt" path="res://Entities/Attack/Art/kel_attack_sprite_sheet.png" id="2_8d4rc"]
 [ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Entities/Stats/stats.gd" id="4_5543e"]
 [ext_resource type="SpriteFrames" uid="uid://cit7qhgk12yc6" path="res://UI/Battle/PlayerPanel/Data/SpriteFrames/kel_frames.tres" id="4_ou7y0"]
+[ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Entities/Attack/Audio/BA_CRITICAL_HIT.ogg" id="4_viv41"]
 [ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Entities/PlayerData/player_data.gd" id="5_2pbmf"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="6_hk7jx"]
 
@@ -76,6 +77,7 @@ current_juice = 140
 attack = 30
 defense = 30
 speed = 40
+luck = 30
 metadata/_custom_type_script = "uid://beeaos4sr20uv"
 
 [resource]

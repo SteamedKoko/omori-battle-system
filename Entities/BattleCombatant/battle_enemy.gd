@@ -10,6 +10,7 @@ func _init(data: EnemyData) -> void:
 	stats = data.stats
 	enemy_panel = EnemyPanel.build(enemy_data)
 	possible_emotions = enemy_data.emotions
+	crit_sound = enemy_data.crit_sound
 	changed_emotion.connect(enemy_panel.change_emotion_outline)
 
 

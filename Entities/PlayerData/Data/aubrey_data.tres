@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bophdeuylrmag" path="res://Entities/Attack/Art/aubrey_attack-sprite_sheet.png" id="2_q8cha"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="3_b5ynk"]
 [ext_resource type="SpriteFrames" uid="uid://bprjfkofr00v5" path="res://UI/Battle/PlayerPanel/Data/SpriteFrames/aubrey_frames.tres" id="4_pksnw"]
+[ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Entities/Attack/Audio/BA_CRITICAL_HIT.ogg" id="4_pwa7l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwa7l"]
 atlas = ExtResource("2_q8cha")
@@ -90,6 +91,7 @@ current_juice = 101
 attack = 53
 defense = 25
 speed = 15
+luck = 30
 metadata/_custom_type_script = "uid://beeaos4sr20uv"
 
 [resource]

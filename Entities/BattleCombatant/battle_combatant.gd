@@ -4,6 +4,7 @@ extends RefCounted
 signal changed_emotion(emotion: BattleEnums.Emotions)
 
 var possible_emotions: Array[BattleEnums.Emotions] = []
+var crit_sound: AudioStream
 
 var stats: Stats
 var current_emotion: BattleEnums.Emotions

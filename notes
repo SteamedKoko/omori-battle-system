@@ -1,9 +1,8 @@
 TODO:
-Attack sounds
 Ally targeting
+1 skill for each character
 
 HOMEWORK:
-Crits (should be fairly simple to work in, just throw it in with the damage calculations and base off luck?)
 Combo attacks (before attacking there could be a 3 second wait or something that pops up the bubbles, if user chooses one then act on it)
 Combo bar charge (goes up to 10, forgot what charges it)
 Stat buffs & debuffs (are these permanent in a battle? if they are active for x turns, then at the start of each turn it could tick down one until depleted, also can be stored in battleplayer or battleenemy)

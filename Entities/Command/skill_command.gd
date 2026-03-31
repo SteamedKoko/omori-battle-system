@@ -99,6 +99,9 @@ func attack_target(target: BattleCombatant) -> void:
 		skill.damage_multiplier_override_emotion == EmotionHelper.determine_emotion_type(caster.current_emotion)):
 		calculation.damage_multiplier = skill.damage_multiplier_override
 	
+	if randf_range(0, 100) < caster.battle_luck:
+		calculation.is_crit = true
+
 	calculation.target_defense = target.battle_defense
 	calculation.emotion_multiplier = EmotionHelper.get_emotion_multiplier(caster.current_emotion, target.current_emotion)
 	calculation.damage_variance = skill.damage_variance

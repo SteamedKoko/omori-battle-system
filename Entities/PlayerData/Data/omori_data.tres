@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://3car8l5jmtsx" path="res://Entities/Attack/Audio/BA_basic_attack_omori.ogg" id="3_hnm8y"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="3_khti3"]
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="4_2air8"]
+[ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Entities/Attack/Audio/BA_CRITICAL_HIT.ogg" id="4_7aef4"]
 [ext_resource type="Resource" uid="uid://pjiw23keauh3" path="res://Entities/Skills/Data/Omori/hack_away.tres" id="4_ietnf"]
 [ext_resource type="Resource" uid="uid://d0x2g6wph170v" path="res://Entities/Skills/Data/Omori/lucky_slice.tres" id="5_3y4fa"]
 [ext_resource type="Resource" uid="uid://c3yvqdc86eh43" path="res://Entities/Skills/Data/Omori/painful_truth.tres" id="6_rh3qy"]

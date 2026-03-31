@@ -7,6 +7,7 @@ extends Resource
 @export var skills: Array[Skill]
 @export var attack_animation: AnimationKind
 @export var emotions: Array[BattleEnums.Emotions]
+@export var skill_use_chance: float = 30
 
 enum BattleSpriteStates {
 	HURT,

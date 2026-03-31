@@ -2,7 +2,6 @@
 
 [ext_resource type="Resource" uid="uid://ceitaeqkgsd3k" path="res://Entities/Stats/Data/omori_stats.tres" id="1_3de5k"]
 [ext_resource type="Texture2D" uid="uid://4gjoms6m1yhf" path="res://Entities/Attack/Art/omori_attack.png" id="1_hhhgo"]
-[ext_resource type="Script" uid="uid://c30ftyi7wunbk" path="res://Entities/Attack/Attack.gd" id="2_hnm8y"]
 [ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Entities/PlayerData/player_data.gd" id="2_m6jyc"]
 [ext_resource type="AudioStream" uid="uid://3car8l5jmtsx" path="res://Entities/Attack/Audio/BA_basic_attack_omori.ogg" id="3_hnm8y"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="3_khti3"]
@@ -49,12 +48,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Resource" id="Resource_lvhm3"]
-script = ExtResource("2_hnm8y")
-animation = SubResource("SpriteFrames_80hvd")
-sound = ExtResource("3_hnm8y")
-metadata/_custom_type_script = "uid://c30ftyi7wunbk"
-
 [sub_resource type="Resource" id="Resource_7aef4"]
 script = ExtResource("4_2air8")
 sprite_frames = SubResource("SpriteFrames_80hvd")
@@ -67,7 +60,6 @@ script = ExtResource("2_m6jyc")
 player_name = "Omori"
 player_stats = ExtResource("1_3de5k")
 sprite_frames = ExtResource("8_m6jyc")
-attack = SubResource("Resource_lvhm3")
 attack_animation = SubResource("Resource_7aef4")
 skills = Array[ExtResource("3_khti3")]([ExtResource("4_ietnf"), ExtResource("5_3y4fa"), ExtResource("6_rh3qy"), ExtResource("7_vcol7")])
 emotions = Array[int]([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])

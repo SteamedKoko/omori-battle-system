@@ -1,11 +1,64 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bgcmm1twyftdq"]
 
 [ext_resource type="Script" uid="uid://cdni02qqf3d5" path="res://Entities/EnemyData/enemy_data.gd" id="1_ttosn"]
+[ext_resource type="AudioStream" uid="uid://b37udikcjhlwv" path="res://Entities/Attack/Audio/BA_basic_attack_solid.ogg" id="1_wwor7"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_y7j5i"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="2_apx5t"]
+[ext_resource type="Texture2D" uid="uid://tvutj2lya4ko" path="res://Entities/Attack/Art/hero_attack_sprite_sheet.png" id="2_i0p6o"]
 [ext_resource type="Resource" uid="uid://f2imlkvnfyxe" path="res://Entities/Skills/Data/Sudo/mixed_feelings.tres" id="3_5c8w2"]
 [ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://UI/Battle/Enemy/Art/hax.png" id="3_apx5t"]
 [ext_resource type="Texture2D" uid="uid://cj8ku618m0y3j" path="res://UI/Battle/Enemy/Art/hax_hurt.png" id="4_ttosn"]
 [ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Entities/Stats/stats.gd" id="5_5c8w2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwor7"]
+atlas = ExtResource("2_i0p6o")
+region = Rect2(0, 0, 416, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3igmn"]
+atlas = ExtResource("2_i0p6o")
+region = Rect2(416, 0, 416, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xswq4"]
+atlas = ExtResource("2_i0p6o")
+region = Rect2(832, 0, 416, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usytt"]
+atlas = ExtResource("2_i0p6o")
+region = Rect2(1248, 0, 416, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwf5n"]
+atlas = ExtResource("2_i0p6o")
+region = Rect2(1664, 0, 416, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0p6o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwor7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3igmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xswq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usytt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwf5n")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_wwor7"]
+script = ExtResource("1_y7j5i")
+sprite_frames = SubResource("SpriteFrames_i0p6o")
+animation_target = 2
+animation_audio = ExtResource("1_wwor7")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_5c8w2"]
 frame_0/texture = ExtResource("4_ttosn")
@@ -36,5 +89,6 @@ sprites = Dictionary[int, AnimatedTexture]({
 1: SubResource("AnimatedTexture_ttosn")
 })
 skills = Array[ExtResource("2_apx5t")]([ExtResource("3_5c8w2")])
+attack_animation = SubResource("Resource_wwor7")
 emotions = Array[int]([0, 1, 2, 4, 5, 7, 8])
 metadata/_custom_type_script = "uid://cdni02qqf3d5"

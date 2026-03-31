@@ -7,6 +7,8 @@ var possible_emotions: Array[BattleEnums.Emotions] = []
 
 var stats: Stats
 var current_emotion: BattleEnums.Emotions
+var current_emotion_base_type: BattleEnums.Emotions:
+	get: return EmotionHelper.determine_emotion_type(current_emotion)
 
  #Do additional modifications, buffs, etc
 var battle_attack: float:

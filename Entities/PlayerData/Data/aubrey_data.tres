@@ -1,8 +1,83 @@
 [gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dgybubuhy6o62"]
 
 [ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Entities/Stats/stats.gd" id="1_8vfj8"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_ihf31"]
+[ext_resource type="AudioStream" uid="uid://c1bbyb0uquong" path="res://Entities/Attack/Audio/BA_basic_attack_aubrey.ogg" id="1_q8cha"]
 [ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Entities/PlayerData/player_data.gd" id="2_pksnw"]
+[ext_resource type="Texture2D" uid="uid://bophdeuylrmag" path="res://Entities/Attack/Art/aubrey_attack-sprite_sheet.png" id="2_q8cha"]
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="3_b5ynk"]
 [ext_resource type="SpriteFrames" uid="uid://bprjfkofr00v5" path="res://UI/Battle/PlayerPanel/Data/SpriteFrames/aubrey_frames.tres" id="4_pksnw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwa7l"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(0, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_608jh"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(430, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxeoe"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(860, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spvpf"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(1290, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khdy6"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(1720, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt6sc"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(2150, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp1ls"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(2580, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01hxe"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(3010, 0, 430, 288)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sita"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwa7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_608jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxeoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spvpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khdy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt6sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp1ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01hxe")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_tu1v7"]
+script = ExtResource("1_ihf31")
+sprite_frames = SubResource("SpriteFrames_0sita")
+animation_target = 2
+animation_audio = ExtResource("1_q8cha")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
 [sub_resource type="Resource" id="Resource_7wtex"]
 script = ExtResource("1_8vfj8")
@@ -22,6 +97,6 @@ script = ExtResource("2_pksnw")
 player_name = "Aubrey"
 player_stats = SubResource("Resource_7wtex")
 sprite_frames = ExtResource("4_pksnw")
-skills = null
+attack_animation = SubResource("Resource_tu1v7")
 emotions = Array[int]([0, 1, 1, 4, 5, 7, 8])
 metadata/_custom_type_script = "uid://cpe47c776l4uc"

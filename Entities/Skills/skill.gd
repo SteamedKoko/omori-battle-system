@@ -44,7 +44,9 @@ enum StatType {
 
 @export_subgroup("Damage Overrides")
 @export var has_damage_override: bool = false
-@export var damage_multiplier_override_emotion: BattleEnums.Emotions = BattleEnums.Emotions.NEUTRAL
+
+#Reference to BattleEnums.Emotions, only base emotion types
+@export_enum("NEUTRAL:0", "HAPPY:1", "SAD:4", "ANGRY:7") var damage_multiplier_override_emotion: int
 @export var damage_multiplier_override: float = 1
 
 @export var damage_variance: Vector2 = Vector2(.8, 1.2)

@@ -18,9 +18,8 @@ func add_skill_animation(skill_control: SkillEffectControl) -> void:
 
 
 func get_action(_targets: Array) -> Command:
-	BattleEventBus.sent_battle_text.emit("")
 	var cmd: Command = AttackCommand.new(enemy_data.attack_animation)
-	if enemy_data.skills.size() > 0:
+	if enemy_data.skills.size() > 0 and randf_range(0, 100) < enemy_data.skill_use_chance:
 		cmd = SkillCommand.new(enemy_data.skills[0], self)
 
 	cmd.caster = self

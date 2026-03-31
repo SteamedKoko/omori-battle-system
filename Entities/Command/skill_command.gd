@@ -90,20 +90,19 @@ func get_base_stat(base_stat_type: Skill.StatType) -> float:
 
 
 func attack_target(target: BattleCombatant) -> void:
-	var calculated_damage: float = 0
-	for base_stat in skill.base_damage_stat:
-		calculated_damage += get_base_stat(base_stat)
-		
-	var damage_multiplier: float = skill.damage_multiplyer
-	if skill.has_damage_override:
-		if skill.damage_multiplier_override_emotion == caster.current_emotion:
-			damage_multiplier = skill.damage_multiplier_override
+	var calculation = DamageCalculation.new()
+	for base_stat: Skill.StatType in skill.base_damage_stat:
+		calculation.base_damage += get_base_stat(base_stat)
 
-	calculated_damage *= damage_multiplier
-	calculated_damage *= EmotionHelper.get_emotion_multiplier(caster.current_emotion, target.current_emotion)
-	calculated_damage -= target.stats.defense
-	calculated_damage *= randf_range(skill.damage_variance.x, skill.damage_variance.y)
-	target.take_damage(round(calculated_damage))
+	calculation.damage_multiplier = skill.damage_multiplyer
+	if (skill.has_damage_override and
+		skill.damage_multiplier_override_emotion == EmotionHelper.determine_emotion_type(caster.current_emotion)):
+		calculation.damage_multiplier = skill.damage_multiplier_override
+	
+	calculation.target_defense = target.battle_defense
+	calculation.emotion_multiplier = EmotionHelper.get_emotion_multiplier(caster.current_emotion, target.current_emotion)
+	calculation.damage_variance = skill.damage_variance
+	target.take_damage(calculation.crunch_numbers())
 
 
 func play_skill_animation(targets: Array[BattleCombatant]) -> void:

@@ -8,11 +8,8 @@ func _init(_attack_animation: AnimationKind) -> void:
 
 func execute(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_targets: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
-	var initial_damage: float = caster.battle_attack
 
 	await Engine.get_main_loop().create_timer(1).timeout
-
-	#calculations all happen here
 
 	var current_target: BattleCombatant
 	if selected_targets.size() > 0:
@@ -23,17 +20,25 @@ func execute(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_tar
 		command_executed.emit()
 		return
 
-	# TODO: Bro maybe we need to do more here based on emotions etc
-	var damage_to_deal: float = (initial_damage * 2) * randf_range(.8, 1.2)
-	damage_to_deal -= to_attack.stats.defense
+	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ caster.get_combatant_name(), to_attack.get_combatant_name() ])
 
 	var effect_control: SkillEffectControl = SkillEffectControl.build(attack_animation)
 	to_attack.add_skill_animation(effect_control)
 	await effect_control.play_skill_animation()
 
-	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ caster.get_combatant_name(), to_attack.get_combatant_name() ])
-	await Engine.get_main_loop().create_timer(1).timeout
-	to_attack.take_damage(round(damage_to_deal))
+
+	attack_target(to_attack)
 
 	await Engine.get_main_loop().create_timer(1).timeout
+
 	command_executed.emit()
+
+
+func attack_target(to_attack: BattleCombatant) -> void:
+	var damage_calculation: DamageCalculation = DamageCalculation.new()
+	damage_calculation.base_damage = caster.battle_attack
+	damage_calculation.damage_multiplier = 2
+	damage_calculation.target_defense = to_attack.battle_defense
+	damage_calculation.emotion_multiplier = EmotionHelper.get_emotion_multiplier(caster.current_emotion, to_attack.current_emotion)
+
+	to_attack.take_damage(damage_calculation.crunch_numbers())

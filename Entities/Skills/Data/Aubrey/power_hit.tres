@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dvh8nfnj5q2yj"]
+
+[ext_resource type="AudioStream" uid="uid://dmbsxdnsloj7f" path="res://Entities/Skills/Audio/SE_glass_break.ogg" id="1_d8evl"]
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_s61p8"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="2_jlgfo"]
+[ext_resource type="Texture2D" uid="uid://6xmp7bffvrlf" path="res://Entities/Skills/Art/power_hit_sprite_sheet.png" id="3_yiuhd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi6t0"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(0, 0, 640, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpt2m"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(640, 0, 640, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkbbf"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(1280, 0, 640, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xxx8"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(1920, 0, 640, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wvmq"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(2560, 0, 640, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykgos"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(3200, 0, 640, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7jwv"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(3840, 0, 640, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_covu0"]
+atlas = ExtResource("3_yiuhd")
+region = Rect2(4480, 0, 640, 576)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ut10p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi6t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpt2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkbbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xxx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wvmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykgos")
+}, {
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_b7jwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_covu0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_merj7"]
+script = ExtResource("2_jlgfo")
+sprite_frames = SubResource("SpriteFrames_ut10p")
+animation_target = 2
+animation_audio = ExtResource("1_d8evl")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
+
+[resource]
+script = ExtResource("1_s61p8")
+name = "Power Hit"
+description = "An attack that ignores a foe's DEFENSE, then reduces the foe's DEFENSE by one tier."
+cost = 20
+damage_multiplyer = 2.0
+animation_kind = SubResource("Resource_merj7")
+can_select_target = true
+applicable_target = 2
+can_apply_debuff = true
+debuff_apply = 1
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

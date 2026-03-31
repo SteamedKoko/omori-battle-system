@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="3_b5ynk"]
 [ext_resource type="SpriteFrames" uid="uid://bprjfkofr00v5" path="res://UI/Battle/PlayerPanel/Data/SpriteFrames/aubrey_frames.tres" id="4_pksnw"]
 [ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Entities/Attack/Audio/BA_CRITICAL_HIT.ogg" id="4_pwa7l"]
+[ext_resource type="Resource" uid="uid://dvh8nfnj5q2yj" path="res://Entities/Skills/Data/Aubrey/power_hit.tres" id="8_608jh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwa7l"]
 atlas = ExtResource("2_q8cha")
@@ -100,5 +101,6 @@ player_name = "Aubrey"
 player_stats = SubResource("Resource_7wtex")
 sprite_frames = ExtResource("4_pksnw")
 attack_animation = SubResource("Resource_tu1v7")
+skills = Array[ExtResource("3_b5ynk")]([ExtResource("8_608jh")])
 emotions = Array[int]([0, 1, 1, 4, 5, 7, 8])
 metadata/_custom_type_script = "uid://cpe47c776l4uc"

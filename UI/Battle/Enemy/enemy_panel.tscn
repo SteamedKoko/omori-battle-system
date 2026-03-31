@@ -106,7 +106,7 @@ emotion_colors = Dictionary[int, Color]({
 4: Color(0.15075254, 0.38505822, 1, 1),
 7: Color(0.52026945, 1.4980697e-06, 3.3691526e-07, 1)
 })
-default_emotion_color = Color(1, 1, 1, 1)
+default_emotion_color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="EnemySprite" type="TextureRect" parent="." unique_id=1543826525]

@@ -22,7 +22,6 @@ damage_multiplyer = 2.0
 animation_kind = SubResource("Resource_1g7rp")
 has_damage_override = true
 damage_multiplier_override_emotion = 7
-testes = 7
 damage_multiplier_override = 2.25
 target_type = 1
 applicable_target = 2

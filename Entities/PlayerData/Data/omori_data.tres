@@ -1,19 +1,74 @@
 [gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://bd2jyxc6fp1v8"]
 
 [ext_resource type="Resource" uid="uid://ceitaeqkgsd3k" path="res://Entities/Stats/Data/omori_stats.tres" id="1_3de5k"]
+[ext_resource type="Texture2D" uid="uid://4gjoms6m1yhf" path="res://Entities/Attack/Art/omori_attack.png" id="1_hhhgo"]
+[ext_resource type="Script" uid="uid://c30ftyi7wunbk" path="res://Entities/Attack/Attack.gd" id="2_hnm8y"]
 [ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Entities/PlayerData/player_data.gd" id="2_m6jyc"]
+[ext_resource type="AudioStream" uid="uid://3car8l5jmtsx" path="res://Entities/Attack/Audio/BA_basic_attack_omori.ogg" id="3_hnm8y"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="3_khti3"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="4_2air8"]
 [ext_resource type="Resource" uid="uid://pjiw23keauh3" path="res://Entities/Skills/Data/Omori/hack_away.tres" id="4_ietnf"]
 [ext_resource type="Resource" uid="uid://d0x2g6wph170v" path="res://Entities/Skills/Data/Omori/lucky_slice.tres" id="5_3y4fa"]
 [ext_resource type="Resource" uid="uid://c3yvqdc86eh43" path="res://Entities/Skills/Data/Omori/painful_truth.tres" id="6_rh3qy"]
 [ext_resource type="Resource" uid="uid://cu4p6gf4paarc" path="res://Entities/Skills/Data/Omori/shun.tres" id="7_vcol7"]
 [ext_resource type="SpriteFrames" uid="uid://i8rcsttb7qg0" path="res://UI/Battle/PlayerPanel/Data/SpriteFrames/omori_frames.tres" id="8_m6jyc"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2air8"]
+atlas = ExtResource("1_hhhgo")
+region = Rect2(0, 0, 218, 382)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aef4"]
+atlas = ExtResource("1_hhhgo")
+region = Rect2(218, 0, 218, 382)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccgfp"]
+atlas = ExtResource("1_hhhgo")
+region = Rect2(436, 0, 218, 382)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjhko"]
+atlas = ExtResource("1_hhhgo")
+region = Rect2(654, 0, 218, 382)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80hvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2air8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7aef4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccgfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjhko")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_lvhm3"]
+script = ExtResource("2_hnm8y")
+animation = SubResource("SpriteFrames_80hvd")
+sound = ExtResource("3_hnm8y")
+metadata/_custom_type_script = "uid://c30ftyi7wunbk"
+
+[sub_resource type="Resource" id="Resource_7aef4"]
+script = ExtResource("4_2air8")
+sprite_frames = SubResource("SpriteFrames_80hvd")
+animation_target = 2
+animation_audio = ExtResource("3_hnm8y")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
+
 [resource]
 script = ExtResource("2_m6jyc")
 player_name = "Omori"
 player_stats = ExtResource("1_3de5k")
 sprite_frames = ExtResource("8_m6jyc")
+attack = SubResource("Resource_lvhm3")
+attack_animation = SubResource("Resource_7aef4")
 skills = Array[ExtResource("3_khti3")]([ExtResource("4_ietnf"), ExtResource("5_3y4fa"), ExtResource("6_rh3qy"), ExtResource("7_vcol7")])
 emotions = Array[int]([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 metadata/_custom_type_script = "uid://cpe47c776l4uc"

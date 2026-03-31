@@ -1,6 +1,11 @@
 class_name AttackCommand
 extends Command
 
+var attack_animation: AnimationKind
+
+func _init(_attack_animation: AnimationKind) -> void:
+	attack_animation = _attack_animation
+
 func execute(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_targets: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 	var initial_damage: float = caster.battle_attack
@@ -21,6 +26,10 @@ func execute(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_tar
 	# TODO: Bro maybe we need to do more here based on emotions etc
 	var damage_to_deal: float = (initial_damage * 2) * randf_range(.8, 1.2)
 	damage_to_deal -= to_attack.stats.defense
+
+	var effect_control: SkillEffectControl = SkillEffectControl.build(attack_animation)
+	to_attack.add_skill_animation(effect_control)
+	await effect_control.play_skill_animation()
 
 	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ caster.get_combatant_name(), to_attack.get_combatant_name() ])
 	await Engine.get_main_loop().create_timer(1).timeout

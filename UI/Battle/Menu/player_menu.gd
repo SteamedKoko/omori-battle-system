@@ -110,7 +110,7 @@ func _on_target_cancelled() -> void:
 func _on_attack_button_pressed() -> void:
 	_toggle_process(false)
 	BattleEventBus.menu_confirmed.emit()
-	prepped_command = AttackCommand.new()
+	prepped_command = AttackCommand.new(_battle_player.player_data.attack_animation)
 	prepped_command.caster = _battle_player
 	hide()
 	target_select.start_selection(available_enemies)

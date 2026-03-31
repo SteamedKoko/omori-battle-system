@@ -5,6 +5,7 @@ extends Resource
 @export var stats: Stats
 @export var sprites: Dictionary[BattleSpriteStates, AnimatedTexture]
 @export var skills: Array[Skill]
+@export var attack_animation: AnimationKind
 @export var emotions: Array[BattleEnums.Emotions]
 
 enum BattleSpriteStates {

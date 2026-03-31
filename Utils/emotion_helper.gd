@@ -77,4 +77,3 @@ class EmotionResistance:
 	func _init(weakness: BattleEnums.Emotions, strength: BattleEnums.Emotions) -> void:
 		weakness_emotion = weakness
 		strength_emotion = strength
-

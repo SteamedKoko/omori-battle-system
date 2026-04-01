@@ -44,21 +44,14 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-
 	handle_enemy_controls(_event)
 	handle_ally_controls(_event)
 
-	if Input.is_action_just_pressed("joy_button_o"):
-		set_process_unhandled_input(false)
-		BattleEventBus.menu_cancelled.emit()
-		enemies[enemy_index].target_deselect()
-		target_cancelled.emit()
-		get_viewport().set_input_as_handled()
 		
+
 func handle_ally_controls(_event: InputEvent) -> void:
 	if current_target_select_type != TargetSelectTypes.ALLY:
 		return 
-
 
 	if Input.is_action_just_pressed("joy_button_square") and target_select_type == TargetSelectTypes.ALL:
 		allies[ally_index].unfocus_player()
@@ -97,6 +90,15 @@ func handle_ally_controls(_event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 
+	if Input.is_action_just_pressed("joy_button_o"):
+		set_process_unhandled_input(false)
+		BattleEventBus.menu_cancelled.emit()
+		allies[ally_index].unfocus_player()
+		acting_player.focus_player()
+		target_cancelled.emit()
+		get_viewport().set_input_as_handled()
+
+
 
 func handle_enemy_controls(_event: InputEvent) -> void:
 	if current_target_select_type != TargetSelectTypes.ENEMY:
@@ -128,6 +130,13 @@ func handle_enemy_controls(_event: InputEvent) -> void:
 		target_selected.emit(enemies[enemy_index])
 		get_viewport().set_input_as_handled()
 		return
+
+	if Input.is_action_just_pressed("joy_button_o"):
+		set_process_unhandled_input(false)
+		BattleEventBus.menu_cancelled.emit()
+		enemies[enemy_index].target_deselect()
+		target_cancelled.emit()
+		get_viewport().set_input_as_handled()
 
 
 func start_attack_selection(targets: Array[BattleEnemy]) -> void:

@@ -14,20 +14,8 @@ enum SkillTypes {
 @export var skill_type: SkillTypes = SkillTypes.Attack
 @export var cost: int
 @export var times_to_hit: int = 1
-@export var base_damage_stat: Array[BattleEnums.StatType] = [BattleEnums.StatType.Attack]
-@export var damage_multiplyer: float = 1
-@export var additional_flat_damage: float = 0
 @export var animation_kind: AnimationKind
 @export var damage_effects: Array[BaseDamageEffect]
-
-@export_subgroup("Damage Overrides")
-@export var has_damage_override: bool = false
-
-#Reference to BattleEnums.Emotions, only base emotion types
-@export_enum("NEUTRAL:0", "HAPPY:1", "SAD:4", "ANGRY:7") var damage_multiplier_override_emotion: int
-@export var damage_multiplier_override: float = 1
-
-@export var damage_variance: Vector2 = Vector2(.8, 1.2)
 
 
 @export_subgroup("Target")

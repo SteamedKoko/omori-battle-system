@@ -7,12 +7,6 @@ func _init(_skill: Skill, _caster: BattleCombatant) -> void:
 	skill = _skill
 	caster = _caster
 
-#TODO: Skills need to be refactored because this is a mess
-#play animation,sound target, screen, etc
-#deal damage/heal
-#emotion effects
-#debuffs/buffs
-
 func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
 
@@ -101,34 +95,6 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 		_: 
 			push_error("unknown applicable target")
 			return []
-
-
-# func get_base_stat(base_stat_type: BattleEnums.StatType) -> float:
-# 	match base_stat_type:
-# 		BattleEnums.StatType.Attack: return caster.battle_attack
-# 		BattleEnums.StatType.Luck: return caster.battle_luck
-# 		BattleEnums.StatType.Speed: return caster.battle_speed
-# 		BattleEnums.StatType.Defense: return caster.battle_defense
-# 		_: return 0
-
-
-# func attack_target(target: BattleCombatant) -> void:
-# 	var calculation = BaseDamageEffect.DamageCalculation.new()
-# 	for base_stat: BattleEnums.StatType in skill.base_damage_stat:
-# 		calculation.base_damage += get_base_stat(base_stat)
-#
-# 	calculation.damage_multiplier = skill.damage_multiplyer
-# 	if (skill.has_damage_override and
-# 		skill.damage_multiplier_override_emotion == EmotionHelper.determine_emotion_type(caster.current_emotion)):
-# 		calculation.damage_multiplier = skill.damage_multiplier_override
-# 	
-# 	if randf_range(0, 100) < caster.battle_luck:
-# 		calculation.is_crit = true
-#
-# 	calculation.target_defense = target.battle_defense
-# 	calculation.emotion_multiplier = EmotionHelper.get_emotion_multiplier(caster.current_emotion, target.current_emotion)
-# 	calculation.damage_variance = skill.damage_variance
-# 	target.take_damage(calculation.crunch_numbers())
 
 
 func play_skill_animation(targets: Array[BattleCombatant]) -> void:

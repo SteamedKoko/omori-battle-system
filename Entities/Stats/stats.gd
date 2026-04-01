@@ -13,10 +13,12 @@ signal toasted
 
 @export var current_hp: int
 @export var current_juice: int
+
 @export var attack: int
 @export var defense: int
 @export var speed: int
 @export var luck: int
+@export var hit: int
 
 var is_alive: bool:
 	get: return current_hp > 0

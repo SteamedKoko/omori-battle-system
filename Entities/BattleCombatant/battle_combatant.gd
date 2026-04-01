@@ -13,13 +13,15 @@ var current_emotion_base_type: BattleEnums.Emotions:
 
  #Do additional modifications, buffs, etc
 var battle_attack: float:
-	get: return stats.attack
+	get: return stats.attack * EmotionHelper.get_base_stat_multiplier(BattleEnums.StatType.Attack, current_emotion)
 var battle_luck: float:
-	get: return stats.luck
+	get: return stats.luck * EmotionHelper.get_base_stat_multiplier(BattleEnums.StatType.Luck, current_emotion)
 var battle_speed: float:
-	get: return stats.speed
+	get: return stats.speed * EmotionHelper.get_base_stat_multiplier(BattleEnums.StatType.Speed, current_emotion)
 var battle_defense: float:
-	get: return stats.defense
+	get: return stats.defense * EmotionHelper.get_base_stat_multiplier(BattleEnums.StatType.Defense, current_emotion)
+var battle_hit: float:
+	get: return stats.hit * EmotionHelper.get_base_stat_multiplier(BattleEnums.StatType.Hit, current_emotion)
 
 var is_alive: bool:
 	get: return stats.is_alive
@@ -28,6 +30,7 @@ func get_combatant_name() -> String:
 	return ""
 
 func take_damage(damage_to_deliver: int) -> void:
+	#TODO: If sad split some damage out for juice too
 	stats.take_damage(damage_to_deliver)
 
 func set_emotion(new_emotion: BattleEnums.Emotions) -> void:

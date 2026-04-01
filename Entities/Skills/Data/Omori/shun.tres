@@ -101,7 +101,6 @@ script = ExtResource("1_ep4r7")
 name = "Shun"
 description = "Deal damage. If the foe is sad, greatly reduce defense."
 cost = 20
-damage_multiplyer = 3.0
 animation_kind = SubResource("Resource_2nboa")
 damage_effects = Array[ExtResource("4_4kcm5")]([SubResource("Resource_hr47y")])
 can_select_target = true

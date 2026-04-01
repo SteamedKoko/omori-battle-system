@@ -14,12 +14,16 @@ enum SkillTypes {
 @export var skill_type: SkillTypes = SkillTypes.Attack
 @export var cost: int
 @export var times_to_hit: int = 1
+## Handles the animation and sound effect for the skill
 @export var animation_kind: AnimationKind
+## Handles damage and healing for the skill
 @export var damage_effects: Array[BaseDamageEffect]
 
 
 @export_subgroup("Target")
+## Leaving this false will result in spells hitting a random ally or enemy if ApplicableTarget is set to enemy or ally
 @export var can_select_target: bool
+## Any possible targets for skill, will fallback on another target if enemy is dead and set to enemy
 @export var applicable_target: BattleEnums.ApplicableTarget
 
 @export_subgroup("Change Emotion")

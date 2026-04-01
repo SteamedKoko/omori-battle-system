@@ -5,6 +5,7 @@ func execute(_caster: BattleCombatant ,_target: BattleCombatant, _is_crit: bool 
 	push_error("BaseDamageEffect should not be used for attacks/skills")
 
 
+#TODO: Remove dependencies here and delete
 class DamageCalculation:
 	var base_damage: float = 0.0
 	var damage_multiplier: float = 1.0

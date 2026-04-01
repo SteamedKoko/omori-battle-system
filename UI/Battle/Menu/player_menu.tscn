@@ -49,10 +49,6 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_uutds")
 
-[node name="SkillMenu_bak" parent="." unique_id=1910930797 instance=ExtResource("8_8ng7p")]
-visible = false
-layout_mode = 2
-
 [node name="SkillMenu" parent="." unique_id=685827114 instance=ExtResource("8_8ng7p")]
 unique_name_in_owner = true
 visible = false

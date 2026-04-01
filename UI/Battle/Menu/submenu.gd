@@ -36,11 +36,11 @@ func _on_target_cancelled() -> void:
 	open_menu(false)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("joy_button_x"):
 		_handle_option_pressed(focus_owner)
 		get_viewport().set_input_as_handled()
 
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("joy_button_o"):
 		close_menu()
 		closed_menu.emit()
 		BattleEventBus.menu_cancelled.emit()
@@ -82,7 +82,20 @@ func _on_choose_skill(skill: Skill) -> void:
 		return
 
 	close_menu()
-	target_select.start_selection(battle_manager.alive_enemies())
+
+	# This can be fixed with a cleaner implementation for target selection
+	var select_type: TargetSelect.TargetSelectTypes
+	match skill.applicable_target:
+		BattleEnums.ApplicableTarget.All:
+			select_type = TargetSelect.TargetSelectTypes.ALL
+		BattleEnums.ApplicableTarget.Ally:
+			select_type = TargetSelect.TargetSelectTypes.ALLY
+		BattleEnums.ApplicableTarget.Enemy:
+			select_type = TargetSelect.TargetSelectTypes.ENEMY
+		_:
+			push_error("Unable to target enemies with type: ", skill.applicable_target)
+
+	target_select.start_selection(current_player, select_type, battle_manager)
 
 
 

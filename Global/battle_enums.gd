@@ -14,3 +14,28 @@ enum Emotions {
 	FURIOUS,
 	SPAMTON,
 }
+
+enum ApplicableTarget {
+	None,
+	Ally,
+	Enemy,
+	Self,
+	AllEnemy,
+	AllAlly,
+	All,
+}
+
+enum DebuffType {
+	None,
+	Defense,
+	MajorDefense,
+	Attack,
+	MajorAttack
+}
+
+enum StatType {
+	Attack,
+	Defense,
+	Speed,
+	Luck
+}

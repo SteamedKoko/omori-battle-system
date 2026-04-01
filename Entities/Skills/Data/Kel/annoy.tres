@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://7u7xpim3g5qh"]
+
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_ju7o8"]
+
+[resource]
+script = ExtResource("1_ju7o8")
+name = "Annoy"
+description = "Make mad"
+cost = 10
+times_to_hit = 0
+base_damage_stat = Array[int]([])
+can_select_target = true
+applicable_target = 6
+can_set_target_emotion = true
+set_target_emotion = 7
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

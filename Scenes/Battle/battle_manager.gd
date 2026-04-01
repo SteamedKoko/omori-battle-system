@@ -23,6 +23,9 @@ var player_turn_index: int = 0
 var players_to_act: Array[BattlePlayer] = []
 var player_action_stack: Array[Command] = []
 
+var alive_enemies: Array[BattleEnemy]:
+	get = _get_alive_enemies
+
 @onready var player_menu: PlayerMenu = %PlayerMenu
 @onready var player_panel_container: MarginContainer = %PlayerPanelContainer
 @onready var start_menu: StartMenu = %StartMenu
@@ -34,8 +37,8 @@ func _ready():
 	add_child(BattleAudioManager.new())
 	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
 	# var start_enemies: Array[EnemyData] = [SUDO_DATA]
-	# start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
-	start_battle([HERO_DATA], start_enemies)
+	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
+	# start_battle([HERO_DATA], start_enemies)
 	battle_loop()
 
 
@@ -160,20 +163,13 @@ func enemy_turn_start() -> void:
 
 
 func execute_player_actions() -> void:
-	for enemy in enemies:
-		if enemy.is_alive:
-			enemy.target_select(false)
-
 	while(player_action_stack.size() > 0):
 		var action: Command = player_action_stack.pop_front()
 
 		action.execute(enemies, players)
+		# TODO: can setup a signal to emit and queue combo actions, check for those combo actions here to execute
 		await action.command_executed
 
-	for enemy in enemies:
-		if enemy.is_alive:
-			enemy.target_deselect(false)
-	
 
 func battle_loop() -> void:
 	var player_won = false
@@ -204,6 +200,10 @@ func battle_loop() -> void:
 
 	BattleEventBus.sent_battle_text.emit("You lost sucka")
 
+func _get_alive_enemies() -> Array[BattleEnemy]:
+	var to_return: Array[BattleEnemy] = []
+	for e: BattleEnemy in enemies:
+		if e.is_alive:
+			to_return.push_back(e)
 
-func alive_enemies() -> Array[BattleCombatant]:
-		return enemies.filter(func(e): return e.is_alive)
+	return to_return

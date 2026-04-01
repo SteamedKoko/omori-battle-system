@@ -7,6 +7,11 @@ func _init(_skill: Skill, _caster: BattleCombatant) -> void:
 	skill = _skill
 	caster = _caster
 
+#TODO: Skills need to be refactored because this is a mess
+#play animation,sound target, screen, etc
+#deal damage/heal
+#emotion effects
+#debuffs/buffs
 
 func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	BattleEventBus.sent_battle_text.emit('')
@@ -14,6 +19,27 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 	caster.stats.lose_juice(skill.cost)
 	await Engine.get_main_loop().create_timer(1).timeout
 
+	match skill.skill_type:
+		Skill.SkillTypes.Attack: await execute_attack_skill(_possible_enemies, _possible_allies)
+		Skill.SkillTypes.Support: await execute_support_skill(_possible_enemies, _possible_allies)
+
+
+	if skill.can_set_caster_emotion:
+		caster.set_emotion(skill.set_caster_emotion)
+
+	await Engine.get_main_loop().create_timer(1).timeout
+	command_executed.emit()
+
+# Man this is all so messy I hate it
+func execute_support_skill(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
+	#case 1 all allies, pass them in, should only affect the alive ones unless it is a revive
+	#case 2 one ally, pass them in, should only affect the alive ones unless it is a revive
+	#case 3 one enemy, 
+	var targets: Array[BattleCombatant] = determine_targets(_possible_enemies, _possible_allies)
+	pass
+
+
+func execute_attack_skill(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
 	var alive_targets: Array[BattleCombatant] = determine_targets(_possible_enemies, _possible_allies)
 	if alive_targets.size() == 0:
 		command_executed.emit()
@@ -39,38 +65,30 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 
 		alive_targets = determine_targets(_possible_enemies, _possible_allies)
 
-	if skill.can_set_caster_emotion:
-		caster.set_emotion(skill.set_caster_emotion)
-
-	#TODO: Probably apply debuffs here
-
-	await Engine.get_main_loop().create_timer(1).timeout
-	command_executed.emit()
-
-
+# This is actually overkill, the game targets dead allies and does nothing, so should only be focus for enemies
 func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_targets: Array[BattleCombatant]) -> Array[BattleCombatant]:
 	var current_target: BattleCombatant
 	if selected_targets.size() > 0:
 			current_target = selected_targets[0]
 
 	match skill.applicable_target:
-		Skill.ApplicableTarget.AllEnemy: 
+		BattleEnums.ApplicableTarget.AllEnemy: 
 			return _possible_enemy_targets.filter(func(t): return t.is_alive)
-		Skill.ApplicableTarget.AllAlly:
+		BattleEnums.ApplicableTarget.AllAlly:
 			return _possible_ally_targets.filter(func(t): return t.is_alive)
-		Skill.ApplicableTarget.All:
+		BattleEnums.ApplicableTarget.All:
 			var all_targets: Array[BattleCombatant] = []
 			all_targets.append_array(_possible_enemy_targets)
 			all_targets.append_array(_possible_ally_targets)
 			return all_targets.filter(func(t): return t.is_alive)
-		Skill.ApplicableTarget.Self:
+		BattleEnums.ApplicableTarget.Self:
 			return selected_targets
-		Skill.ApplicableTarget.Enemy:
+		BattleEnums.ApplicableTarget.Enemy:
 			var to_target: BattleCombatant = find_attack_target(_possible_enemy_targets, current_target)
 			if to_target:
 				return [to_target]
 			return []
-		Skill.ApplicableTarget.Ally:
+		BattleEnums.ApplicableTarget.Ally:
 			var to_target: BattleCombatant = find_attack_target(_possible_ally_targets, current_target)
 			if to_target:
 				return [to_target]
@@ -80,18 +98,18 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 			return []
 
 
-func get_base_stat(base_stat_type: Skill.StatType) -> float:
+func get_base_stat(base_stat_type: BattleEnums.StatType) -> float:
 	match base_stat_type:
-		Skill.StatType.Attack: return caster.battle_attack
-		Skill.StatType.Luck: return caster.battle_luck
-		Skill.StatType.Speed: return caster.battle_speed
-		Skill.StatType.Defense: return caster.battle_defense
+		BattleEnums.StatType.Attack: return caster.battle_attack
+		BattleEnums.StatType.Luck: return caster.battle_luck
+		BattleEnums.StatType.Speed: return caster.battle_speed
+		BattleEnums.StatType.Defense: return caster.battle_defense
 		_: return 0
 
 
 func attack_target(target: BattleCombatant) -> void:
 	var calculation = DamageCalculation.new()
-	for base_stat: Skill.StatType in skill.base_damage_stat:
+	for base_stat: BattleEnums.StatType in skill.base_damage_stat:
 		calculation.base_damage += get_base_stat(base_stat)
 
 	calculation.damage_multiplier = skill.damage_multiplyer

@@ -15,6 +15,7 @@ func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	crit_sound = player_data.crit_sound
 	changed_emotion.connect(_on_changed_emotion)
 
+
 func get_combatant_name() -> String:
 	return player_data.player_name
 
@@ -25,6 +26,7 @@ func _on_take_damage(damage_taken: int) -> void:
 	await player_panel.damage_container.show_damage(damage_taken)
 	finished_taking_damage.emit()
 
+
 func celebrate() -> void:
 	if !is_alive:
 		return
@@ -32,14 +34,18 @@ func celebrate() -> void:
 	player_panel.mood = BattleEnums.Emotions.NEUTRAL
 	player_panel.player_state = PlayerPanel.PlayerStates.VICTORY
 
+
 func _on_changed_emotion(new_emotion: BattleEnums.Emotions) -> void:
 	player_panel.mood = new_emotion
+
 
 func focus_player() -> void:
 	player_panel.animation.play()
 
-func add_skill_animation(skill_control: SkillEffectControl) -> void:
-	player_panel.effect_container.add_child(skill_control)
 
 func unfocus_player() -> void:
 	player_panel.animation.stop()
+
+
+func add_skill_animation(skill_control: SkillEffectControl) -> void:
+	player_panel.effect_container.add_child(skill_control)

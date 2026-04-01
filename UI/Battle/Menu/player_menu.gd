@@ -12,7 +12,8 @@ var prepped_command: Command
 var _player_text: String
 var _battle_player: BattlePlayer
 
-var available_enemies: Array[BattleCombatant]
+var alive_enemies: Array[BattleEnemy]
+var allies: Array[BattlePlayer]
 
 @onready var action_menu: Control = %ActionMenu
 @onready var attack_button: BattleButton = %AttackButton
@@ -59,11 +60,14 @@ func load_player(player: BattlePlayer, manager: BattleManager) -> void:
 	_battle_player = player
 	_load_skills(player.player_data)
 	_player_text = "What should %s do?" % player.player_data.player_name
-	available_enemies = manager.alive_enemies()
+	alive_enemies = manager.alive_enemies
+	allies = []
+	for ally: BattlePlayer in  manager.players:
+		allies.push_back(ally)
 
 
 func target_enemies() -> void:
-	var to_target: Array[BattleCombatant] = available_enemies
+	var to_target: Array[BattleCombatant] = alive_enemies as Array[BattleCombatant]
 	to_target[0].target_select()
 
 
@@ -113,7 +117,7 @@ func _on_attack_button_pressed() -> void:
 	prepped_command = AttackCommand.new(_battle_player.player_data.attack_animation)
 	prepped_command.caster = _battle_player
 	hide()
-	target_select.start_selection(available_enemies)
+	target_select.start_attack_selection(alive_enemies)
 
 func _on_skill_button_pressed() -> void:
 	_toggle_process(false)

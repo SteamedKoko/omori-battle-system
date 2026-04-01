@@ -1,43 +1,20 @@
 class_name Skill
 extends Resource
 
-enum TargetType {
-	Single,
-	Multi
-}
-
-enum ApplicableTarget {
-	None,
-	Ally,
-	Enemy,
-	Self,
-	AllEnemy,
-	AllAlly,
-	All,
-}
-
-enum DebuffType {
-	None,
-	Defense,
-	MajorDefense,
+#TBH inheritance will shine here to have AttackSkill or HealSkill or ETCSkill
+enum SkillTypes {
 	Attack,
-	MajorAttack
-}
-
-enum StatType {
-	Attack,
-	Defense,
-	Speed,
-	Luck
+	Support,
 }
 
 
 @export_subgroup("Basic")
 @export var name: String
 @export var description: String
+@export var skill_type: SkillTypes = SkillTypes.Attack
 @export var cost: int
 @export var times_to_hit: int = 1
-@export var base_damage_stat: Array[StatType] = [StatType.Attack]
+@export var base_damage_stat: Array[BattleEnums.StatType] = [BattleEnums.StatType.Attack]
 @export var damage_multiplyer: float = 1
 @export var additional_flat_damage: float = 0
 @export var animation_kind: AnimationKind
@@ -54,8 +31,7 @@ enum StatType {
 
 @export_subgroup("Target")
 @export var can_select_target: bool
-@export var target_type: TargetType
-@export var applicable_target: ApplicableTarget
+@export var applicable_target: BattleEnums.ApplicableTarget
 
 @export_subgroup("Change Emotion")
 @export var can_set_target_emotion: bool = false
@@ -68,4 +44,4 @@ enum StatType {
 @export var can_apply_debuff: bool = false
 @export var requires_emotion_for_debuff: bool = false
 @export var debuff_apply_if: BattleEnums.Emotions
-@export var debuff_apply: DebuffType
+@export var debuff_apply: BattleEnums.DebuffType

@@ -47,6 +47,8 @@ func execute_attack_skill(_possible_enemies: Array[BattleCombatant], _possible_a
 
 	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [caster.get_combatant_name(), skill.name])
 
+	var is_crit: bool = randf_range(0, 100) < caster.battle_luck
+
 	await play_skill_animation(alive_targets)
 
 	#damage the targets
@@ -55,7 +57,9 @@ func execute_attack_skill(_possible_enemies: Array[BattleCombatant], _possible_a
 			var to_attack: BattleCombatant = find_attack_target(alive_targets, current_target)
 			if !to_attack:
 				break
-			attack_target(to_attack)
+			# attack_target(to_attack)
+			for effect: BaseDamageEffect in skill.damage_effects:
+				effect.execute(caster, to_attack, is_crit)
 
 			if skill.can_set_target_emotion:
 				if skill.is_emotion_random:
@@ -64,6 +68,7 @@ func execute_attack_skill(_possible_enemies: Array[BattleCombatant], _possible_a
 					current_target.set_emotion(skill.set_target_emotion)
 
 		alive_targets = determine_targets(_possible_enemies, _possible_allies)
+		is_crit = randf_range(0, 100) < caster.battle_luck #reroll crit luck if second attack
 
 # This is actually overkill, the game targets dead allies and does nothing, so should only be focus for enemies
 func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_targets: Array[BattleCombatant]) -> Array[BattleCombatant]:
@@ -98,32 +103,32 @@ func determine_targets(_possible_enemy_targets: Array[BattleCombatant], _possibl
 			return []
 
 
-func get_base_stat(base_stat_type: BattleEnums.StatType) -> float:
-	match base_stat_type:
-		BattleEnums.StatType.Attack: return caster.battle_attack
-		BattleEnums.StatType.Luck: return caster.battle_luck
-		BattleEnums.StatType.Speed: return caster.battle_speed
-		BattleEnums.StatType.Defense: return caster.battle_defense
-		_: return 0
+# func get_base_stat(base_stat_type: BattleEnums.StatType) -> float:
+# 	match base_stat_type:
+# 		BattleEnums.StatType.Attack: return caster.battle_attack
+# 		BattleEnums.StatType.Luck: return caster.battle_luck
+# 		BattleEnums.StatType.Speed: return caster.battle_speed
+# 		BattleEnums.StatType.Defense: return caster.battle_defense
+# 		_: return 0
 
 
-func attack_target(target: BattleCombatant) -> void:
-	var calculation = DamageCalculation.new()
-	for base_stat: BattleEnums.StatType in skill.base_damage_stat:
-		calculation.base_damage += get_base_stat(base_stat)
-
-	calculation.damage_multiplier = skill.damage_multiplyer
-	if (skill.has_damage_override and
-		skill.damage_multiplier_override_emotion == EmotionHelper.determine_emotion_type(caster.current_emotion)):
-		calculation.damage_multiplier = skill.damage_multiplier_override
-	
-	if randf_range(0, 100) < caster.battle_luck:
-		calculation.is_crit = true
-
-	calculation.target_defense = target.battle_defense
-	calculation.emotion_multiplier = EmotionHelper.get_emotion_multiplier(caster.current_emotion, target.current_emotion)
-	calculation.damage_variance = skill.damage_variance
-	target.take_damage(calculation.crunch_numbers())
+# func attack_target(target: BattleCombatant) -> void:
+# 	var calculation = BaseDamageEffect.DamageCalculation.new()
+# 	for base_stat: BattleEnums.StatType in skill.base_damage_stat:
+# 		calculation.base_damage += get_base_stat(base_stat)
+#
+# 	calculation.damage_multiplier = skill.damage_multiplyer
+# 	if (skill.has_damage_override and
+# 		skill.damage_multiplier_override_emotion == EmotionHelper.determine_emotion_type(caster.current_emotion)):
+# 		calculation.damage_multiplier = skill.damage_multiplier_override
+# 	
+# 	if randf_range(0, 100) < caster.battle_luck:
+# 		calculation.is_crit = true
+#
+# 	calculation.target_defense = target.battle_defense
+# 	calculation.emotion_multiplier = EmotionHelper.get_emotion_multiplier(caster.current_emotion, target.current_emotion)
+# 	calculation.damage_variance = skill.damage_variance
+# 	target.take_damage(calculation.crunch_numbers())
 
 
 func play_skill_animation(targets: Array[BattleCombatant]) -> void:

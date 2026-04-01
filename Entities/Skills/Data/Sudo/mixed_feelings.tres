@@ -18,7 +18,6 @@ script = ExtResource("1_0t627")
 name = "Mixed Feelings"
 description = "Makes you feel like shiat"
 animation_kind = SubResource("Resource_4feve")
-target_type = 1
 applicable_target = 4
 can_set_target_emotion = true
 is_emotion_random = true

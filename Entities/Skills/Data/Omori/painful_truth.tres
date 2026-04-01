@@ -4,6 +4,9 @@
 [ext_resource type="AudioStream" uid="uid://uv1dkap03bxk" path="res://Entities/Skills/Audio/BA_sad_poem.ogg" id="1_nv4s0"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_v4w0d"]
 [ext_resource type="Texture2D" uid="uid://60iljh47kacp" path="res://Entities/Skills/Art/painful_truth_sprite_sheet.png" id="2_nv4s0"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Entities/Skills/DamangeEffects/base_damage_effect.gd" id="4_t2fmt"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Entities/Skills/DamangeEffects/damage_part.gd" id="5_syljp"]
+[ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Entities/Skills/DamangeEffects/attack_effect.gd" id="6_nnbw2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1poc"]
 atlas = ExtResource("2_nv4s0")
@@ -111,13 +114,25 @@ animation_target = 2
 animation_audio = ExtResource("1_nv4s0")
 metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
+[sub_resource type="Resource" id="Resource_t2fmt"]
+script = ExtResource("5_syljp")
+multiplier = 2.0
+metadata/_custom_type_script = "uid://dnry2mf1vfy20"
+
+[sub_resource type="Resource" id="Resource_syljp"]
+script = ExtResource("6_nnbw2")
+damage_parts = Array[ExtResource("5_syljp")]([SubResource("Resource_t2fmt")])
+metadata/_custom_type_script = "uid://bm8ihyadcigpw"
+
 [resource]
 script = ExtResource("1_v4w0d")
 name = "Painful Truth"
 description = "Deals damage to a foe. Omori and the foe become sad."
 cost = 10
+base_damage_stat = Array[int]([])
 damage_multiplyer = 2.0
 animation_kind = SubResource("Resource_itdqh")
+damage_effects = Array[ExtResource("4_t2fmt")]([SubResource("Resource_syljp")])
 can_select_target = true
 applicable_target = 2
 can_set_target_emotion = true

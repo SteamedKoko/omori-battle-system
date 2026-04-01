@@ -1,0 +1,2 @@
+class_name HealEffect
+extends BaseDamageEffect

@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_n8w16"]
 [ext_resource type="SpriteFrames" uid="uid://ch5j631m14p22" path="res://Entities/Skills/Data/SpriteFrames/hack_away.tres" id="2_0tn0q"]
 [ext_resource type="AudioStream" uid="uid://cdl37evn7lvti" path="res://Entities/Skills/Audio/BA_hack_away.ogg" id="2_bwlkl"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Entities/Skills/DamangeEffects/base_damage_effect.gd" id="4_7c12b"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Entities/Skills/DamangeEffects/damage_part.gd" id="4_67oom"]
+[ext_resource type="Script" uid="uid://fcubwq2mc3qi" path="res://Entities/Skills/DamangeEffects/damage_part_emotion.gd" id="5_7c12b"]
+[ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Entities/Skills/DamangeEffects/attack_effect.gd" id="6_wtw43"]
 
 [sub_resource type="Resource" id="Resource_1g7rp"]
 script = ExtResource("1_n8w16")
@@ -11,6 +15,22 @@ sprite_frames = ExtResource("2_0tn0q")
 animation_target = 3
 animation_audio = ExtResource("2_bwlkl")
 metadata/_custom_type_script = "uid://x7y0eepfqaq4"
+
+[sub_resource type="Resource" id="Resource_7c12b"]
+script = ExtResource("5_7c12b")
+multiplier = 2.25
+metadata/_custom_type_script = "uid://fcubwq2mc3qi"
+
+[sub_resource type="Resource" id="Resource_wtw43"]
+script = ExtResource("4_67oom")
+multiplier = 2.0
+damage_part_emotion = SubResource("Resource_7c12b")
+metadata/_custom_type_script = "uid://dnry2mf1vfy20"
+
+[sub_resource type="Resource" id="Resource_llgay"]
+script = ExtResource("6_wtw43")
+damage_parts = Array[ExtResource("4_67oom")]([SubResource("Resource_wtw43")])
+metadata/_custom_type_script = "uid://bm8ihyadcigpw"
 
 [resource]
 script = ExtResource("1_dlcqc")
@@ -20,6 +40,7 @@ cost = 30
 times_to_hit = 3
 damage_multiplyer = 2.0
 animation_kind = SubResource("Resource_1g7rp")
+damage_effects = Array[ExtResource("4_7c12b")]([SubResource("Resource_llgay")])
 has_damage_override = true
 damage_multiplier_override_emotion = 7
 damage_multiplier_override = 2.25

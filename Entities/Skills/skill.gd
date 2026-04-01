@@ -18,6 +18,7 @@ enum SkillTypes {
 @export var damage_multiplyer: float = 1
 @export var additional_flat_damage: float = 0
 @export var animation_kind: AnimationKind
+@export var damage_effects: Array[BaseDamageEffect]
 
 @export_subgroup("Damage Overrides")
 @export var has_damage_override: bool = false

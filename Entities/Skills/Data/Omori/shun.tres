@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_ep4r7"]
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_u80ao"]
 [ext_resource type="Texture2D" uid="uid://bq05ypmaod3nl" path="res://Entities/Skills/Art/shun_sprite_sheet.png" id="2_nsn7l"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Entities/Skills/DamangeEffects/base_damage_effect.gd" id="4_4kcm5"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Entities/Skills/DamangeEffects/damage_part.gd" id="5_hr47y"]
+[ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Entities/Skills/DamangeEffects/attack_effect.gd" id="6_h7qss"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2nboa"]
 atlas = ExtResource("2_nsn7l")
@@ -83,6 +86,16 @@ animation_target = 2
 animation_audio = ExtResource("1_2nboa")
 metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
+[sub_resource type="Resource" id="Resource_4kcm5"]
+script = ExtResource("5_hr47y")
+multiplier = 3.0
+metadata/_custom_type_script = "uid://dnry2mf1vfy20"
+
+[sub_resource type="Resource" id="Resource_hr47y"]
+script = ExtResource("6_h7qss")
+damage_parts = Array[ExtResource("5_hr47y")]([SubResource("Resource_4kcm5")])
+metadata/_custom_type_script = "uid://bm8ihyadcigpw"
+
 [resource]
 script = ExtResource("1_ep4r7")
 name = "Shun"
@@ -90,6 +103,7 @@ description = "Deal damage. If the foe is sad, greatly reduce defense."
 cost = 20
 damage_multiplyer = 3.0
 animation_kind = SubResource("Resource_2nboa")
+damage_effects = Array[ExtResource("4_4kcm5")]([SubResource("Resource_hr47y")])
 can_select_target = true
 applicable_target = 2
 can_apply_debuff = true

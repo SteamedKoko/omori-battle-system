@@ -41,7 +41,7 @@ func execute(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_tar
 
 
 func attack_target(to_attack: BattleCombatant, is_crit: bool) -> void:
-	var damage_calculation: DamageCalculation = DamageCalculation.new()
+	var damage_calculation: BaseDamageEffect.DamageCalculation = BaseDamageEffect.DamageCalculation.new()
 	if is_crit:
 		damage_calculation.is_crit = is_crit
 

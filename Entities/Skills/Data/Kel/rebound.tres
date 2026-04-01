@@ -118,6 +118,5 @@ description = "Deals damage to all foes."
 cost = 15
 damage_multiplyer = 2.5
 animation_kind = SubResource("Resource_1k83x")
-target_type = 1
 applicable_target = 4
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://q72u06fojhwr"]
+
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_6wu7a"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Entities/Skills/DamangeEffects/base_damage_effect.gd" id="1_lw0pa"]
+
+[resource]
+script = ExtResource("1_6wu7a")
+name = "Twirl"
+description = "AUBREY attacks a foe and becomes HAPPY."
+cost = 10
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

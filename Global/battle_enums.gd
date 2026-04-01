@@ -37,5 +37,6 @@ enum StatType {
 	Attack,
 	Defense,
 	Speed,
-	Luck
+	Luck,
+	Hit
 }

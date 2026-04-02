@@ -1,8 +1,6 @@
 class_name AttackEffect
 extends BaseDamageEffect
 
-## All damage parts will be added together
-@export var damage_parts: Array[DamagePart]
 ## Will pick a number randomly in this range to give damage variety
 @export var damage_variance: Vector2 = Vector2(0.8, 1.2)
 ## Amount of damage to be multiplied if a critical occurs
@@ -29,10 +27,3 @@ func execute(caster: BattleCombatant ,target: BattleCombatant, is_crit: bool = f
 
 	target.take_damage(result)
 
-func _get_base_damage(combatant: BattleCombatant) -> float:
-	var total_base_damage: float = 0.0
-	for part: DamagePart in damage_parts:
-		total_base_damage += part.get_total(combatant)
-
-	return total_base_damage
-		

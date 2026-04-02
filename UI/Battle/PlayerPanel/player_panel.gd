@@ -69,6 +69,7 @@ func _ready():
 	juice_current_text.text = str(stats.current_juice)
 
 	stats.took_damage.connect(_on_took_damage)
+	stats.healed_damage.connect(_on_healed_damage)
 	stats.used_juice.connect(func(_used: int): _update_juice())
 	stats.toasted.connect(_toasted)
 
@@ -96,6 +97,9 @@ func _on_took_damage(_damage_taken: int):
 	player_state = PlayerStates.HURT
 	await Engine.get_main_loop().create_timer(1).timeout
 	player_state = PlayerStates.NEUTRAL
+
+func _on_healed_damage(_healed: int):
+	_update_health()
 
 
 func _set_player_state(value: PlayerStates) -> void:

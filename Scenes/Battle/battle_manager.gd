@@ -61,6 +61,7 @@ func refocus_main_menu() -> void:
 
 
 func append_text(text) -> void:
+	battle_text.text += '\n'
 	battle_text.text += text
 
 func populate_text(text: String) -> void:
@@ -75,6 +76,11 @@ func start_battle(init_players: Array[PlayerData], init_enemies: Array[EnemyData
 		player_panel_container.add_child(player_panel)
 		player.set_emotion(BattleEnums.Emotions.NEUTRAL)
 		players.push_back(player)
+		
+		#TODO DELETE THIS, JUST TESTING
+		var c = player.get_combatant_name().to_lower()
+		if c != "hero":
+			player.take_damage(9999)
 
 	for i in range(init_enemies.size()):
 		var data: EnemyData = init_enemies[i].duplicate(true)
@@ -193,7 +199,7 @@ func battle_loop() -> void:
 	if player_won:
 		for player in players:
 			player.celebrate()
-		BattleEventBus.sent_battle_text.emit("Beat those scrubs\n")
+		BattleEventBus.sent_battle_text.emit("Beat those scrubs")
 		await get_tree().create_timer(.5).timeout
 		BattleEventBus.sent_battle_text_append.emit("Gained 69420 exp")
 		return

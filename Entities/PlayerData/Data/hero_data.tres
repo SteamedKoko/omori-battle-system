@@ -8,6 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c063acfj6h711" path="res://UI/Battle/PlayerPanel/Data/SpriteFrames/hero_frames.tres" id="4_5p46s"]
 [ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Entities/Attack/Audio/BA_CRITICAL_HIT.ogg" id="4_lgp6d"]
 [ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Entities/PlayerData/player_data.gd" id="5_1mtsq"]
+[ext_resource type="Resource" uid="uid://c2w3cx84aa4wf" path="res://Entities/Skills/Data/Hero/cook.tres" id="8_a22li"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgp6d"]
 atlas = ExtResource("2_iu8nj")
@@ -79,5 +80,6 @@ player_name = "Hero"
 player_stats = SubResource("Resource_75hja")
 sprite_frames = ExtResource("4_5p46s")
 attack_animation = SubResource("Resource_v52n2")
+skills = Array[ExtResource("3_jnbmx")]([ExtResource("8_a22li")])
 emotions = Array[int]([0, 1, 2, 4, 5, 7, 8])
 metadata/_custom_type_script = "uid://cpe47c776l4uc"

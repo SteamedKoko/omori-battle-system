@@ -48,7 +48,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 	handle_ally_controls(_event)
 
 		
-
 func handle_ally_controls(_event: InputEvent) -> void:
 	if current_target_select_type != TargetSelectTypes.ALLY:
 		return 
@@ -164,7 +163,7 @@ func start_selection(current_player: BattlePlayer, target_type: TargetSelectType
 			current_target_select_type = TargetSelectTypes.ALLY
 			ally_index = allies.find(acting_player)
 			if target_select_type == TargetSelectTypes.ALL:
-				BattleEventBus.sent_battle_text_append.emit("\nPress U to toggle")
+				BattleEventBus.sent_battle_text_append.emit("Press U to toggle")
 		_:
 			current_target_select_type = TargetSelectTypes.ENEMY
 			enemies[enemy_index].target_select()

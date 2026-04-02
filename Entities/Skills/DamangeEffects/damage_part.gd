@@ -25,4 +25,9 @@ func _get_base_stat(combatant: BattleCombatant, base_stat_type: BattleEnums.Stat
 		BattleEnums.StatType.Luck: return combatant.battle_luck
 		BattleEnums.StatType.Speed: return combatant.battle_speed
 		BattleEnums.StatType.Defense: return combatant.battle_defense
+		BattleEnums.StatType.Hit: return combatant.battle_defense
+		BattleEnums.StatType.CurrentHealth: return combatant.stats.current_hp
+		BattleEnums.StatType.CurrentJuice: return combatant.stats.current_juice
+		BattleEnums.StatType.MaxHealth: return combatant.stats.max_hp
+		BattleEnums.StatType.MaxJuice: return combatant.stats.max_juice
 		_: return 0

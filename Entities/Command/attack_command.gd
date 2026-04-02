@@ -24,7 +24,7 @@ func execute(_possible_enemy_targets: Array[BattleCombatant], _possible_ally_tar
 		command_executed.emit()
 		return
 
-	BattleEventBus.sent_battle_text_append.emit('%s attacks %s\n' % [ caster.get_combatant_name(), to_attack.get_combatant_name() ])
+	BattleEventBus.sent_battle_text_append.emit('%s attacks %s' % [ caster.get_combatant_name(), to_attack.get_combatant_name() ])
 
 	var effect_control: SkillEffectControl = SkillEffectControl.build(attack_animation)
 	if is_crit:

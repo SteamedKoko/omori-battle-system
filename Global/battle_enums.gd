@@ -38,5 +38,9 @@ enum StatType {
 	Defense,
 	Speed,
 	Luck,
-	Hit
+	Hit,
+	CurrentHealth,
+	MaxHealth,
+	CurrentJuice,
+	MaxJuice,
 }

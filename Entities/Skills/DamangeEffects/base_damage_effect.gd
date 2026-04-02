@@ -1,9 +1,19 @@
 class_name BaseDamageEffect
 extends Resource
 
+## All damage parts will be added together
+@export var damage_parts: Array[DamagePart]
+
 func execute(_caster: BattleCombatant ,_target: BattleCombatant, _is_crit: bool = false) -> void:
 	push_error("BaseDamageEffect should not be used for attacks/skills")
 
+func _get_base_damage(combatant: BattleCombatant) -> float:
+	var total_base_damage: float = 0.0
+	for part: DamagePart in damage_parts:
+		total_base_damage += part.get_total(combatant)
+
+	return total_base_damage
+		
 
 #TODO: Remove dependencies here and delete
 class DamageCalculation:

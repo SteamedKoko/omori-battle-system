@@ -47,7 +47,7 @@ func got_hurt(_amount: int) -> void:
 		enemy_sprite.texture = hurt_sprite
 
 	damage_container.show_damage(_amount)
-	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [enemy_data.enemy_name, _amount])
+	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage' % [enemy_data.enemy_name, _amount])
 	BattleEventBus.queued_screen_shake.emit(false)
 
 	await Engine.get_main_loop().create_timer(1).timeout

@@ -11,9 +11,10 @@ func _init(data: PlayerData, panel: PlayerPanel) -> void:
 	stats = data.player_stats
 	player_panel = panel
 	possible_emotions = player_data.emotions.duplicate()
-	player_panel.stats.took_damage.connect(_on_take_damage)
 	crit_sound = player_data.crit_sound
 	changed_emotion.connect(_on_changed_emotion)
+	stats.took_damage.connect(_on_take_damage)
+	stats.healed_damage.connect(_on_heal_damage)
 
 
 func get_combatant_name() -> String:
@@ -21,10 +22,14 @@ func get_combatant_name() -> String:
 
 
 func _on_take_damage(damage_taken: int) -> void:
-	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage\n' % [player_data.player_name, damage_taken])
+	BattleEventBus.sent_battle_text_append.emit('%s takes %s damage' % [player_data.player_name, damage_taken])
 	BattleEventBus.queued_screen_shake.emit(false)
 	await player_panel.damage_container.show_damage(damage_taken)
 	finished_taking_damage.emit()
+
+func _on_heal_damage(amount: int) -> void:
+	BattleEventBus.sent_battle_text_append.emit("%s healed %s damage" % [player_data.player_name, amount])
+	await player_panel.damage_container.show_heal(amount)
 
 
 func celebrate() -> void:

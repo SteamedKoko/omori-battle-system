@@ -26,11 +26,24 @@ func execute(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[
 
 # Man this is all so messy I hate it
 func execute_support_skill(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
-	#case 1 all allies, pass them in, should only affect the alive ones unless it is a revive
-	#case 2 one ally, pass them in, should only affect the alive ones unless it is a revive
-	#case 3 one enemy, 
-	var targets: Array[BattleCombatant] = determine_targets(_possible_enemies, _possible_allies)
-	pass
+
+	BattleEventBus.sent_battle_text.emit("%s performs %s" % [caster.get_combatant_name(), skill.name])
+	await play_skill_animation(selected_targets)
+
+	#TODO: need revive to actually get through this
+	if selected_targets.size() == 1:
+		if !selected_targets[0].is_alive:
+			BattleEventBus.sent_battle_text_append.emit("It did nothing!")
+
+	for target: BattleCombatant in selected_targets:
+		for effect: BaseDamageEffect in skill.damage_effects:
+			effect.execute(caster, target, false)
+
+		if skill.can_set_target_emotion:
+			if skill.is_emotion_random:
+				target.set_random_emotion()
+			else:
+				target.set_emotion(skill.set_target_emotion)
 
 
 func execute_attack_skill(_possible_enemies: Array[BattleCombatant], _possible_allies: Array[BattleCombatant]) -> void:
@@ -39,7 +52,7 @@ func execute_attack_skill(_possible_enemies: Array[BattleCombatant], _possible_a
 		command_executed.emit()
 		return
 
-	BattleEventBus.sent_battle_text.emit("%s performs %s\n" % [caster.get_combatant_name(), skill.name])
+	BattleEventBus.sent_battle_text.emit("%s performs %s" % [caster.get_combatant_name(), skill.name])
 
 	var is_crit: bool = randf_range(0, 100) < caster.battle_luck
 

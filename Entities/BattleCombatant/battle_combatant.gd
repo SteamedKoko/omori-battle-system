@@ -26,6 +26,7 @@ var battle_hit: float:
 var is_alive: bool:
 	get: return stats.is_alive
 
+
 func get_combatant_name() -> String:
 	return ""
 
@@ -33,12 +34,18 @@ func take_damage(damage_to_deliver: int) -> void:
 	#TODO: If sad split some damage out for juice too
 	stats.take_damage(damage_to_deliver)
 
+
+func heal_damage(amount_to_heal: int) -> void:
+	stats.heal_damage(amount_to_heal)
+
+
 func set_emotion(new_emotion: BattleEnums.Emotions) -> void:
 	if !is_alive:
 		return
 
 	current_emotion = EmotionHelper.calculate_emotion(current_emotion, new_emotion, possible_emotions)
 	changed_emotion.emit(current_emotion)
+	return
 
 
 func set_random_emotion() -> void:
@@ -48,6 +55,7 @@ func set_random_emotion() -> void:
 	var emotions: Array[BattleEnums.Emotions] = possible_emotions.duplicate()
 	emotions.pop_front() # Remove neutral let's make this fun
 	set_emotion(emotions.pick_random())
+
 
 func add_skill_animation(_skill_control: SkillEffectControl) -> void:
 	pass

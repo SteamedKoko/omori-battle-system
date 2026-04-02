@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_s61p8"]
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="2_jlgfo"]
 [ext_resource type="Texture2D" uid="uid://6xmp7bffvrlf" path="res://Entities/Skills/Art/power_hit_sprite_sheet.png" id="3_yiuhd"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Entities/Skills/DamangeEffects/base_damage_effect.gd" id="4_jlgfo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hi6t0"]
 atlas = ExtResource("3_yiuhd")
@@ -81,7 +82,6 @@ script = ExtResource("1_s61p8")
 name = "Power Hit"
 description = "An attack that ignores a foe's DEFENSE, then reduces the foe's DEFENSE by one tier."
 cost = 20
-damage_multiplyer = 2.0
 animation_kind = SubResource("Resource_merj7")
 can_select_target = true
 applicable_target = 2

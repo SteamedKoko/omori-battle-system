@@ -12,6 +12,7 @@ static var attack_emotion_multiplier_lookup: Dictionary[BattleEnums.Emotions, fl
 	BattleEnums.Emotions.ANGRY: 1.3,
 	BattleEnums.Emotions.ENRAGED: 1.5,
 	BattleEnums.Emotions.FURIOUS: 2.0,
+	BattleEnums.Emotions.SPAMTON: 100.0
 }
 
 static var defense_emotion_multiplier_lookup: Dictionary[BattleEnums.Emotions, float] = {
@@ -21,6 +22,7 @@ static var defense_emotion_multiplier_lookup: Dictionary[BattleEnums.Emotions, f
 	BattleEnums.Emotions.SAD: 1.25,
 	BattleEnums.Emotions.DEPRESSED: 1.35,
 	BattleEnums.Emotions.MISERABLE: 1.5,
+	BattleEnums.Emotions.SPAMTON: 100.0
 }
 
 static var speed_emotion_multiplier_lookup: Dictionary[BattleEnums.Emotions, float] = {
@@ -30,18 +32,21 @@ static var speed_emotion_multiplier_lookup: Dictionary[BattleEnums.Emotions, flo
 	BattleEnums.Emotions.SAD: 0.8,
 	BattleEnums.Emotions.DEPRESSED: 0.65,
 	BattleEnums.Emotions.MISERABLE: 0.5,
+	BattleEnums.Emotions.SPAMTON: 100.0
 }
 
 static var hit_emotion_multiplier_lookup: Dictionary[BattleEnums.Emotions, float] = {
 	BattleEnums.Emotions.HAPPY: 0.9,
 	BattleEnums.Emotions.ECSTATIC: 0.8,
 	BattleEnums.Emotions.MANIC: 0.7,
+	BattleEnums.Emotions.SPAMTON: 100.0
 }
 
 static var luck_emotion_multiplier_lookup: Dictionary[BattleEnums.Emotions, float] = {
 	BattleEnums.Emotions.HAPPY: 2.0,
 	BattleEnums.Emotions.ECSTATIC: 3.0,
 	BattleEnums.Emotions.MANIC: 4.0,
+	BattleEnums.Emotions.SPAMTON: 100.0
 }
 
 static var emotion_multiplier_lookup: Dictionary[BattleEnums.StatType, Dictionary] = {

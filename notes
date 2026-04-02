@@ -1,5 +1,6 @@
 HOMEWORK(sorted from easy to hard):
 Omori plot armor (surviving with 1hp once per battle)
+Hit/Miss on action
 Stat buffs & debuffs (are these permanent in a battle? if they are active for x turns, then at the start of each turn it could tick down one until depleted, also can be stored in battleplayer or battleenemy) [debuff3, debuff2, debuff1, neutral, buff1, buff2, buff3]
 Combo bar charge (goes up to 10, forgot what charges it)
 Toys (more or less same implementation as skills)

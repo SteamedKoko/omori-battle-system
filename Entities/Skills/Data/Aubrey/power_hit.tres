@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="2_jlgfo"]
 [ext_resource type="Texture2D" uid="uid://6xmp7bffvrlf" path="res://Entities/Skills/Art/power_hit_sprite_sheet.png" id="3_yiuhd"]
 [ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Entities/Skills/DamangeEffects/base_damage_effect.gd" id="4_jlgfo"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Entities/Skills/DamangeEffects/damage_part.gd" id="5_hi6t0"]
+[ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Entities/Skills/DamangeEffects/attack_effect.gd" id="6_qpt2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hi6t0"]
 atlas = ExtResource("3_yiuhd")
@@ -77,12 +79,23 @@ animation_target = 2
 animation_audio = ExtResource("1_d8evl")
 metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
+[sub_resource type="Resource" id="Resource_fkbbf"]
+script = ExtResource("5_hi6t0")
+multiplier = 2.0
+metadata/_custom_type_script = "uid://dnry2mf1vfy20"
+
+[sub_resource type="Resource" id="Resource_6xxx8"]
+script = ExtResource("6_qpt2m")
+damage_parts = Array[ExtResource("5_hi6t0")]([SubResource("Resource_fkbbf")])
+metadata/_custom_type_script = "uid://bm8ihyadcigpw"
+
 [resource]
 script = ExtResource("1_s61p8")
 name = "Power Hit"
 description = "An attack that ignores a foe's DEFENSE, then reduces the foe's DEFENSE by one tier."
 cost = 20
 animation_kind = SubResource("Resource_merj7")
+damage_effects = Array[ExtResource("4_jlgfo")]([SubResource("Resource_6xxx8")])
 can_select_target = true
 applicable_target = 2
 can_apply_debuff = true

@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Entities/Skills/skill.gd" id="1_150rg"]
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Entities/Skills/sprite_animation_kind.gd" id="1_xyc5j"]
 [ext_resource type="Texture2D" uid="uid://bui3qlk77x430" path="res://Entities/Skills/Art/rebound_sprite_sheet.png" id="2_q5r46"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Entities/Skills/DamangeEffects/base_damage_effect.gd" id="4_7g7o4"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Entities/Skills/DamangeEffects/damage_part.gd" id="5_buxty"]
+[ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Entities/Skills/DamangeEffects/attack_effect.gd" id="6_4620t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1k83x"]
 atlas = ExtResource("2_q5r46")
@@ -111,12 +114,22 @@ animation_target = 3
 animation_audio = ExtResource("1_1k83x")
 metadata/_custom_type_script = "uid://x7y0eepfqaq4"
 
+[sub_resource type="Resource" id="Resource_mu4vt"]
+script = ExtResource("5_buxty")
+multiplier = 2.5
+metadata/_custom_type_script = "uid://dnry2mf1vfy20"
+
+[sub_resource type="Resource" id="Resource_vgymf"]
+script = ExtResource("6_4620t")
+damage_parts = Array[ExtResource("5_buxty")]([SubResource("Resource_mu4vt")])
+metadata/_custom_type_script = "uid://bm8ihyadcigpw"
+
 [resource]
 script = ExtResource("1_150rg")
 name = "Rebound"
 description = "Deals damage to all foes."
 cost = 15
-damage_multiplyer = 2.5
 animation_kind = SubResource("Resource_1k83x")
+damage_effects = Array[ExtResource("4_7g7o4")]([SubResource("Resource_vgymf")])
 applicable_target = 4
 metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

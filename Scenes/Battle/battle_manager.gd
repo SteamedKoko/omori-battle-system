@@ -36,9 +36,7 @@ func _ready():
 	_setup_connections()
 	add_child(BattleAudioManager.new())
 	var start_enemies: Array[EnemyData] = [SUDO_DATA, SUDO_DATA]
-	# var start_enemies: Array[EnemyData] = [SUDO_DATA]
 	start_battle([OMORI_DATA, AUBREY_DATA, KEL_DATA, HERO_DATA], start_enemies)
-	# start_battle([HERO_DATA], start_enemies)
 	battle_loop()
 
 
@@ -76,11 +74,6 @@ func start_battle(init_players: Array[PlayerData], init_enemies: Array[EnemyData
 		player_panel_container.add_child(player_panel)
 		player.set_emotion(BattleEnums.Emotions.NEUTRAL)
 		players.push_back(player)
-		
-		#TODO DELETE THIS, JUST TESTING
-		var c = player.get_combatant_name().to_lower()
-		if c != "hero":
-			player.take_damage(9999)
 
 	for i in range(init_enemies.size()):
 		var data: EnemyData = init_enemies[i].duplicate(true)

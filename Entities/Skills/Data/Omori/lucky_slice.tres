@@ -68,9 +68,6 @@ metadata/_custom_type_script = "uid://dnry2mf1vfy20"
 [sub_resource type="Resource" id="Resource_iys23"]
 script = ExtResource("5_0thfe")
 damage_parts = Array[ExtResource("4_isq8d")]([SubResource("Resource_0q7cr")])
-damage_variance = null
-critical_multiplier = null
-additional_critical_damage = null
 metadata/_custom_type_script = "uid://bm8ihyadcigpw"
 
 [resource]

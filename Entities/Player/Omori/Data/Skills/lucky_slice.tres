@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://d0x2g6wph170v"]
+
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="1_7y1io"]
+[ext_resource type="AudioStream" uid="uid://bl3brx17wtj7a" path="res://Assets/Audio/SoundEffects/BA_basic_attack_omori.ogg" id="1_muuwh"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="2_0vd8h"]
+[ext_resource type="Texture2D" uid="uid://bivjecovccej3" path="res://Entities/Player/Omori/Art/lucky_slice_sprite_sheet.png" id="3_muuwh"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Utils/BattleSystem/DamangeEffects/base_damage_effect.gd" id="4_b1ekc"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamangeEffects/damage_part.gd" id="4_isq8d"]
+[ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Utils/BattleSystem/DamangeEffects/attack_effect.gd" id="5_0thfe"]
+[ext_resource type="Script" uid="uid://fcubwq2mc3qi" path="res://Utils/BattleSystem/DamangeEffects/damage_part_emotion.gd" id="6_0q7cr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vd8h"]
+atlas = ExtResource("3_muuwh")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isq8d"]
+atlas = ExtResource("3_muuwh")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0thfe"]
+atlas = ExtResource("3_muuwh")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ekc"]
+atlas = ExtResource("3_muuwh")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q7cr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vd8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isq8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0thfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1ekc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_0thfe"]
+script = ExtResource("2_0vd8h")
+sprite_frames = SubResource("SpriteFrames_0q7cr")
+animation_target = 2
+animation_audio = ExtResource("1_muuwh")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
+
+[sub_resource type="Resource" id="Resource_b1ekc"]
+script = ExtResource("6_0q7cr")
+multiplier = 2.0
+caster_emotion = 1
+metadata/_custom_type_script = "uid://fcubwq2mc3qi"
+
+[sub_resource type="Resource" id="Resource_0q7cr"]
+script = ExtResource("4_isq8d")
+additive_stats = Array[int]([0, 3])
+multiplier = 1.5
+damage_part_emotion = SubResource("Resource_b1ekc")
+metadata/_custom_type_script = "uid://dnry2mf1vfy20"
+
+[sub_resource type="Resource" id="Resource_iys23"]
+script = ExtResource("5_0thfe")
+damage_parts = Array[ExtResource("4_isq8d")]([SubResource("Resource_0q7cr")])
+metadata/_custom_type_script = "uid://bm8ihyadcigpw"
+
+[resource]
+script = ExtResource("1_7y1io")
+name = "Lucky Slice"
+description = "Acts first. An attack that's stronger when Omori is happy."
+cost = 15
+animation_kind = SubResource("Resource_0thfe")
+damage_effects = Array[ExtResource("4_b1ekc")]([SubResource("Resource_iys23")])
+can_select_target = true
+applicable_target = 2
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

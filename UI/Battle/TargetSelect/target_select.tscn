@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://dv2gygkgghfb6"]
-
-[ext_resource type="Script" uid="uid://7dxblrs3lgkw" path="res://UI/Battle/TargetSelect/target_select.gd" id="1_7b6t3"]
-
-[node name="TargetSelect" type="Control" unique_id=359285350]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_7b6t3")

@@ -1,0 +1,203 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://7u7xpim3g5qh"]
+
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="1_ju7o8"]
+[ext_resource type="AudioStream" uid="uid://ca5vg6nyjcdhk" path="res://Assets/Audio/SoundEffects/BA_annoy.ogg" id="1_yhh3u"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="2_cfcfy"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Utils/BattleSystem/DamangeEffects/base_damage_effect.gd" id="3_4ukrv"]
+[ext_resource type="Texture2D" uid="uid://qp4kergwpaq8" path="res://Entities/Player/Kel/Art/annoy_sprite_sheet.png" id="3_cfcfy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ukrv"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(0, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5qep"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(662, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kllq7"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(1324, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0x21"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(1986, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svlp7"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(2648, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sbwl"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(3310, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfaks"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(3972, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkykq"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(4634, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf63n"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(5296, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl6fk"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(5958, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w33u2"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(6620, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prso7"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(7282, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bause"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(7944, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0856"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(8606, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g67tf"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(9268, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itq1s"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(9930, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5pqo"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(10592, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxyly"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(11254, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npa2t"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(11916, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swyxx"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(12578, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlaon"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(13240, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd8qi"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(13902, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xnlu"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(14564, 0, 662, 482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e14mh"]
+atlas = ExtResource("3_cfcfy")
+region = Rect2(15226, 0, 662, 482)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5qep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ukrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5qep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kllq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0x21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svlp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sbwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfaks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkykq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf63n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl6fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w33u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prso7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bause")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0856")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g67tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itq1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5pqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxyly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npa2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swyxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlaon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd8qi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xnlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e14mh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_kllq7"]
+script = ExtResource("2_cfcfy")
+sprite_frames = SubResource("SpriteFrames_v5qep")
+animation_target = 3
+animation_audio = ExtResource("1_yhh3u")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
+
+[resource]
+script = ExtResource("1_ju7o8")
+name = "Annoy"
+description = "Makes a friend or foe ANGRY."
+skill_type = 1
+cost = 5
+animation_kind = SubResource("Resource_kllq7")
+can_select_target = true
+applicable_target = 6
+can_set_target_emotion = true
+set_target_emotion = 7
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

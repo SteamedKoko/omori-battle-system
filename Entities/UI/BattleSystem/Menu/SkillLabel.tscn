@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dy5xdali0qnn3"]
+
+[ext_resource type="Script" uid="uid://bl2xcstexl001" path="res://Entities/UI/BattleSystem/Menu/skill_label.gd" id="1_ay6v8"]
+[ext_resource type="PackedScene" uid="uid://cgy08kn0emq26" path="res://Entities/UI/BattleSystem/Menu/finger.tscn" id="2_4y477"]
+
+[node name="SkillLabel" type="Control" unique_id=1418404018]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 50.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+focus_mode = 2
+script = ExtResource("1_ay6v8")
+
+[node name="OptionText" type="RichTextLabel" parent="." unique_id=1647536408]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 23.0
+text = "Hack away"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Control" type="Control" parent="." unique_id=335085991]
+anchors_preset = 0
+offset_left = -37.0
+offset_top = 6.0
+offset_right = -37.0
+offset_bottom = 6.0
+
+[node name="FingerContainer" parent="Control" unique_id=1335291844 instance=ExtResource("2_4y477")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0

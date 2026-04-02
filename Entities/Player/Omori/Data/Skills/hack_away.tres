@@ -1,0 +1,192 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://pjiw23keauh3"]
+
+[ext_resource type="AudioStream" uid="uid://cdl37evn7lvti" path="res://Assets/Audio/SoundEffects/BA_hack_away.ogg" id="1_xlj2k"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="2_6fpcn"]
+[ext_resource type="Texture2D" uid="uid://de1sfbtp3a7rq" path="res://Entities/Player/Omori/Art/hack_away_sprite_sheet.png" id="3_6fpcn"]
+[ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Utils/BattleSystem/DamangeEffects/base_damage_effect.gd" id="3_wj01b"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamangeEffects/damage_part.gd" id="4_vk368"]
+[ext_resource type="Script" uid="uid://fcubwq2mc3qi" path="res://Utils/BattleSystem/DamangeEffects/damage_part_emotion.gd" id="5_lqbdo"]
+[ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Utils/BattleSystem/DamangeEffects/attack_effect.gd" id="6_pvddx"]
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="7_w2enq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fpcn"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(0, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj01b"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(771, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk368"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(1542, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqbdo"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(2313, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvddx"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(3084, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2enq"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(3855, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28go1"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(4626, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0823"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(5397, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qemp"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(6168, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idpwn"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(6939, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maavv"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(7710, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8c0i"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(8481, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmush"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(9252, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7lb4"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(10023, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d78gy"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(10794, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajp88"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(11565, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf0sd"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(12336, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojqiw"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(13107, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltfbn"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(13878, 0, 771, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0ip5"]
+atlas = ExtResource("3_6fpcn")
+region = Rect2(14649, 0, 771, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_28go1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fpcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj01b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk368")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqbdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvddx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2enq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28go1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0823")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qemp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idpwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maavv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8c0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmush")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7lb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d78gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajp88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf0sd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojqiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltfbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0ip5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_1g7rp"]
+script = ExtResource("2_6fpcn")
+sprite_frames = SubResource("SpriteFrames_28go1")
+animation_target = 3
+animation_audio = ExtResource("1_xlj2k")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
+
+[sub_resource type="Resource" id="Resource_7c12b"]
+script = ExtResource("5_lqbdo")
+multiplier = 2.25
+metadata/_custom_type_script = "uid://fcubwq2mc3qi"
+
+[sub_resource type="Resource" id="Resource_wtw43"]
+script = ExtResource("4_vk368")
+multiplier = 2.0
+damage_part_emotion = SubResource("Resource_7c12b")
+metadata/_custom_type_script = "uid://dnry2mf1vfy20"
+
+[sub_resource type="Resource" id="Resource_llgay"]
+script = ExtResource("6_pvddx")
+damage_parts = Array[ExtResource("4_vk368")]([SubResource("Resource_wtw43")])
+metadata/_custom_type_script = "uid://bm8ihyadcigpw"
+
+[resource]
+script = ExtResource("7_w2enq")
+name = "Hack away"
+description = "Attack 3 times, hitting random foes."
+cost = 30
+times_to_hit = 3
+animation_kind = SubResource("Resource_1g7rp")
+damage_effects = Array[ExtResource("3_wj01b")]([SubResource("Resource_llgay")])
+applicable_target = 2
+metadata/_custom_type_script = "uid://cgkb2gtjr3w54"

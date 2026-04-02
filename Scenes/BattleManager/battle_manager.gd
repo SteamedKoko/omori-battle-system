@@ -61,7 +61,9 @@ func refocus_main_menu() -> void:
 
 
 func append_text(text) -> void:
-	battle_text.text += '\n'
+	if battle_text.text != '':
+		battle_text.text += '\n'
+
 	battle_text.text += text
 
 func populate_text(text: String) -> void:

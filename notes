@@ -1,9 +1,7 @@
-TODO:
-
-HOMEWORK:
-Combo attacks (before attacking there could be a 3 second wait or something that pops up the bubbles, if user chooses one then act on it)
+HOMEWORK(sorted from easy to hard):
+Omori plot armor (surviving with 1hp once per battle)
+Stat buffs & debuffs (are these permanent in a battle? if they are active for x turns, then at the start of each turn it could tick down one until depleted, also can be stored in battleplayer or battleenemy) [debuff3, debuff2, debuff1, neutral, buff1, buff2, buff3]
 Combo bar charge (goes up to 10, forgot what charges it)
-Stat buffs & debuffs (are these permanent in a battle? if they are active for x turns, then at the start of each turn it could tick down one until depleted, also can be stored in battleplayer or battleenemy)
 Toys (more or less same implementation as skills)
 Snacks (more or less same implementation as skills)
-Omori plot armor (surviving with 1hp once per battle)
+Combo attacks (before attacking there could be a 3 second wait or something that pops up the bubbles, if user chooses one then act on it)

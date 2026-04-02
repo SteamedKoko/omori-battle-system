@@ -31,6 +31,7 @@ var alive_enemies: Array[BattleEnemy]:
 @onready var start_menu: StartMenu = %StartMenu
 @onready var battle_text: RichTextLabel = %BattleText
 @onready var screen_skill_container: Control = %ScreenSkillContainer
+@onready var battle_ui: ScreenShake = %BattleUI
 
 func _ready():
 	_setup_connections()
@@ -45,6 +46,7 @@ func _setup_connections() -> void:
 	BattleEventBus.sent_battle_text.connect(populate_text)
 	BattleEventBus.sent_battle_text_append.connect(append_text)
 	BattleEventBus.queued_battle_animation.connect(_on_queued_battle_animation)
+	BattleEventBus.queued_screen_shake.connect(battle_ui.shake_screen)
 	start_menu.attempted_fight.connect(start_player_menu)
 	start_menu.attempted_run.connect(attempt_run)
 	player_menu.cancel_pressed.connect(go_previous_player)

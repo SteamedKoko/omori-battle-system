@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dg7ipultvufpg" path="res://Scenes/BattleManager/Art/casino.png" id="1_o4fs7"]
 [ext_resource type="Script" uid="uid://bbvxbcd31s3qo" path="res://Scenes/BattleManager/battle_manager.gd" id="1_ve3sm"]
-[ext_resource type="Script" uid="uid://dbphmag8t6cw8" path="res://Scenes/BattleManager/battle_ui.gd" id="2_fjqb4"]
+[ext_resource type="Script" uid="uid://dbphmag8t6cw8" path="res://Core/ScreenShake/screen_shake.gd" id="2_fjqb4"]
 [ext_resource type="Texture2D" uid="uid://drlun5nxp25x0" path="res://Scenes/BattleManager/Art/combo_bar.png" id="3_748wt"]
 [ext_resource type="PackedScene" uid="uid://cd6fpqupaud5h" path="res://Entities/UI/BattleSystem/Menu/StartMenu/start_menu.tscn" id="5_748wt"]
 [ext_resource type="PackedScene" uid="uid://cfryc6d4hprrd" path="res://Entities/UI/BattleSystem/Menu/PlayerMenu/player_menu.tscn" id="8_fjqb4"]
@@ -17,6 +17,7 @@ border_width_bottom = 3
 script = ExtResource("1_ve3sm")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=505856376]
+unique_name_in_owner = true
 script = ExtResource("2_fjqb4")
 
 [node name="BG" type="TextureRect" parent="BattleUI" unique_id=1493677146]

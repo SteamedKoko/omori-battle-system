@@ -2,7 +2,7 @@ class_name BattleManager
 extends Node2D
 
 signal player_turn_end
-signal enemy_turn_end
+signal action_execution_ended
 
 const OMORI_DATA = preload("uid://bd2jyxc6fp1v8")
 const AUBREY_DATA = preload("uid://dgybubuhy6o62")
@@ -22,6 +22,7 @@ var enemies: Array[BattleCombatant] = []
 var player_turn_index: int = 0
 var players_to_act: Array[BattlePlayer] = []
 var player_action_stack: Array[Command] = []
+var enemy_action_stack: Array[Command] = []
 
 var alive_enemies: Array[BattleEnemy]:
 	get = _get_alive_enemies
@@ -151,7 +152,7 @@ func start_player_menu() -> void:
 
 func enemy_turn_start() -> void:
 	#Give a small buffer to start enemy turn
-	await get_tree().create_timer(1).timeout
+	enemy_action_stack = []
 
 	for enemy in enemies:
 		if enemy.is_alive:
@@ -159,19 +160,33 @@ func enemy_turn_start() -> void:
 			if !to_attack:
 				break
 			var action: Command = enemy.get_action(to_attack)
+			enemy_action_stack.push_back(action)
+
+
+func execute_actions() -> void:
+	var all_action: Array[Command] = player_action_stack + enemy_action_stack
+
+	all_action.sort_custom(func(a: Command, b: Command): return a.caster.battle_speed > b.caster.battle_speed)
+
+	while (all_action.size() > 0):
+		var action: Command = all_action.pop_front()
+		if(!action.caster.is_alive):
+			continue
+
+		if action.caster is BattleEnemy:
 			action.execute(players, enemies)
-			await action.command_executed
+		else:
+			action.execute(enemies, players)
 
-	enemy_turn_end.emit()
-
-
-func execute_player_actions() -> void:
-	while(player_action_stack.size() > 0):
-		var action: Command = player_action_stack.pop_front()
-
-		action.execute(enemies, players)
-		# TODO: can setup a signal to emit and queue combo actions, check for those combo actions here to execute
 		await action.command_executed
+
+		var player_won = enemies.filter(func(e): return e.is_alive).size() == 0
+		var enemy_won = players.filter(func(e): return e.is_alive).size() == 0
+
+		if player_won or enemy_won:
+			break
+
+	action_execution_ended.emit()
 
 
 func battle_loop() -> void:
@@ -183,11 +198,10 @@ func battle_loop() -> void:
 		await player_turn_end
 		clean_player_menu()
 
-		await execute_player_actions()
-
 		enemy_turn_start()
-		await enemy_turn_end
 
+		execute_actions()
+		await action_execution_ended
 		player_won = enemies.filter(func(e): return e.is_alive).size() == 0
 		enemy_won = players.filter(func(e): return e.is_alive).size() == 0
 

@@ -78,7 +78,7 @@ current_hp = 500
 current_juice = 500
 attack = 100
 defense = 20
-speed = 100
+speed = 25
 luck = 30
 metadata/_custom_type_script = "uid://beeaos4sr20uv"
 

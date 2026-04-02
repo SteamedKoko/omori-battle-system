@@ -3,9 +3,9 @@
 [ext_resource type="AudioStream" uid="uid://uheheapqcr5u" path="res://Assets/Audio/SoundEffects/BA_shun.ogg" id="1_2nboa"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="1_ep4r7"]
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="1_u80ao"]
-[ext_resource type="Texture2D" uid="uid://bq05ypmaod3nl" path="res://Entities/Player/Omori/Art/shun_sprite_sheet.png" id="2_nsn7l"]
+[ext_resource type="Texture2D" uid="uid://bq05ypmaod3nl" path="res://Entities/Player/Omori/Art/Skills/shun_sprite_sheet.png" id="2_nsn7l"]
 [ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Utils/BattleSystem/DamangeEffects/base_damage_effect.gd" id="4_4kcm5"]
-[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamangeEffects/damage_part.gd" id="5_hr47y"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamageParts/damage_part.gd" id="5_hr47y"]
 [ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Utils/BattleSystem/DamangeEffects/attack_effect.gd" id="6_h7qss"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2nboa"]

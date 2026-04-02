@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://4gjoms6m1yhf" path="res://Entities/Player/Omori/Art/omori_attack.png" id="3_ko0pq"]
 [ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Assets/Audio/SoundEffects/BA_CRITICAL_HIT.ogg" id="4_qf5tx"]
 [ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Utils/BattleSystem/stats.gd" id="5_h1tak"]
-[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Utils/BattleSystem/BattleCombatant/BattlePlayer/player_data.gd" id="6_x4dte"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Utils/BattleSystem/PlayerData/player_data.gd" id="6_x4dte"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="7_34fo1"]
 [ext_resource type="Resource" uid="uid://pjiw23keauh3" path="res://Entities/Player/Omori/Data/Skills/hack_away.tres" id="8_78cow"]
 [ext_resource type="Resource" uid="uid://d0x2g6wph170v" path="res://Entities/Player/Omori/Data/Skills/lucky_slice.tres" id="9_tcyxf"]
 [ext_resource type="Resource" uid="uid://c3yvqdc86eh43" path="res://Entities/Player/Omori/Data/Skills/painful_truth.tres" id="10_jcenq"]
 [ext_resource type="Resource" uid="uid://cu4p6gf4paarc" path="res://Entities/Player/Omori/Data/Skills/shun.tres" id="11_7pno6"]
-[ext_resource type="SpriteFrames" uid="uid://i8rcsttb7qg0" path="res://Entities/UI/BattleSystem/PlayerPanel/Data/SpriteFrames/omori_frames.tres" id="12_xt5gd"]
+[ext_resource type="SpriteFrames" uid="uid://i8rcsttb7qg0" path="res://Entities/Player/Omori/Data/omori_frames.tres" id="12_xt5gd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2air8"]
 atlas = ExtResource("3_ko0pq")

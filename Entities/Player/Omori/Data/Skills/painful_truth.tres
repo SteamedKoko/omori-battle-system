@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="1_da8y7"]
 [ext_resource type="AudioStream" uid="uid://uv1dkap03bxk" path="res://Assets/Audio/SoundEffects/BA_sad_poem.ogg" id="1_nv4s0"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="1_v4w0d"]
-[ext_resource type="Texture2D" uid="uid://60iljh47kacp" path="res://Entities/Player/Omori/Art/painful_truth_sprite_sheet.png" id="2_nv4s0"]
+[ext_resource type="Texture2D" uid="uid://60iljh47kacp" path="res://Entities/Player/Omori/Art/Skills/painful_truth_sprite_sheet.png" id="2_nv4s0"]
 [ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Utils/BattleSystem/DamangeEffects/base_damage_effect.gd" id="4_t2fmt"]
-[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamangeEffects/damage_part.gd" id="5_syljp"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamageParts/damage_part.gd" id="5_syljp"]
 [ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Utils/BattleSystem/DamangeEffects/attack_effect.gd" id="6_nnbw2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1poc"]

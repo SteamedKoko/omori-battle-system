@@ -2,10 +2,10 @@
 
 [ext_resource type="AudioStream" uid="uid://cdl37evn7lvti" path="res://Assets/Audio/SoundEffects/BA_hack_away.ogg" id="1_xlj2k"]
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="2_6fpcn"]
-[ext_resource type="Texture2D" uid="uid://de1sfbtp3a7rq" path="res://Entities/Player/Omori/Art/hack_away_sprite_sheet.png" id="3_6fpcn"]
+[ext_resource type="Texture2D" uid="uid://de1sfbtp3a7rq" path="res://Entities/Player/Omori/Art/Skills/hack_away_sprite_sheet.png" id="3_6fpcn"]
 [ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Utils/BattleSystem/DamangeEffects/base_damage_effect.gd" id="3_wj01b"]
-[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamangeEffects/damage_part.gd" id="4_vk368"]
-[ext_resource type="Script" uid="uid://fcubwq2mc3qi" path="res://Utils/BattleSystem/DamangeEffects/damage_part_emotion.gd" id="5_lqbdo"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamageParts/damage_part.gd" id="4_vk368"]
+[ext_resource type="Script" uid="uid://fcubwq2mc3qi" path="res://Utils/BattleSystem/DamageParts/damage_part_emotion.gd" id="5_lqbdo"]
 [ext_resource type="Script" uid="uid://bm8ihyadcigpw" path="res://Utils/BattleSystem/DamangeEffects/attack_effect.gd" id="6_pvddx"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="7_w2enq"]
 

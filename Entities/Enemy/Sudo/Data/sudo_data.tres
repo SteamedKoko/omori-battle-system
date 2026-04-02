@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bgcmm1twyftdq"]
 
-[ext_resource type="Script" uid="uid://cdni02qqf3d5" path="res://Utils/BattleSystem/BattleCombatant/BattleEnemy/enemy_data.gd" id="1_ttosn"]
+[ext_resource type="Script" uid="uid://cdni02qqf3d5" path="res://Utils/BattleSystem/EnemyData/enemy_data.gd" id="1_ttosn"]
 [ext_resource type="AudioStream" uid="uid://b37udikcjhlwv" path="res://Assets/Audio/SoundEffects/BA_basic_attack_solid.ogg" id="1_wwor7"]
 [ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="1_y7j5i"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="2_apx5t"]
 [ext_resource type="Texture2D" uid="uid://tvutj2lya4ko" path="res://Entities/Player/Hero/Art/hero_attack_sprite_sheet.png" id="2_i0p6o"]
 [ext_resource type="Resource" uid="uid://f2imlkvnfyxe" path="res://Entities/Enemy/Sudo/Data/mixed_feelings.tres" id="3_5c8w2"]
-[ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://Entities/UI/BattleSystem/Enemy/Art/hax.png" id="3_apx5t"]
+[ext_resource type="Texture2D" uid="uid://dakn85d5vmdqg" path="res://Entities/Enemy/Sudo/Art/hax.png" id="3_apx5t"]
 [ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Assets/Audio/SoundEffects/BA_CRITICAL_HIT.ogg" id="4_3igmn"]
-[ext_resource type="Texture2D" uid="uid://cj8ku618m0y3j" path="res://Entities/UI/BattleSystem/Enemy/Art/hax_hurt.png" id="4_ttosn"]
+[ext_resource type="Texture2D" uid="uid://cj8ku618m0y3j" path="res://Entities/Enemy/Sudo/Art/hax_hurt.png" id="4_ttosn"]
 [ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Utils/BattleSystem/stats.gd" id="5_5c8w2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwor7"]

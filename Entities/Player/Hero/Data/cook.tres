@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dyikoi1mnlcwb" path="res://Utils/BattleSystem/DamangeEffects/base_damage_effect.gd" id="1_qw2qc"]
 [ext_resource type="Texture2D" uid="uid://bqqb4w2srxfdg" path="res://Entities/Player/Hero/Art/cook_sprite_sheet.png" id="2_3axb8"]
 [ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="2_brgt8"]
-[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamangeEffects/damage_part.gd" id="5_61p25"]
+[ext_resource type="Script" uid="uid://dnry2mf1vfy20" path="res://Utils/BattleSystem/DamageParts/damage_part.gd" id="5_61p25"]
 [ext_resource type="Script" uid="uid://cmod3pgf2r4i5" path="res://Utils/BattleSystem/DamangeEffects/heal_effect.gd" id="6_q1lyv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61p25"]

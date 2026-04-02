@@ -1,0 +1,107 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dgybubuhy6o62"]
+
+[ext_resource type="Script" uid="uid://beeaos4sr20uv" path="res://Utils/BattleSystem/stats.gd" id="1_8vfj8"]
+[ext_resource type="Script" uid="uid://x7y0eepfqaq4" path="res://Utils/BattleSystem/AnimationKind/sprite_animation_kind.gd" id="1_ihf31"]
+[ext_resource type="AudioStream" uid="uid://c1bbyb0uquong" path="res://Assets/Audio/SoundEffects/BA_basic_attack_aubrey.ogg" id="1_q8cha"]
+[ext_resource type="Script" uid="uid://cpe47c776l4uc" path="res://Utils/BattleSystem/PlayerData/player_data.gd" id="2_pksnw"]
+[ext_resource type="Texture2D" uid="uid://bophdeuylrmag" path="res://Entities/Player/Aubrey/Art/Skills/aubrey_attack-sprite_sheet.png" id="2_q8cha"]
+[ext_resource type="Script" uid="uid://cgkb2gtjr3w54" path="res://Utils/BattleSystem/skill.gd" id="3_b5ynk"]
+[ext_resource type="SpriteFrames" uid="uid://bprjfkofr00v5" path="res://Entities/Player/Aubrey/Data/aubrey_frames.tres" id="4_pksnw"]
+[ext_resource type="AudioStream" uid="uid://ddv25jmf3hyke" path="res://Assets/Audio/SoundEffects/BA_CRITICAL_HIT.ogg" id="4_pwa7l"]
+[ext_resource type="Resource" uid="uid://dvh8nfnj5q2yj" path="res://Entities/Player/Aubrey/Data/Skills/power_hit.tres" id="8_608jh"]
+[ext_resource type="Resource" uid="uid://q72u06fojhwr" path="res://Entities/Player/Aubrey/Data/Skills/twirl.tres" id="9_bxeoe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwa7l"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(0, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_608jh"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(430, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxeoe"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(860, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spvpf"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(1290, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khdy6"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(1720, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt6sc"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(2150, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp1ls"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(2580, 0, 430, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01hxe"]
+atlas = ExtResource("2_q8cha")
+region = Rect2(3010, 0, 430, 288)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sita"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwa7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_608jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxeoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spvpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khdy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt6sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp1ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01hxe")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Resource" id="Resource_tu1v7"]
+script = ExtResource("1_ihf31")
+sprite_frames = SubResource("SpriteFrames_0sita")
+animation_target = 2
+animation_audio = ExtResource("1_q8cha")
+metadata/_custom_type_script = "uid://x7y0eepfqaq4"
+
+[sub_resource type="Resource" id="Resource_7wtex"]
+script = ExtResource("1_8vfj8")
+max_hp = 200
+max_juice = 101
+level = 10
+experience = 100
+current_hp = 200
+current_juice = 101
+attack = 53
+defense = 25
+speed = 15
+luck = 30
+metadata/_custom_type_script = "uid://beeaos4sr20uv"
+
+[resource]
+script = ExtResource("2_pksnw")
+player_name = "Aubrey"
+player_stats = SubResource("Resource_7wtex")
+sprite_frames = ExtResource("4_pksnw")
+attack_animation = SubResource("Resource_tu1v7")
+skills = Array[ExtResource("3_b5ynk")]([ExtResource("8_608jh"), ExtResource("9_bxeoe")])
+emotions = Array[int]([0, 1, 1, 4, 5, 7, 8])
+metadata/_custom_type_script = "uid://cpe47c776l4uc"

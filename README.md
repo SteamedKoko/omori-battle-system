@@ -24,3 +24,9 @@ related to the combatant like UI or combatant data (health, juice, etc).
 * Toys
 * Snacks
 * Combo Attacks
+
+## Credits
+* Omocat - Most assets derived directly from Omori ([Buy the game](https://store.steampowered.com/app/1150690/OMORI/) already if you haven't, it's great)
+* [Sudohaxe](https://www.twitch.tv/sudohaxe) - For the banger backgound music and the pork knuckle sprite used for the enemy
+* [Dex_Does_Art](https://www.twitch.tv/dex_does_art) - For the brick tileset used on the secret spamton emotion
+* [Breadblocker](https://www.twitch.tv/breadblocker) - For the spamton sprite animation

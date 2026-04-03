@@ -30,3 +30,4 @@ related to the combatant like UI or combatant data (health, juice, etc).
 * [Sudohaxe](https://www.twitch.tv/sudohaxe) - For the banger backgound music and the pork knuckle sprite used for the enemy
 * [Dex_Does_Art](https://www.twitch.tv/dex_does_art) - For the brick tileset used on the secret spamton emotion
 * [Breadblocker](https://www.twitch.tv/breadblocker) - For the spamton sprite animation
+* [Me](https://www.twitch.tv/steamedkoko) - Loveable, moist, and delicious. Also did all of the programming.
